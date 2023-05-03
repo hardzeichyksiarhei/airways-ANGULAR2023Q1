@@ -1,11 +1,16 @@
 .app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
   height: 88px;
   background: rgba(116, 118, 122, 0.2);
 
   &__container {
     height: 100%;
     display: grid;
-    grid-template-columns: auto max-content max-content;
+    grid-template-columns: auto repeat(4, max-content);
     gap: 40px;
     align-items: center;
   }

@@ -1,1 +1,17 @@
-<p>footer works!</p>
+<div class="app-footer">
+  <div class="app-footer__container container">
+    <div class="app-footer__copyright">
+      © {{ currentDate | date : "yyyy" }}, AIRWAY. All rights reserved.
+    </div>
+
+    <div class="app-footer__payments">
+      <p>We accept these payment methods</p>
+      <ul>
+        <li><img src="/assets/icons/mastercard.png" alt="Master Card" /></li>
+        <li><img src="/assets/icons/amazon_pay.png" alt="Amazon Pay" /></li>
+        <li><img src="/assets/icons/american_express.png" alt="" /></li>
+        <li><img src="/assets/icons/visa.png" alt="" /></li>
+      </ul>
+    </div>
+  </div>
+</div>

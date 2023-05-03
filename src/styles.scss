@@ -3,9 +3,18 @@ body {
   height: 100%;
 }
 
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
 body {
+  min-height: 100vh;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .d-none {
