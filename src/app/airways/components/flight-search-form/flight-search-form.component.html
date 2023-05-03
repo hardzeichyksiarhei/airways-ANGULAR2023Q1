@@ -1,0 +1,75 @@
+<mat-card class="flight-search-form">
+  <mat-card-content>
+    <mat-radio-group
+      class="flight-search-form__type"
+      aria-label="Select an type"
+    >
+      <mat-radio-button value="1">Round Trip</mat-radio-button>
+      <mat-radio-button value="2">One Way</mat-radio-button>
+    </mat-radio-group>
+
+    <div class="flight-search-form__route">
+      <mat-form-field appearance="outline">
+        <mat-label>From</mat-label>
+        <mat-select>
+          <mat-option value="MM/DD/YYYY">MM/DD/YYYY</mat-option>
+          <mat-option value="DD/MM/YYYY">DD/MM/YYYY</mat-option>
+          <mat-option value="YYYY/DD/MM">YYYY/DD/MM</mat-option>
+          <mat-option value="YYYY/MM/DD">YYYY/MM/DD</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>To</mat-label>
+        <mat-select>
+          <mat-option value="MM/DD/YYYY">MM/DD/YYYY</mat-option>
+          <mat-option value="DD/MM/YYYY">DD/MM/YYYY</mat-option>
+          <mat-option value="YYYY/DD/MM">YYYY/DD/MM</mat-option>
+          <mat-option value="YYYY/MM/DD">YYYY/MM/DD</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="flight-search-form__meta">
+      <mat-form-field appearance="outline">
+        <mat-label>Dates</mat-label>
+        <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+          <input
+            matStartDate
+            formControlName="start"
+            placeholder="Start date"
+          />
+          <input matEndDate formControlName="end" placeholder="End date" />
+        </mat-date-range-input>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+
+        <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">
+          Invalid start date
+        </mat-error>
+        <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">
+          Invalid end date
+        </mat-error>
+      </mat-form-field>
+
+      <div>
+        <mat-form-field appearance="outline" [matMenuTriggerFor]="menu">
+          <mat-label>Passengers</mat-label>
+          <mat-select disabled />
+        </mat-form-field>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+  </mat-card-content>
+  <mat-card-actions class="flight-search-form__actions">
+    <button mat-flat-button color="primary">Search</button>
+  </mat-card-actions>
+</mat-card>

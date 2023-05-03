@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { RouterModule } from '@angular/router'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { CoreModule } from '../core/core.module'
 
@@ -17,6 +18,7 @@ import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.compo
 import { DateFormatSelectorComponent } from './components/date-format-selector/date-format-selector.component'
 import { CurrencySelectorComponent } from './components/currency-selector/currency-selector.component'
 import { MaterialModule } from '../material.module'
+import { FlightSearchFormComponent } from './components/flight-search-form/flight-search-form.component'
 
 @NgModule({
   declarations: [
@@ -33,7 +35,15 @@ import { MaterialModule } from '../material.module'
     BookingProcessComponent,
     SummaryComponent,
     ShoppingCartComponent,
+    FlightSearchFormComponent,
   ],
-  imports: [CommonModule, RouterModule, CoreModule, MaterialModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    CoreModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class AirwaysModule {}

@@ -2,15 +2,17 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-}
-
-.flight-search-page {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
 
   background-color: #fff;
   background-image: url(/assets/main_bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.flight-search-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
 }
