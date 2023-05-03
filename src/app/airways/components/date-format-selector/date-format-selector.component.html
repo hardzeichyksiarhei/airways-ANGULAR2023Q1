@@ -1,9 +1,11 @@
 <mat-form-field appearance="outline">
   <mat-label>Date</mat-label>
-  <mat-select>
-    <mat-option value="MM/DD/YYYY">MM/DD/YYYY</mat-option>
-    <mat-option value="DD/MM/YYYY">DD/MM/YYYY</mat-option>
-    <mat-option value="YYYY/DD/MM">YYYY/DD/MM</mat-option>
-    <mat-option value="YYYY/MM/DD">YYYY/MM/DD</mat-option>
+  <mat-select
+    [value]="date$ | async"
+    (selectionChange)="onChangeDate($event.value)"
+  >
+    <mat-option *ngFor="let date of dates$ | async" [value]="date">
+      {{ date }}
+    </mat-option>
   </mat-select>
 </mat-form-field>

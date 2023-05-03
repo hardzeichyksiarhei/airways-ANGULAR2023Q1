@@ -14,3 +14,13 @@ export const selectCurrencies = createSelector(
   selectSettingsFeature,
   (state) => state.settings.currencies
 )
+
+export const selectDate = createSelector(
+  selectSettingsFeature,
+  (state) => state.settings.date
+)
+
+export const selectDates = createSelector(
+  selectSettingsFeature,
+  (state) => state.settings.dates
+)

@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store'
-import { changeCurrency } from './settings.actions'
+import { changeCurrency, changeDate } from './settings.actions'
 
 export interface SettingsState {
   date: string
@@ -10,8 +10,8 @@ export interface SettingsState {
 }
 
 const initialState: SettingsState = {
-  date: '',
-  dates: [],
+  date: 'MM/DD/YYYY',
+  dates: ['MM/DD/YYYY', 'DD/MM/YYYY', 'YYYY/DD/MM', 'YYYY/MM/DD'],
 
   currency: 'EUR',
   currencies: ['EUR', 'USD'],
@@ -24,6 +24,13 @@ export const settingsReducer = createReducer(
     (state, action): SettingsState => ({
       ...state,
       currency: action.currency,
+    })
+  ),
+  on(
+    changeDate,
+    (state, action): SettingsState => ({
+      ...state,
+      date: action.date,
     })
   )
 )

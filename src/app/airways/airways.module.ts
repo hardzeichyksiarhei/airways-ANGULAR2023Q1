@@ -22,6 +22,7 @@ import { MaterialModule } from '../material.module'
 import { FlightSearchFormComponent } from './components/flight-search-form/flight-search-form.component'
 
 import { settingsReducer } from './store/settings/settings.reducer'
+import { AirwayState } from './store/types'
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import { settingsReducer } from './store/settings/settings.reducer'
 
     StoreModule.forFeature(
       'airway',
-      combineReducers({ settings: settingsReducer })
+      combineReducers<AirwayState>({ settings: settingsReducer })
     ),
   ],
 })
