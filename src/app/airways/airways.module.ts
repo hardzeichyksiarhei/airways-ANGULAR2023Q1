@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { RouterModule } from '@angular/router'
+import { StoreModule, combineReducers } from '@ngrx/store'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { CoreModule } from '../core/core.module'
@@ -19,6 +20,8 @@ import { DateFormatSelectorComponent } from './components/date-format-selector/d
 import { CurrencySelectorComponent } from './components/currency-selector/currency-selector.component'
 import { MaterialModule } from '../material.module'
 import { FlightSearchFormComponent } from './components/flight-search-form/flight-search-form.component'
+
+import { settingsReducer } from './store/settings/settings.reducer'
 
 @NgModule({
   declarations: [
@@ -44,6 +47,11 @@ import { FlightSearchFormComponent } from './components/flight-search-form/fligh
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+
+    StoreModule.forFeature(
+      'airway',
+      combineReducers({ settings: settingsReducer })
+    ),
   ],
 })
 export class AirwaysModule {}
