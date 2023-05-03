@@ -12,19 +12,13 @@ import { ShoppingCartComponent } from './airways/pages/shopping-cart/shopping-ca
 const routes: Routes = [
   {
     path: '',
+    component: DefaultComponent,
     children: [
-      {
-        path: 'airways',
-        redirectTo: 'search',
-        component: DefaultComponent,
-        children: [
-          { path: 'search', component: FlightSearchComponent },
-          { path: 'selection', component: FlightSelectionComponent },
-          { path: 'booking', component: BookingProcessComponent },
-          { path: 'summory', component: SummaryComponent },
-          { path: 'cart', component: ShoppingCartComponent },
-        ],
-      },
+      { path: '', component: FlightSearchComponent },
+      { path: 'selection', component: FlightSelectionComponent },
+      { path: 'booking', component: BookingProcessComponent },
+      { path: 'summory', component: SummaryComponent },
+      { path: 'cart', component: ShoppingCartComponent },
     ],
   },
 ]
