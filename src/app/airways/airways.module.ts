@@ -23,6 +23,8 @@ import { FlightSearchFormComponent } from './components/flight-search-form/fligh
 
 import { settingsReducer } from './store/settings/settings.reducer'
 import { AirwayState } from './store/types'
+import { EffectsModule } from '@ngrx/effects'
+import { CountriesEffects } from './store/countries/countries.effects'
 
 @NgModule({
   declarations: [
@@ -53,6 +55,7 @@ import { AirwayState } from './store/types'
       'airway',
       combineReducers<AirwayState>({ settings: settingsReducer })
     ),
+    EffectsModule.forFeature(CountriesEffects),
   ],
 })
 export class AirwaysModule {}
