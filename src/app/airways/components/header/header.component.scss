@@ -1,0 +1,18 @@
+.app-header {
+  height: 88px;
+  background: rgba(116, 118, 122, 0.2);
+
+  &__container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: auto max-content max-content;
+    gap: 40px;
+    align-items: center;
+  }
+}
+
+.app-logo {
+  img {
+    display: block;
+  }
+}

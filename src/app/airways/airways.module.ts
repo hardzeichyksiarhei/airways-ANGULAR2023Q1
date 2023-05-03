@@ -14,12 +14,18 @@ import { BookingProcessComponent } from './pages/booking-process/booking-process
 import { SummaryComponent } from './pages/summary/summary.component'
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component'
 
+import { DateFormatSelectorComponent } from './components/date-format-selector/date-format-selector.component'
+import { CurrencySelectorComponent } from './components/currency-selector/currency-selector.component'
+import { MaterialModule } from '../material.module'
+
 @NgModule({
   declarations: [
     DefaultComponent,
 
     // Components
     HeaderComponent,
+    DateFormatSelectorComponent,
+    CurrencySelectorComponent,
 
     // Pages
     FlightSearchComponent,
@@ -28,6 +34,6 @@ import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.compo
     SummaryComponent,
     ShoppingCartComponent,
   ],
-  imports: [CommonModule, CoreModule, RouterModule],
+  imports: [CommonModule, RouterModule, CoreModule, MaterialModule],
 })
 export class AirwaysModule {}
