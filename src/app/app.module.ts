@@ -6,6 +6,7 @@ import { AppComponent } from './app.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { CoreModule } from './core/core.module'
+import { AirwaysModule } from './airways/airways.module'
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +15,7 @@ import { CoreModule } from './core/core.module'
     AppRoutingModule,
     BrowserAnimationsModule,
     CoreModule,
+    AirwaysModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
