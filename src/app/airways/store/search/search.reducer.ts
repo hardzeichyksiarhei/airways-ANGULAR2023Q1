@@ -1,5 +1,9 @@
 import { createReducer, on } from '@ngrx/store'
-import { changeSearchType } from './search.actions'
+import {
+  changeEndDate,
+  changeSearchType,
+  changeStartDate,
+} from './search.actions'
 
 export type SearchType = 'ROUND_TRIP' | 'ONE_WAY'
 
@@ -50,6 +54,26 @@ export const searchReducer = createReducer(
     (state, action): SearchState => ({
       ...state,
       type: action.searchType,
+    })
+  ),
+  on(
+    changeStartDate,
+    (state, action): SearchState => ({
+      ...state,
+      dates: {
+        ...state.dates,
+        start: action.startDate,
+      },
+    })
+  ),
+  on(
+    changeEndDate,
+    (state, action): SearchState => ({
+      ...state,
+      dates: {
+        ...state.dates,
+        end: action.endDate,
+      },
     })
   )
 )

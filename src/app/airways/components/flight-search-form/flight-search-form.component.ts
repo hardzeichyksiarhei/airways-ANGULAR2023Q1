@@ -5,9 +5,16 @@ import { Store } from '@ngrx/store'
 
 import { loadCountries } from '../../store/countries/countries.actions'
 import { selectCountries } from '../../store/countries/countries.selectors'
-import { selectSearchType } from '../../store/search/search.selectors'
+import {
+  selectSearchType,
+  selectStartDate,
+} from '../../store/search/search.selectors'
 import { SearchType } from '../../store/search/search.reducer'
-import { changeSearchType } from '../../store/search/search.actions'
+import {
+  changeEndDate,
+  changeSearchType,
+  changeStartDate,
+} from '../../store/search/search.actions'
 
 @Component({
   selector: 'app-flight-search-form',
@@ -15,7 +22,7 @@ import { changeSearchType } from '../../store/search/search.actions'
   styleUrls: ['./flight-search-form.component.scss'],
 })
 export class FlightSearchFormComponent implements OnInit {
-  range = new FormGroup({
+  dates = new FormGroup({
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
   })
@@ -32,5 +39,13 @@ export class FlightSearchFormComponent implements OnInit {
 
   onChangeSearchType(searchType: SearchType) {
     this.store.dispatch(changeSearchType({ searchType }))
+  }
+
+  onChangeStartDate(startDate: Date) {
+    this.store.dispatch(changeStartDate({ startDate }))
+  }
+
+  onChangeEndDate(endDate: Date) {
+    this.store.dispatch(changeEndDate({ endDate }))
   }
 }
