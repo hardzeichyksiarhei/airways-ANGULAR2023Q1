@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common'
 import { RouterModule } from '@angular/router'
 import { StoreModule, combineReducers } from '@ngrx/store'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { EffectsModule } from '@ngrx/effects'
 
 import { CoreModule } from '../core/core.module'
 
@@ -22,9 +23,10 @@ import { MaterialModule } from '../material.module'
 import { FlightSearchFormComponent } from './components/flight-search-form/flight-search-form.component'
 
 import { settingsReducer } from './store/settings/settings.reducer'
-import { AirwayState } from './store/types'
-import { EffectsModule } from '@ngrx/effects'
 import { CountriesEffects } from './store/countries/countries.effects'
+import { countriesReducer } from './store/countries/countries.reducer'
+
+import { AirwayState } from './store/types'
 
 @NgModule({
   declarations: [
@@ -53,7 +55,10 @@ import { CountriesEffects } from './store/countries/countries.effects'
 
     StoreModule.forFeature(
       'airway',
-      combineReducers<AirwayState>({ settings: settingsReducer })
+      combineReducers<AirwayState>({
+        settings: settingsReducer,
+        countries: countriesReducer,
+      })
     ),
     EffectsModule.forFeature(CountriesEffects),
   ],
