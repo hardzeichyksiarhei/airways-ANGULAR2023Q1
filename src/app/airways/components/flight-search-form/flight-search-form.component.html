@@ -3,9 +3,11 @@
     <mat-radio-group
       class="flight-search-form__type"
       aria-label="Select an type"
+      [value]="searchType$ | async"
+      (change)="onChangeSearchType($event.value)"
     >
-      <mat-radio-button value="1">Round Trip</mat-radio-button>
-      <mat-radio-button value="2">One Way</mat-radio-button>
+      <mat-radio-button value="ROUND_TRIP">Round Trip</mat-radio-button>
+      <mat-radio-button value="ONE_WAY">One Way</mat-radio-button>
     </mat-radio-group>
 
     <div class="flight-search-form__route">

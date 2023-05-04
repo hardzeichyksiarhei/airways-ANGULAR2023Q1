@@ -5,6 +5,9 @@ import { Store } from '@ngrx/store'
 
 import { loadCountries } from '../../store/countries/countries.actions'
 import { selectCountries } from '../../store/countries/countries.selectors'
+import { selectSearchType } from '../../store/search/search.selectors'
+import { SearchType } from '../../store/search/search.reducer'
+import { changeSearchType } from '../../store/search/search.actions'
 
 @Component({
   selector: 'app-flight-search-form',
@@ -19,9 +22,15 @@ export class FlightSearchFormComponent implements OnInit {
 
   countries$: Observable<any[]> = this.store.select(selectCountries)
 
+  searchType$: Observable<SearchType> = this.store.select(selectSearchType)
+
   constructor(private store: Store) {}
 
   ngOnInit() {
     this.store.dispatch(loadCountries())
+  }
+
+  onChangeSearchType(searchType: SearchType) {
+    this.store.dispatch(changeSearchType({ searchType }))
   }
 }

@@ -27,6 +27,7 @@ import { CountriesEffects } from './store/countries/countries.effects'
 import { countriesReducer } from './store/countries/countries.reducer'
 
 import { AirwayState } from './store/types'
+import { searchReducer } from './store/search/search.reducer'
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { AirwayState } from './store/types'
       combineReducers<AirwayState>({
         settings: settingsReducer,
         countries: countriesReducer,
+        search: searchReducer,
       })
     ),
     EffectsModule.forFeature(CountriesEffects),
