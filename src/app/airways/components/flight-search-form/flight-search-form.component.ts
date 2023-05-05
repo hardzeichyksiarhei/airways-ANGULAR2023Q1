@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { FormControl, FormGroup } from '@angular/forms'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { Observable } from 'rxjs'
 import { Store } from '@ngrx/store'
 
@@ -23,8 +23,8 @@ import {
 })
 export class FlightSearchFormComponent implements OnInit {
   dates = new FormGroup({
-    start: new FormControl<Date | null>(null),
-    end: new FormControl<Date | null>(null),
+    start: new FormControl<Date | null>(null, [Validators.required]),
+    end: new FormControl<Date | null>(null, [Validators.required]),
   })
 
   countries$: Observable<any[]> = this.store.select(selectCountries)
@@ -47,5 +47,11 @@ export class FlightSearchFormComponent implements OnInit {
 
   onChangeEndDate(endDate: Date) {
     this.store.dispatch(changeEndDate({ endDate }))
+  }
+
+  onSearch() {
+    if (!this.dates.valid) return
+
+    console.log(this.dates)
   }
 }
