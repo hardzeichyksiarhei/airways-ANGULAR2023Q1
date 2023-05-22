@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store'
 
-import { loadAirports, loadAirportsSuccess } from './airports.actions'
+import { searchAirports, searchAirportsSuccess } from './airports.actions'
 import { IAirport } from './airports.model'
 
 export interface AirportsState {
@@ -15,9 +15,9 @@ const initialState: AirportsState = {
 
 export const airportsReducer = createReducer(
   initialState,
-  on(loadAirports, (state): AirportsState => ({ ...state, loading: true })),
+  on(searchAirports, (state): AirportsState => ({ ...state, loading: true })),
   on(
-    loadAirportsSuccess,
+    searchAirportsSuccess,
     (state, action): AirportsState => ({
       ...state,
       airports: action.airports,

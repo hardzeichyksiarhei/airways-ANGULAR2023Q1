@@ -14,7 +14,7 @@ const { apiURL } = environment
 export class AirportsService {
   constructor(private http: HttpClient) {}
 
-  getAll() {
-    return this.http.get(`${apiURL}/airports`) as Observable<IAirport[]>
+  search() {
+    return this.http.get(`${apiURL}/airports/search`) as Observable<IAirport[]>
   }
 }

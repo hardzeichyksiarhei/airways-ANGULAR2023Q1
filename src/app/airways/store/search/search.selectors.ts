@@ -18,3 +18,13 @@ export const selectEndDate = createSelector(
   selectSearchFeature,
   (state) => state.search.dates.end
 )
+
+export const selectRouteFrom = createSelector(
+  selectSearchFeature,
+  (state) => state.search.route.from
+)
+
+export const selectRouteTo = createSelector(
+  selectSearchFeature,
+  (state) => state.search.route.to
+)

@@ -1,6 +1,8 @@
 import { createReducer, on } from '@ngrx/store'
 import {
   changeEndDate,
+  changeRouteFrom,
+  changeRouteTo,
   changeSearchType,
   changeStartDate,
 } from './search.actions'
@@ -74,6 +76,26 @@ export const searchReducer = createReducer(
       dates: {
         ...state.dates,
         end: action.endDate,
+      },
+    })
+  ),
+  on(
+    changeRouteFrom,
+    (state, action): SearchState => ({
+      ...state,
+      route: {
+        ...state.route,
+        from: action.from,
+      },
+    })
+  ),
+  on(
+    changeRouteTo,
+    (state, action): SearchState => ({
+      ...state,
+      route: {
+        ...state.route,
+        to: action.to,
       },
     })
   )

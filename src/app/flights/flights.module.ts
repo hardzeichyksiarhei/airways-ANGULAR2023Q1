@@ -24,4 +24,4 @@ import { FlightsEffects } from './store/flights.effects'
     EffectsModule.forFeature(FlightsEffects),
   ],
 })
-export class AirwaysModule {}
+export class FlightsModule {}

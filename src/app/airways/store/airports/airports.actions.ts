@@ -2,9 +2,9 @@ import { createAction, props } from '@ngrx/store'
 
 import { IAirport } from './airports.model'
 
-export const loadAirports = createAction('[Airway Airports] Load Airports')
+export const searchAirports = createAction('[Airway Airports] Search Airports')
 
-export const loadAirportsSuccess = createAction(
-  '[Airway Airports] Load Airports Success',
+export const searchAirportsSuccess = createAction(
+  '[Airway Airports] Search Airports Success',
   props<{ airports: IAirport[] }>()
 )
