@@ -4,6 +4,7 @@ import {
   changeSearchType,
   changeStartDate,
 } from './search.actions'
+import { IAirport } from '../airports/airports.model'
 
 export type SearchType = 'ROUND_TRIP' | 'ONE_WAY'
 
@@ -11,8 +12,8 @@ export interface SearchState {
   type: SearchType
 
   route: {
-    from: any
-    to: any
+    from: IAirport | null
+    to: IAirport | null
   }
 
   dates: {

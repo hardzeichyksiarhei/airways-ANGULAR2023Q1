@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { EffectsModule } from '@ngrx/effects'
 
 import { CoreModule } from '../core/core.module'
+import { MaterialModule } from '../material.module'
 
 import { DefaultComponent } from './layouts/default/default.component'
 
@@ -19,11 +20,10 @@ import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.compo
 
 import { DateFormatSelectorComponent } from './components/date-format-selector/date-format-selector.component'
 import { CurrencySelectorComponent } from './components/currency-selector/currency-selector.component'
-import { MaterialModule } from '../material.module'
 import { FlightSearchFormComponent } from './components/flight-search-form/flight-search-form.component'
 
 import { settingsReducer } from './store/settings/settings.reducer'
-import { CountriesEffects } from './store/airports/airports.effects'
+import { AirportsEffects } from './store/airports/airports.effects'
 import { airportsReducer } from './store/airports/airports.reducer'
 
 import { AirwayState } from './store/types'
@@ -62,7 +62,7 @@ import { searchReducer } from './store/search/search.reducer'
         search: searchReducer,
       })
     ),
-    EffectsModule.forFeature(CountriesEffects),
+    EffectsModule.forFeature(AirportsEffects),
   ],
 })
 export class AirwaysModule {}

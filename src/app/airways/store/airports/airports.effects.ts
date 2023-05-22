@@ -7,7 +7,7 @@ import { loadAirports, loadAirportsSuccess } from './airports.actions'
 import { AirportsService } from './airports.service'
 
 @Injectable()
-export class CountriesEffects {
+export class AirportsEffects {
   constructor(
     private actions$: Actions,
     private airportsService: AirportsService
