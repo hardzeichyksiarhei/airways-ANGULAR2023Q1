@@ -23,8 +23,8 @@ import { MaterialModule } from '../material.module'
 import { FlightSearchFormComponent } from './components/flight-search-form/flight-search-form.component'
 
 import { settingsReducer } from './store/settings/settings.reducer'
-import { CountriesEffects } from './store/countries/countries.effects'
-import { countriesReducer } from './store/countries/countries.reducer'
+import { CountriesEffects } from './store/airports/airports.effects'
+import { airportsReducer } from './store/airports/airports.reducer'
 
 import { AirwayState } from './store/types'
 import { searchReducer } from './store/search/search.reducer'
@@ -58,7 +58,7 @@ import { searchReducer } from './store/search/search.reducer'
       'airway',
       combineReducers<AirwayState>({
         settings: settingsReducer,
-        countries: countriesReducer,
+        airports: airportsReducer,
         search: searchReducer,
       })
     ),

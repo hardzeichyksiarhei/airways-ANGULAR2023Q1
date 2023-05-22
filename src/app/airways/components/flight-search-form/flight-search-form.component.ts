@@ -3,8 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { Observable } from 'rxjs'
 import { Store } from '@ngrx/store'
 
-import { loadCountries } from '../../store/countries/countries.actions'
-import { selectCountries } from '../../store/countries/countries.selectors'
+import { loadAirports } from '../../store/airports/airports.actions'
+import { selectAirports } from '../../store/airports/airports.selectors'
 import {
   selectSearchType,
   selectStartDate,
@@ -15,6 +15,7 @@ import {
   changeSearchType,
   changeStartDate,
 } from '../../store/search/search.actions'
+import { IAirport } from '../../store/airports/airports.model'
 
 @Component({
   selector: 'app-flight-search-form',
@@ -27,14 +28,14 @@ export class FlightSearchFormComponent implements OnInit {
     end: new FormControl<Date | null>(null, [Validators.required]),
   })
 
-  countries$: Observable<any[]> = this.store.select(selectCountries)
+  airports$: Observable<IAirport[]> = this.store.select(selectAirports)
 
   searchType$: Observable<SearchType> = this.store.select(selectSearchType)
 
   constructor(private store: Store) {}
 
   ngOnInit() {
-    this.store.dispatch(loadCountries())
+    this.store.dispatch(loadAirports())
   }
 
   onChangeSearchType(searchType: SearchType) {

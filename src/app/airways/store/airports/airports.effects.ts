@@ -3,22 +3,22 @@ import { Actions, createEffect, ofType } from '@ngrx/effects'
 import { EMPTY } from 'rxjs'
 import { map, exhaustMap, catchError } from 'rxjs/operators'
 
-import { loadCountries, loadCountriesSuccess } from './countries.actions'
-import { CountriesService } from './countries.service'
+import { loadAirports, loadAirportsSuccess } from './airports.actions'
+import { AirportsService } from './airports.service'
 
 @Injectable()
 export class CountriesEffects {
   constructor(
     private actions$: Actions,
-    private countriesService: CountriesService
+    private airportsService: AirportsService
   ) {}
 
-  loadCountries$ = createEffect(() => {
+  loadAirports$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(loadCountries.type),
+      ofType(loadAirports.type),
       exhaustMap(() =>
-        this.countriesService.getAll().pipe(
-          map((countries) => loadCountriesSuccess({ countries })),
+        this.airportsService.getAll().pipe(
+          map((airports) => loadAirportsSuccess({ airports })),
           catchError(() => EMPTY)
         )
       )

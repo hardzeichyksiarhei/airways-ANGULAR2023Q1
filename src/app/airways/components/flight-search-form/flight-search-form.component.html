@@ -15,10 +15,12 @@
         <mat-label>From</mat-label>
         <mat-select>
           <mat-option
-            *ngFor="let country of countries$ | async"
-            [value]="country"
+            *ngFor="let airport of airports$ | async"
+            [value]="airport"
           >
-            {{ country.name.common }}
+            <b>{{ airport.city }} ({{ airport.key }})</b>
+            <br />
+            <small>{{ airport.name }}, {{ airport.city }}</small>
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -27,10 +29,11 @@
         <mat-label>To</mat-label>
         <mat-select>
           <mat-option
-            *ngFor="let country of countries$ | async"
-            [value]="country"
+            *ngFor="let airport of airports$ | async"
+            [value]="airport"
           >
-            {{ country.name.common }}
+            {{ airport.city }} ({{ airport.key }}) – {{ airport.name }},
+            {{ airport.city }}
           </mat-option>
         </mat-select>
       </mat-form-field>

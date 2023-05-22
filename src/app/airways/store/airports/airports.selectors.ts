@@ -2,10 +2,10 @@ import { createFeatureSelector, createSelector } from '@ngrx/store'
 
 import { AirwayState } from '../types'
 
-export const selectCountriesFeature =
+export const selectAirportsFeature =
   createFeatureSelector<AirwayState>('airway')
 
-export const selectCountries = createSelector(
-  selectCountriesFeature,
-  (state) => state.countries.countries
+export const selectAirports = createSelector(
+  selectAirportsFeature,
+  (state) => state.airports.airports
 )
