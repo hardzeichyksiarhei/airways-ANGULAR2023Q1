@@ -7,11 +7,13 @@ import { searchAirports } from '../../store/airports/airports.actions'
 import { selectAirports } from '../../store/airports/airports.selectors'
 import {
   selectSearchFeature,
+  selectPassengers,
   selectSearchType,
 } from '../../store/search/search.selectors'
-import { SearchType } from '../../store/search/search.reducer'
+import { Passengers, SearchType } from '../../store/search/search.reducer'
 import {
   changeEndDate,
+  changePassengers,
   changeRouteFrom,
   changeRouteTo,
   changeSearchType,
@@ -34,6 +36,8 @@ export class FlightSearchFormComponent implements OnInit {
   airports$: Observable<IAirport[]> = this.store.select(selectAirports)
 
   searchType$: Observable<SearchType> = this.store.select(selectSearchType)
+
+  passengers$: Observable<Passengers> = this.store.select(selectPassengers)
 
   constructor(private store: Store, private router: Router) {}
 
@@ -59,6 +63,13 @@ export class FlightSearchFormComponent implements OnInit {
 
   onChangeRouteTo(to: IAirport) {
     this.store.dispatch(changeRouteTo({ to }))
+  }
+
+  onChangePassengers(event: {
+    key: /*'adults' | 'child' | 'infant' |*/ string
+    value: number
+  }) {
+    this.store.dispatch(changePassengers({ [event.key]: +event.value }))
   }
 
   onSearch() {
