@@ -1,0 +1,6 @@
+<div *ngIf="shouldShow" class="container">
+  <div class="type">{{ passengerType | titlecase }}</div>
+  <div class="dec" (click)="onValueDecrement($event)">-</div>
+  <div class="count">{{ passengerCount }}</div>
+  <div class="inc" (click)="onValueIncrement($event)">+</div>
+</div>
