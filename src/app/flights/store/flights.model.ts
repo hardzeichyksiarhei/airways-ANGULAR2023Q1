@@ -1,10 +1,18 @@
+import { IAirport } from '../../airways/store/airports/airports.model'
+
 export interface IFlight {
-  from: string
-  to: string
-  startTime: string
-  timeMins: number
-  avaible: number
-  price: number
   flightNumber: string
-  days: number[]
+  form: IAirport
+  landingDate: string
+  otherFlights: Record<number, IFlight>
+  price: Record<string, number>
+  seats: { total: number; avaible: number }
+  takeoffDate: string
+  timeMins: number
+  to: IAirport
+  city: string
+  country: string
+  gmt: string
+  key: string
+  name: string
 }

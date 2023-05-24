@@ -1,1 +1,11 @@
-<p>flight-selector works!</p>
+<div class="app-flight-selector">
+  <div class="app-flight-selector-list-container">
+    <ul *ngIf="flight" class="app-flight-selector-list">
+      <li *ngFor="let slot of slots">
+        {{ slot.formatDate }}
+        {{ slot.disabled }}
+        {{ slot.formatDate === currentSlot?.formatDate }}
+      </li>
+    </ul>
+  </div>
+</div>
