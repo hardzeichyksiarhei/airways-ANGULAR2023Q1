@@ -27,3 +27,12 @@ export const changeRouteTo = createAction(
   '[Airway Search] Change Route To',
   props<{ to: IAirport }>()
 )
+
+export const changePassengers = createAction(
+  '[Airway Search] Change passengers',
+  props<{
+    adults?: number
+    child?: number
+    infant?: number
+  }>()
+)
