@@ -19,6 +19,11 @@ export const selectEndDate = createSelector(
   (state) => state.search.dates.end
 )
 
+export const selectPassengers = createSelector(
+  selectSearchFeature,
+  (state) => state.search.passengers
+)
+
 export const selectRouteFrom = createSelector(
   selectSearchFeature,
   (state) => state.search.route.from
