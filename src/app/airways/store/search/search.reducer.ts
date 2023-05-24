@@ -3,12 +3,19 @@ import {
   changeEndDate,
   changeRouteFrom,
   changeRouteTo,
+  changePassengers,
   changeSearchType,
   changeStartDate,
 } from './search.actions'
 import { IAirport } from '../airports/airports.model'
 
 export type SearchType = 'ROUND_TRIP' | 'ONE_WAY'
+
+export interface Passengers {
+  adults: number
+  child: number
+  infant: number
+}
 
 export interface SearchState {
   type: SearchType
@@ -23,11 +30,7 @@ export interface SearchState {
     end?: Date | null
   }
 
-  passengers: {
-    adults: number
-    child: number
-    infant: number
-  }
+  passengers: Passengers
 }
 
 const initialState: SearchState = {
@@ -96,6 +99,16 @@ export const searchReducer = createReducer(
       route: {
         ...state.route,
         to: action.to,
+      },
+    })
+  ),
+  on(
+    changePassengers,
+    (state, action): SearchState => ({
+      ...state,
+      passengers: {
+        ...state.passengers,
+        ...action,
       },
     })
   )
