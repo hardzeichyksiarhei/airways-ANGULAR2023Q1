@@ -28,6 +28,7 @@ import { airportsReducer } from './store/airports/airports.reducer'
 
 import { AirwayState } from './store/types'
 import { searchReducer } from './store/search/search.reducer'
+import { FlightSelectorComponent } from './components/flight-selector/flight-selector.component'
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { searchReducer } from './store/search/search.reducer'
     SummaryComponent,
     ShoppingCartComponent,
     FlightSearchFormComponent,
+    FlightSelectorComponent,
   ],
   imports: [
     CommonModule,

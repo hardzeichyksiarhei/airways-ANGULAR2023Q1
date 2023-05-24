@@ -1,0 +1,16 @@
+:host {
+  flex-grow: 1;
+  margin-top: 88px;
+
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.flight-selection-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+}
