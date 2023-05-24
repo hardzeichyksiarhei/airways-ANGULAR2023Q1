@@ -8,7 +8,6 @@ import { selectAirports } from '../../store/airports/airports.selectors'
 import {
   selectSearchFeature,
   selectSearchType,
-  selectStartDate,
 } from '../../store/search/search.selectors'
 import { SearchType } from '../../store/search/search.reducer'
 import {
@@ -19,7 +18,8 @@ import {
   changeStartDate,
 } from '../../store/search/search.actions'
 import { IAirport } from '../../store/airports/airports.model'
-// import { searchFlights } from 'src/app/flights/store/flights.actions'
+import { searchFlights } from '../../../flights/store/flights.actions'
+import { ISearchFlightsArgs } from '../../../flights/store/flights.service'
 
 @Component({
   selector: 'app-flight-search-form',
@@ -69,13 +69,14 @@ export class FlightSearchFormComponent implements OnInit {
       .select(selectSearchFeature)
       .pipe(take(1))
       .subscribe(({ search }) => {
-        console.log(search)
-      })
+        const body = {
+          fromKey: search.route.from?.key,
+          toKey: search.route.to?.key,
+          forwardDate: search.dates.start.toISOString(),
+          backDate: search.dates.end?.toISOString(),
+        } as ISearchFlightsArgs['body']
 
-    // this.store.dispatch(
-    //   searchFlights({
-    //     args: { body: {} },
-    //   })
-    // )
+        this.store.dispatch(searchFlights({ args: { body } }))
+      })
   }
 }
