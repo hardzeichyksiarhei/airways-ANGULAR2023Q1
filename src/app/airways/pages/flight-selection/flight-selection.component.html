@@ -2,10 +2,15 @@
   <app-flight-selector
     [currentSlot]="fromCurrentSlot$ | async"
     [slots]="(fromSlots$ | async)!"
+    (clickSlot)="handleClickFromSlot($event)"
   />
+
+  <br />
+  <br />
 
   <app-flight-selector
     [currentSlot]="toCurrentSlot$ | async"
     [slots]="(toSlots$ | async)!"
+    (clickSlot)="handleClickToSlot($event)"
   />
 </div>

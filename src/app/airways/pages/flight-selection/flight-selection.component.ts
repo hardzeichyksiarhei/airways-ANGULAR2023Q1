@@ -3,7 +3,11 @@ import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
 
-import { searchFlights } from '../../../flights/store/flights.actions'
+import {
+  changeFromCurrentSlot,
+  changeToCurrentSlot,
+  searchFlights,
+} from '../../../flights/store/flights.actions'
 import { ISearchFlightsArgs } from '../../../flights/store/flights.service'
 import {
   selectFromCurrentSlot,
@@ -43,5 +47,13 @@ export class FlightSelectionComponent implements OnInit {
 
       this.store.dispatch(searchFlights({ args: { body } }))
     })
+  }
+
+  handleClickFromSlot(slot: ISlot) {
+    this.store.dispatch(changeFromCurrentSlot({ slot }))
+  }
+
+  handleClickToSlot(slot: ISlot) {
+    this.store.dispatch(changeToCurrentSlot({ slot }))
   }
 }

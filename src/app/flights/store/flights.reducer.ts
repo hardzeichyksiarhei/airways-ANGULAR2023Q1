@@ -71,7 +71,7 @@ export const getSlots = (
       formatDate: date?.format('DD ddd'),
       dayOfWeek: date?.format('dddd'),
       disabled: !key.includes(`${i + 1}`),
-      flight: flights[`${i - 5}`] || null,
+      flight: flights[`${i + 1}`] || null,
     }
   })
 

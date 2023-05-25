@@ -1,10 +1,278 @@
+.app-flight-selector-title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  color: #11397e;
+}
+
 .app-flight-selector-carousel {
+  ::ng-deep .slick-track {
+    margin: 15px 0;
+  }
+
+  ::ng-deep .slick-list {
+    margin: 0 -05px;
+  }
+
+  ::ng-deep .slick-prev {
+    z-index: 1000;
+    left: 0;
+
+    &:before {
+      color: gray;
+    }
+  }
+
+  ::ng-deep .slick-next {
+    z-index: 1000;
+    right: 0;
+
+    &:before {
+      color: gray;
+    }
+  }
+
   &__item {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    height: 85px;
 
     background-color: #fff;
     padding: 10px 20px;
+    margin: 0 5px;
+
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    border-bottom: 5px solid transparent;
+
+    cursor: pointer;
+
+    .formatDate {
+      display: block;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: 0.1px;
+      color: #0090bd;
+      margin-bottom: 2px;
+    }
+
+    .dayOfWeek {
+      display: block;
+      font-weight: 100;
+      font-size: 12px;
+      line-height: 12px;
+      color: #74767a;
+    }
+
+    .price {
+      display: block;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 20px;
+      color: #11397e;
+      margin-top: 5px;
+    }
   }
+
+  &__item-container {
+    &.active {
+      .app-flight-selector-carousel__item {
+        margin-top: -10px;
+        height: 105px;
+
+        .formatDate {
+          font-weight: 700;
+          font-size: 20px;
+          line-height: 20px;
+          color: #11397e;
+        }
+
+        .dayOfWeek {
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 20px;
+          color: #74767a;
+        }
+
+        .price {
+          font-size: 30px;
+          line-height: 36px;
+          color: #11397e;
+          margin-top: 0;
+        }
+      }
+    }
+
+    &.disabled {
+      opacity: 0.5;
+
+      .app-flight-selector-carousel__item {
+        cursor: not-allowed;
+
+        .formatDate {
+          color: #d0d9df;
+        }
+
+        .dayOfWeek {
+          color: #d0d9df;
+        }
+
+        .price {
+          color: #d0d9df;
+        }
+      }
+    }
+  }
+}
+
+.app-flight-selector-info {
+  display: flex;
+  align-items: center;
+
+  background: #ffffff;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.app-flight-selector-route {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  flex-grow: 1;
+
+  padding: 30px 40px;
+}
+
+.app-flight-selector-takeoff-time,
+.app-flight-selector-landing-time {
+  display: flex;
+  flex-direction: column;
+
+  &__date {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+    letter-spacing: 0.5px;
+    color: #74767a;
+  }
+
+  &__time {
+    display: flex;
+    align-items: center;
+
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+    color: #000;
+
+    span {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    small {
+      font-weight: 400;
+      font-size: 8px;
+      line-height: 20px;
+      color: #74767a;
+    }
+  }
+
+  &__country {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #74767a;
+  }
+}
+
+.app-flight-selector-landing-time {
+  align-items: flex-end;
+
+  &__time {
+    flex-direction: row-reverse;
+
+    span {
+      margin-right: 0;
+      margin-left: 10px;
+    }
+  }
+}
+
+.app-flight-selector-duration {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app-flight-selector-number {
+  padding: 15px 30px;
+  padding-left: 0;
+
+  &__label {
+    display: inline-block;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    color: #74767a;
+    margin-right: 10px;
+  }
+
+  &__value {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    color: #000;
+  }
+}
+
+.app-flight-selector-available {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 15px 30px;
+  border-left: 3px dashed #d4d4d4;
+
+  &__seats {
+    display: block;
+
+    width: 130px;
+    border-radius: 2px;
+    padding: 5px 15px;
+
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 16px;
+
+    text-align: right;
+    margin-bottom: 10px;
+  }
+
+  &__price-label {
+    display: block;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    color: #74767a;
+    margin-bottom: 5px;
+  }
+
+  &__price {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+    color: #11397e;
+  }
+}
+
+.app-flight-selector-select {
+  padding: 15px 30px;
+  padding-left: 0;
 }
