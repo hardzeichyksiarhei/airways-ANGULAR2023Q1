@@ -33,3 +33,11 @@ export const selectRouteTo = createSelector(
   selectSearchFeature,
   (state) => state.search.route.to
 )
+
+export const selectTotalPassengers = createSelector(
+  selectSearchFeature,
+  (state) =>
+    state.search.passengers.adults +
+    state.search.passengers.child +
+    state.search.passengers.infant
+)

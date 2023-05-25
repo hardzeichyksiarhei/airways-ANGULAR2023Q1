@@ -1,0 +1,27 @@
+<div class="app-flight-edit-search-form">
+  <div class="app-flight-edit-search-form__container container">
+    <div class="app-flight-route">
+      <span class="app-flight-route__from">
+        {{ (routeFrom$ | async)!.city }}
+      </span>
+      <span class="app-flight-route__icon">
+        <img src="../../../../assets/from-to-air.png" />
+      </span>
+      <span class="app-flight-route__to">{{ (routeTo$ | async)!.city }}</span>
+    </div>
+
+    <div class="app-flight-meta">
+      <span class="app-flight-meta__direction">Return</span>
+      <span class="app-flight-meta__divider">•</span>
+      <span class="app-flight-meta__dates">
+        {{ startDate$ | async | date : "dd MMM" }} -
+        {{ endDate$ | async | date : "dd MMM" }}
+      </span>
+      <span class="app-flight-meta__divider">•</span>
+      <span class="app-flight-meta__passengers">
+        {{ passengers$ | async }}
+        <img src="../../../../assets/passengers.png" />
+      </span>
+    </div>
+  </div>
+</div>

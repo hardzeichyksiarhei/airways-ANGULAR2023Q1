@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { RouterModule } from '@angular/router'
-import { StoreModule, combineReducers } from '@ngrx/store'
+import { ActionReducer, StoreModule, combineReducers } from '@ngrx/store'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { EffectsModule } from '@ngrx/effects'
+import { localStorageSync } from 'ngrx-store-localstorage'
 import { SlickCarouselModule } from 'ngx-slick-carousel'
 
 import { CoreModule } from '../core/core.module'
@@ -37,6 +38,13 @@ import { MatTabsModule } from '@angular/material/tabs'
 import { MatCheckboxModule } from '@angular/material/checkbox'
 import { LoginFormComponent } from './components/login-form/login-form.component'
 import { SignupFormComponent } from './components/signup-form/signup-form.component'
+import { FlightEditSearchFormComponent } from './components/flight-edit-search-form/flight-edit-search-form.component'
+
+export function localStorageSyncReducer(
+  reducer: ActionReducer<any>
+): ActionReducer<any> {
+  return localStorageSync({ keys: ['search'], rehydrate: true })(reducer)
+}
 
 @NgModule({
   declarations: [
@@ -59,6 +67,7 @@ import { SignupFormComponent } from './components/signup-form/signup-form.compon
     AuthDialogComponent,
     LoginFormComponent,
     SignupFormComponent,
+    FlightEditSearchFormComponent,
   ],
   imports: [
     CommonModule,
@@ -78,7 +87,8 @@ import { SignupFormComponent } from './components/signup-form/signup-form.compon
         settings: settingsReducer,
         airports: airportsReducer,
         search: searchReducer,
-      })
+      }),
+      { metaReducers: [localStorageSyncReducer] }
     ),
     EffectsModule.forFeature(AirportsEffects),
   ],

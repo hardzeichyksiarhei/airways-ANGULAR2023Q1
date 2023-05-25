@@ -28,6 +28,7 @@
     "@ngrx/store-devtools": "^15.4.0",
     "dayjs": "^1.11.7",
     "jquery": "^3.7.0",
+    "ngrx-store-localstorage": "^15.0.0",
     "ngx-slick-carousel": "^15.0.0",
     "rxjs": "~7.8.0",
     "slick-carousel": "^1.8.1",

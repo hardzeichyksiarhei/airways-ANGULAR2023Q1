@@ -1,35 +1,41 @@
-<div class="flight-selection-page container">
-  <div class="flight-selection-page__body">
-    <app-flight-selector
-      direction="FROM"
-      [selected]="(fromSlotSelected$ | async)!"
-      [currentSlot]="fromCurrentSlot$ | async"
-      [slots]="(fromSlots$ | async)!"
-      (clickSlot)="handleClickFromSlot($event)"
-      (clickSelectSlot)="handleClickSelectFromSlot()"
-    />
+<div class="flight-selection-page">
+  <app-flight-edit-search-form />
 
-    <br />
-    <br />
+  <div class="flight-selection-page__container container">
+    <div class="flight-selection-page__body">
+      <app-flight-selector
+        direction="FROM"
+        [selected]="(fromSlotSelected$ | async)!"
+        [currentSlot]="fromCurrentSlot$ | async"
+        [slots]="(fromSlots$ | async)!"
+        (clickSlot)="handleClickFromSlot($event)"
+        (clickSelectSlot)="handleClickSelectFromSlot()"
+      />
 
-    <app-flight-selector
-      direction="TO"
-      [selected]="(toSlotSelected$ | async)!"
-      [currentSlot]="toCurrentSlot$ | async"
-      [slots]="(toSlots$ | async)!"
-      (clickSlot)="handleClickToSlot($event)"
-      (clickSelectSlot)="handleClickSelectToSlot()"
-    />
-  </div>
+      <br />
+      <br />
 
-  <div class="flight-selection-page__footer">
-    <button mat-button>Back</button>
-    <button
-      mat-raised-button
-      color="primary"
-      [disabled]="!(fromSlotSelected$ | async)! || !(toSlotSelected$ | async)!"
-    >
-      Continue
-    </button>
+      <app-flight-selector
+        direction="TO"
+        [selected]="(toSlotSelected$ | async)!"
+        [currentSlot]="toCurrentSlot$ | async"
+        [slots]="(toSlots$ | async)!"
+        (clickSlot)="handleClickToSlot($event)"
+        (clickSelectSlot)="handleClickSelectToSlot()"
+      />
+    </div>
+
+    <div class="flight-selection-page__footer">
+      <button mat-button>Back</button>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="
+          !(fromSlotSelected$ | async)! || !(toSlotSelected$ | async)!
+        "
+      >
+        Continue
+      </button>
+    </div>
   </div>
 </div>
