@@ -1,8 +1,22 @@
 <div class="login-container">
   <div class="buttons-container">
     <div class="buttons-container">
-      <button [disabled]="true" mat-raised-button color="primary" class="google-button"> Continue with Google</button>
-      <button [disabled]="true" mat-raised-button color="primary" class="facebook-button"> Continue with Facebook</button>
+      <button
+        [disabled]="true"
+        mat-raised-button
+        color="primary"
+        class="google-button"
+      >
+        Continue with Google
+      </button>
+      <button
+        [disabled]="true"
+        mat-raised-button
+        color="primary"
+        class="facebook-button"
+      >
+        Continue with Facebook
+      </button>
     </div>
   </div>
   <div class="alternative-text-container">
@@ -13,40 +27,63 @@
   <div class="login-form-container">
     <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <mat-form-field class="email-input" appearance="outline">
-
         <mat-label>Email</mat-label>
-        <input type="email" matInput [formControl]="loginForm.controls.email" [errorStateMatcher]="matcher"
-               placeholder="Ex. example@example.com">
+        <input
+          type="email"
+          matInput
+          [formControl]="loginForm.controls.email"
+          [errorStateMatcher]="matcher"
+          placeholder="Ex. example@example.com"
+        />
         <mat-error
-          *ngIf="loginForm.controls.email.hasError('email') && !loginForm.controls.email.hasError('required')">
+          *ngIf="
+            loginForm.controls.email.hasError('email') &&
+            !loginForm.controls.email.hasError('required')
+          "
+        >
           Please enter a valid email address
         </mat-error>
         <mat-error *ngIf="loginForm.controls.email.hasError('required')">
-          Email is <strong>required</strong>
+          Email is
+          <strong>required</strong>
         </mat-error>
       </mat-form-field>
 
       <mat-form-field class="password-input" appearance="outline">
         <mat-label>Password</mat-label>
-        <input type="password" matInput [formControl]="loginForm.controls.password"
-               [errorStateMatcher]="matcher">
-        <mat-error *ngIf="loginForm.controls.password.hasError('minlength') ">
+        <input
+          type="password"
+          matInput
+          [formControl]="loginForm.controls.password"
+          [errorStateMatcher]="matcher"
+        />
+        <mat-error *ngIf="loginForm.controls.password.hasError('minlength')">
           Minimal length of password is 8 characters
         </mat-error>
         <mat-error
-          *ngIf="loginForm.controls.password.hasError('required') && !loginForm.controls.password.hasError('required')">
-          Password is <strong>required</strong>
+          *ngIf="
+            loginForm.controls.password.hasError('required') &&
+            !loginForm.controls.password.hasError('required')
+          "
+        >
+          Password is
+          <strong>required</strong>
         </mat-error>
       </mat-form-field>
 
       <div class="forgot-password"><span>Forgot password?</span></div>
 
       <div class="login-button-container">
-        <button type="submit" [disabled]="!loginForm.valid" mat-raised-button color="primary" class="login-button">Log
-          in
+        <button
+          type="submit"
+          [disabled]="!loginForm.valid"
+          mat-raised-button
+          color="primary"
+          class="login-button"
+        >
+          Log in
         </button>
       </div>
-
     </form>
   </div>
 </div>

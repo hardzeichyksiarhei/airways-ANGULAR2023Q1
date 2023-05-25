@@ -24,7 +24,10 @@
       }"
       (click)="handleClickSlot(slot)"
     >
-      <div class="app-flight-selector-carousel__item" [style]="getCurrentSlotStyles(slot)">
+      <div
+        class="app-flight-selector-carousel__item"
+        [style]="getCurrentSlotStyles(slot)"
+      >
         <span class="formatDate">{{ slot.formatDate }}</span>
         <span class="dayOfWeek">{{ slot.dayOfWeek }}</span>
         <span *ngIf="!slot.disabled" class="price">

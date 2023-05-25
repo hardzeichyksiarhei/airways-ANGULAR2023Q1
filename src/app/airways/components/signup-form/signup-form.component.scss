@@ -7,7 +7,8 @@
     flex-direction: column;
     gap: 16px;
 
-    .google-button, .facebook-button {
+    .google-button,
+    .facebook-button {
       height: 56px;
       width: 100%;
       display: flex;
@@ -16,7 +17,7 @@
       font-size: 16px;
       font-family: Roboto, sans-serif;
       line-height: 20px;
-      border: 1px solid #CECECE;
+      border: 1px solid #cecece;
       border-radius: 4px;
     }
   }
@@ -32,17 +33,17 @@
     color: black;
 
     .text {
-      width:180px;
+      width: 180px;
       margin: 0 5px;
       text-align: center;
     }
 
-    .line, .line {
+    .line,
+    .line {
       flex-grow: 1;
       height: 1px;
-      background-color: #E1E5EB;
+      background-color: #e1e5eb;
     }
-
   }
 
   .signup-form-container {
@@ -51,22 +52,27 @@
       max-width: 500px;
       width: 100%;
 
-      .email-input, .password-input, .citizenship-select, .firstname-input, .lastname-input, .birthdate-input, .phone-input {
+      .email-input,
+      .password-input,
+      .citizenship-select,
+      .firstname-input,
+      .lastname-input,
+      .birthdate-input,
+      .phone-input {
         width: 100%;
       }
 
-      .privacy-checkbox, .sex-group {
+      .privacy-checkbox,
+      .sex-group {
         margin-bottom: 20px;
       }
 
       .login-button-container {
-
         .login-button {
           width: 100%;
           height: 44px;
         }
       }
-
     }
   }
 }
