@@ -1,16 +1,20 @@
 <div class="flight-selection-page container">
-  <app-flight-selector
-    [currentSlot]="fromCurrentSlot$ | async"
-    [slots]="(fromSlots$ | async)!"
-    (clickSlot)="handleClickFromSlot($event)"
-  />
+  <div class="flight-selection-page__body">
+    <app-flight-selector
+      direction="FROM"
+      [currentSlot]="fromCurrentSlot$ | async"
+      [slots]="(fromSlots$ | async)!"
+      (clickSlot)="handleClickFromSlot($event)"
+    />
 
-  <br />
-  <br />
+    <br />
+    <br />
 
-  <app-flight-selector
-    [currentSlot]="toCurrentSlot$ | async"
-    [slots]="(toSlots$ | async)!"
-    (clickSlot)="handleClickToSlot($event)"
-  />
+    <app-flight-selector
+      direction="TO"
+      [currentSlot]="toCurrentSlot$ | async"
+      [slots]="(toSlots$ | async)!"
+      (clickSlot)="handleClickToSlot($event)"
+    />
+  </div>
 </div>

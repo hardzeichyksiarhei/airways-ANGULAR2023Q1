@@ -12,6 +12,8 @@ export class FlightSelectorComponent {
 
   @Input() slots: ISlot[] = []
 
+  @Input() direction!: 'FROM' | 'TO'
+
   @Output() clickSlot = new EventEmitter<ISlot>()
 
   getSeatsStyles() {

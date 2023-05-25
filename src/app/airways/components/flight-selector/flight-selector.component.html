@@ -1,8 +1,12 @@
 <div class="app-flight-selector">
   <h2 *ngIf="currentSlot" class="app-flight-selector-title">
-    {{ currentSlot.flight?.form?.city }}
-    to
-    {{ currentSlot.flight?.to?.city }}
+    <img *ngIf="direction === 'FROM'" src="../../../../assets/from-air.png" />
+    <img *ngIf="direction === 'TO'" src="../../../../assets/to-air.png" />
+    <span>
+      {{ currentSlot.flight?.form?.city }}
+      to
+      {{ currentSlot.flight?.to?.city }}
+    </span>
   </h2>
 
   <ngx-slick-carousel
