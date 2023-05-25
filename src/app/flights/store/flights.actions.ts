@@ -33,3 +33,11 @@ export const changeToSlots = createAction(
   '[Airway Flights] Change To Slots',
   props<{ slots: ISlot[] }>()
 )
+
+export const toggleFromSlotSelected = createAction(
+  '[Airway Flights] Toggle From Slot Selected'
+)
+
+export const toggleToSlotSelected = createAction(
+  '[Airway Flights] Toggle To Slot Selected'
+)

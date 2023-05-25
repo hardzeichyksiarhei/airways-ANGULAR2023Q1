@@ -14,7 +14,11 @@ export class FlightSelectorComponent {
 
   @Input() direction!: 'FROM' | 'TO'
 
+  @Input() selected = false
+
   @Output() clickSlot = new EventEmitter<ISlot>()
+
+  @Output() clickSelectSlot = new EventEmitter<ISlot>()
 
   getSeatsStyles() {
     if (!this.currentSlot || !this.currentSlot.flight?.seats.avaible) return ''
@@ -60,5 +64,10 @@ export class FlightSelectorComponent {
     this.clickSlot.emit(slot)
   }
 
-  handleClickSelect() {}
+  handleClickSelect() {
+    if (!this.currentSlot) return
+
+    this.selected = !this.selected
+    this.clickSelectSlot.emit(this.currentSlot)
+  }
 }

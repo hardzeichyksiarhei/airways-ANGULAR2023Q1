@@ -3,8 +3,10 @@ import * as dayjs from 'dayjs'
 
 import {
   changeFromCurrentSlot,
+  toggleFromSlotSelected,
   changeFromSlots,
   changeToCurrentSlot,
+  toggleToSlotSelected,
   changeToSlots,
   searchFlights,
   searchFlightsSuccess,
@@ -28,6 +30,9 @@ export interface FlightsState {
 
   fromSlots: ISlot[]
   toSlots: ISlot[]
+
+  fromSlotSelected: boolean
+  toSlotSelected: boolean
 }
 
 export const getCurrentSlot = (
@@ -87,6 +92,9 @@ const initialState: FlightsState = {
 
   fromSlots: [],
   toSlots: [],
+
+  fromSlotSelected: false,
+  toSlotSelected: false,
 }
 
 export const flightsReducer = createReducer(
@@ -144,6 +152,20 @@ export const flightsReducer = createReducer(
     (state, action): FlightsState => ({
       ...state,
       toSlots: action.slots,
+    })
+  ),
+  on(
+    toggleFromSlotSelected,
+    (state): FlightsState => ({
+      ...state,
+      fromSlotSelected: !state.fromSlotSelected,
+    })
+  ),
+  on(
+    toggleToSlotSelected,
+    (state): FlightsState => ({
+      ...state,
+      toSlotSelected: !state.toSlotSelected,
     })
   )
 )

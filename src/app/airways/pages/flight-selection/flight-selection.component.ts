@@ -7,12 +7,16 @@ import {
   changeFromCurrentSlot,
   changeToCurrentSlot,
   searchFlights,
+  toggleFromSlotSelected,
+  toggleToSlotSelected,
 } from '../../../flights/store/flights.actions'
 import { ISearchFlightsArgs } from '../../../flights/store/flights.service'
 import {
   selectFromCurrentSlot,
+  selectFromSlotSelected,
   selectFromSlots,
   selectToCurrentSlot,
+  selectToSlotSelected,
   selectToSlots,
 } from '../../../flights/store/flights.selectors'
 import { ISlot } from '../../../flights/store/flights.reducer'
@@ -36,6 +40,12 @@ export class FlightSelectionComponent implements OnInit {
 
   toSlots$: Observable<ISlot[]> = this.store.select(selectToSlots)
 
+  fromSlotSelected$: Observable<boolean> = this.store.select(
+    selectFromSlotSelected
+  )
+
+  toSlotSelected$: Observable<boolean> = this.store.select(selectToSlotSelected)
+
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       const body = {
@@ -55,5 +65,13 @@ export class FlightSelectionComponent implements OnInit {
 
   handleClickToSlot(slot: ISlot) {
     this.store.dispatch(changeToCurrentSlot({ slot }))
+  }
+
+  handleClickSelectFromSlot() {
+    this.store.dispatch(toggleFromSlotSelected())
+  }
+
+  handleClickSelectToSlot() {
+    this.store.dispatch(toggleToSlotSelected())
   }
 }

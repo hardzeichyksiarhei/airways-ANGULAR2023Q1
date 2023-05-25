@@ -10,6 +10,7 @@
   </h2>
 
   <ngx-slick-carousel
+    *ngIf="!selected"
     class="app-flight-selector-carousel"
     [config]="{
       slidesToShow: 5,
@@ -94,8 +95,16 @@
     </div>
 
     <div class="app-flight-selector-select">
-      <button mat-flat-button color="primary" (click)="handleClickSelect()">
+      <button
+        *ngIf="!selected"
+        mat-raised-button
+        color="primary"
+        (click)="handleClickSelect()"
+      >
         Select
+      </button>
+      <button *ngIf="selected" mat-raised-button (click)="handleClickSelect()">
+        Edit
       </button>
     </div>
   </div>
