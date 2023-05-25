@@ -1,5 +1,11 @@
 <div class="flight-selection-page container">
-  <app-flight-selector [flight]="fromFlight$ | async" />
+  <app-flight-selector
+    [currentSlot]="fromCurrentSlot$ | async"
+    [slots]="(fromSlots$ | async)!"
+  />
 
-  <app-flight-selector [flight]="toFlight$ | async" />
+  <app-flight-selector
+    [currentSlot]="toCurrentSlot$ | async"
+    [slots]="(toSlots$ | async)!"
+  />
 </div>

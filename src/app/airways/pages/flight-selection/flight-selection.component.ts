@@ -6,10 +6,12 @@ import { Observable } from 'rxjs'
 import { searchFlights } from '../../../flights/store/flights.actions'
 import { ISearchFlightsArgs } from '../../../flights/store/flights.service'
 import {
-  selectFromFlight,
-  selectToFlight,
+  selectFromCurrentSlot,
+  selectFromSlots,
+  selectToCurrentSlot,
+  selectToSlots,
 } from '../../../flights/store/flights.selectors'
-import { IFlight } from '../../../flights/store/flights.model'
+import { ISlot } from '../../../flights/store/flights.reducer'
 
 @Component({
   selector: 'app-flight-selection',
@@ -19,9 +21,16 @@ import { IFlight } from '../../../flights/store/flights.model'
 export class FlightSelectionComponent implements OnInit {
   constructor(private store: Store, private route: ActivatedRoute) {}
 
-  fromFlight$: Observable<IFlight | null> = this.store.select(selectFromFlight)
+  fromCurrentSlot$: Observable<ISlot | null> = this.store.select(
+    selectFromCurrentSlot
+  )
 
-  toFlight$: Observable<IFlight | null> = this.store.select(selectToFlight)
+  toCurrentSlot$: Observable<ISlot | null> =
+    this.store.select(selectToCurrentSlot)
+
+  fromSlots$: Observable<ISlot[]> = this.store.select(selectFromSlots)
+
+  toSlots$: Observable<ISlot[]> = this.store.select(selectToSlots)
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {

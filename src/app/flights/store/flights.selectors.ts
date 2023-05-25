@@ -9,10 +9,22 @@ export const selectFlights = createSelector(
   (state) => state.flights
 )
 
-export const selectFromFlight = createSelector(selectFlights, (flights) => {
-  return flights.length ? flights[0] : null
-})
+export const selectFromCurrentSlot = createSelector(
+  selectFlightsFeature,
+  (state) => state.fromCurrentSlot
+)
 
-export const selectToFlight = createSelector(selectFlights, (flights) => {
-  return flights.length ? flights[1] : null
-})
+export const selectToCurrentSlot = createSelector(
+  selectFlightsFeature,
+  (state) => state.toCurrentSlot
+)
+
+export const selectFromSlots = createSelector(
+  selectFlightsFeature,
+  (state) => state.fromSlots
+)
+
+export const selectToSlots = createSelector(
+  selectFlightsFeature,
+  (state) => state.toSlots
+)
