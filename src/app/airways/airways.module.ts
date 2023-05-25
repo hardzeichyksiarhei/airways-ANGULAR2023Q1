@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router'
 import { StoreModule, combineReducers } from '@ngrx/store'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { EffectsModule } from '@ngrx/effects'
+import { SlickCarouselModule } from 'ngx-slick-carousel'
 
 import { CoreModule } from '../core/core.module'
 import { MaterialModule } from '../material.module'
@@ -57,6 +58,7 @@ import { ChangePassengersCountItemComponent } from './components/change-passenge
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    SlickCarouselModule,
 
     StoreModule.forFeature(
       'airway',

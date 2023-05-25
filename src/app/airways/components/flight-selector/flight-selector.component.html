@@ -1,11 +1,17 @@
 <div class="app-flight-selector">
-  <div class="app-flight-selector-list-container">
-    <ul *ngIf="flight" class="app-flight-selector-list">
-      <li *ngFor="let slot of slots">
-        {{ slot.formatDate }}
-        {{ slot.disabled }}
-        {{ slot.formatDate === currentSlot?.formatDate }}
-      </li>
-    </ul>
-  </div>
+  <ngx-slick-carousel
+    class="app-flight-selector-carousel"
+    [config]="{ slidesToShow: 5, initialSlide: 3, arrows: true }"
+  >
+    <div
+      ngxSlickItem
+      *ngFor="let slot of slots"
+      class="app-flight-selector-carousel__item"
+      [class]="{ active: slot.formatDate === currentSlot?.formatDate }"
+    >
+      <span class="daformatDatete">{{ slot.formatDate }}</span>
+      <span class="dayOfWeek">{{ slot.dayOfWeek }}</span>
+      <span class="price">100 $</span>
+    </div>
+  </ngx-slick-carousel>
 </div>

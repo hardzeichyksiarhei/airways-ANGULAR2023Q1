@@ -58,6 +58,6 @@ export class FlightSelectorComponent {
       }
     })
 
-    return [...beforeSlots, this.currentSlot, ...afterSlots]
+    return [...beforeSlots.reverse(), this.currentSlot, ...afterSlots]
   }
 }
