@@ -31,6 +31,12 @@ import { AirwayState } from './store/types'
 import { searchReducer } from './store/search/search.reducer'
 import { FlightSelectorComponent } from './components/flight-selector/flight-selector.component'
 import { ChangePassengersCountItemComponent } from './components/change-passengers-count-item/change-passengers-count-item.component'
+import { AuthDialogComponent } from './components/auth-dialog/auth-dialog.component'
+import { MatDialogModule } from '@angular/material/dialog'
+import { MatTabsModule } from '@angular/material/tabs'
+import { MatCheckboxModule } from '@angular/material/checkbox'
+import { LoginFormComponent } from './components/login-form/login-form.component'
+import { SignupFormComponent } from './components/signup-form/signup-form.component'
 
 @NgModule({
   declarations: [
@@ -50,6 +56,9 @@ import { ChangePassengersCountItemComponent } from './components/change-passenge
     FlightSearchFormComponent,
     FlightSelectorComponent,
     ChangePassengersCountItemComponent,
+    AuthDialogComponent,
+    LoginFormComponent,
+    SignupFormComponent,
   ],
   imports: [
     CommonModule,
@@ -59,6 +68,9 @@ import { ChangePassengersCountItemComponent } from './components/change-passenge
     FormsModule,
     ReactiveFormsModule,
     SlickCarouselModule,
+    MatDialogModule,
+    MatTabsModule,
+    MatCheckboxModule,
 
     StoreModule.forFeature(
       'airway',
