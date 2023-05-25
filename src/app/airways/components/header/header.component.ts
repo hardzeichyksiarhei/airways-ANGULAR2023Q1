@@ -1,5 +1,7 @@
 import { Component } from '@angular/core'
+import { Router } from '@angular/router'
 import { MatDialog } from '@angular/material/dialog'
+
 import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component'
 
 @Component({
@@ -8,7 +10,7 @@ import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component'
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private router: Router) {}
 
   openDialog(
     enterAnimationDuration: string,
@@ -20,5 +22,11 @@ export class HeaderComponent {
       enterAnimationDuration,
       exitAnimationDuration,
     })
+  }
+
+  getHeaderClasses() {
+    return {
+      fill: this.router.url.indexOf('/selection') !== -1,
+    }
   }
 }

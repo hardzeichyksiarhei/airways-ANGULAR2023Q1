@@ -17,4 +17,13 @@
   &__body {
     margin-top: 50px;
   }
+
+  &__footer {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 30px;
+    justify-content: flex-end;
+
+    margin: 60px 0;
+  }
 }

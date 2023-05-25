@@ -1,5 +1,6 @@
 .app-header {
   position: fixed;
+  z-index: 99999;
   top: 0;
   left: 0;
   right: 0;
@@ -13,6 +14,10 @@
     grid-template-columns: auto repeat(4, max-content);
     gap: 20px;
     align-items: center;
+  }
+
+  &.fill {
+    background-color: #fff;
   }
 }
 
