@@ -22,6 +22,12 @@ import {
 import { IAirport } from '../../store/airports/airports.model'
 import { Router } from '@angular/router'
 
+interface IPassengers {
+  adults: number
+  child: number
+  infant: number
+}
+
 @Component({
   selector: 'app-flight-search-form',
   templateUrl: './flight-search-form.component.html',
@@ -32,6 +38,12 @@ export class FlightSearchFormComponent implements OnInit {
     start: new FormControl<Date | null>(null, [Validators.required]),
     end: new FormControl<Date | null>(null, [Validators.required]),
   })
+
+  passengers: IPassengers = {
+    adults: 1,
+    child: 0,
+    infant: 0,
+  }
 
   airports$: Observable<IAirport[]> = this.store.select(selectAirports)
 
@@ -65,10 +77,8 @@ export class FlightSearchFormComponent implements OnInit {
     this.store.dispatch(changeRouteTo({ to }))
   }
 
-  onChangePassengers(event: {
-    key: /*'adults' | 'child' | 'infant' |*/ string
-    value: number
-  }) {
+  onChangePassengers(event: { key: string; value: number }) {
+    this.passengers[event.key as keyof IPassengers] = +event.value
     this.store.dispatch(changePassengers({ [event.key]: +event.value }))
   }
 

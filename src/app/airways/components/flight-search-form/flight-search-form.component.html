@@ -74,17 +74,13 @@
         <mat-form-field appearance="outline" [matMenuTriggerFor]="menu">
           <mat-label>
             Passengers:
-            {{
-              (passengers$ | async)!.adults +
-                (passengers$ | async)!.child +
-                (passengers$ | async)!.infant
-            }}
+            {{ passengers.adults + passengers.child + passengers.infant }}
           </mat-label>
           <mat-select disabled />
         </mat-form-field>
         <mat-menu #menu="matMenu">
           <app-change-passengers-count-item
-            *ngFor="let item of passengers$ | async | keyvalue"
+            *ngFor="let item of passengers | keyvalue"
             passengerType="{{ item.key }}"
             passengerCount="{{ item.value }}"
             (changePassengersCount)="onChangePassengers($event)"
