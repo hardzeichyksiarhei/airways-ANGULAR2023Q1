@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Observable } from 'rxjs'
 
-import { environment } from '../../../environments'
+import { environment } from '../../../../environments'
 
 const { apiURL } = environment
 
@@ -13,10 +12,10 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string) {
-    return this.http.post(`${apiURL}/auth/login`, {
+    return this.http.post<{ token: string }>(`${apiURL}/auth/login`, {
       email,
       password,
-    }) as Observable<any>
+    })
   }
 
   signup({
@@ -40,11 +39,11 @@ export class AuthService {
       firstName,
       lastName,
       dateOfBirth,
-    }) as Observable<any>
+    })
   }
 }
 
-interface SignUpDto {
+export interface SignUpDto {
   email: string
   password: string
   firstName: string
