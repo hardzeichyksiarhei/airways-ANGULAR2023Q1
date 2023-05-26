@@ -14,7 +14,7 @@ import { AirwaysModule } from './airways/airways.module'
 import { FlightsModule } from './flights/flights.module'
 
 import { environment } from '../environments'
-import { AuthService } from './airways/services/auth.service'
+import { AuthService } from './airways/store/auth/auth.service'
 
 @NgModule({
   declarations: [AppComponent],

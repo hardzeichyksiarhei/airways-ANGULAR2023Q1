@@ -39,6 +39,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox'
 import { LoginFormComponent } from './components/login-form/login-form.component'
 import { SignupFormComponent } from './components/signup-form/signup-form.component'
 import { FlightEditSearchFormComponent } from './components/flight-edit-search-form/flight-edit-search-form.component'
+import { authReducer } from './store/auth/auth.reducer'
+import { AuthEffects } from './store/auth/auth.effects'
 
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>
@@ -87,10 +89,11 @@ export function localStorageSyncReducer(
         settings: settingsReducer,
         airports: airportsReducer,
         search: searchReducer,
+        auth: authReducer,
       }),
       { metaReducers: [localStorageSyncReducer] }
     ),
-    EffectsModule.forFeature(AirportsEffects),
+    EffectsModule.forFeature(AirportsEffects, AuthEffects),
   ],
 })
 export class AirwaysModule {}
