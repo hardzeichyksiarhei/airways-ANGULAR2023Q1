@@ -60,9 +60,14 @@ export class PassengerInfoFormComponent {
   }
 }
 
-interface FormValue {
+export interface FormValue {
   firstName: string | null
   lastName: string | null
   dateOfBirth: string | null
   gender: string | null
+}
+
+export interface FormEvent {
+  formValue: FormValue
+  formValid: boolean
 }
