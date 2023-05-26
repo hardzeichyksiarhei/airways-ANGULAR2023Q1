@@ -3,7 +3,7 @@
 
   <div class="booking-process-page__container container">
     <div class="booking-process-page__body">
-<!--      Title OF CONTENT-->
+      <!--      Title OF CONTENT-->
       <div class="content-title">
         <div class="title-area">
           <div class="image-container">
@@ -16,27 +16,14 @@
         </p>
       </div>
 
-<!--      PASSENGER FORMS LIST-->
+      <!--      PASSENGER FORMS LIST-->
       <div class="passengers-list-container">
-        <div class="passengers-list-container__card card">
-
-          <div class="passenger-type">
-            1. Adult
-          </div>
-
-         <app-passenger-info-form />
-
-          <div class="special-assistance">
-            <mat-slide-toggle color="primary">
-              <div class="special-assistance__container">
-                <div class="image-container">
-                  <img src="../../../../assets/assistance.png" />
-                </div>
-                <div class="text">Need special assistance?</div>
-              </div>
-            </mat-slide-toggle>
-          </div>
-        </div>
+        <app-passenger-card [index]="1" [passengerType]="'Adult'"
+                            (cardChange)="onCardChange($event)" />
+        <app-passenger-card [index]="2" [passengerType]="'Infant'"
+                            (cardChange)="onCardChange($event)" />
+        <app-passenger-card [index]="3" [passengerType]="'Child'"
+                            (cardChange)="onCardChange($event)" />
       </div>
 
 
@@ -48,11 +35,12 @@
           <div class="title">Contact details</div>
         </div>
         <p class="description">
-          We need contact details to be able to deliver the latest information regarding your flight.
+          We need contact details to be able to deliver the latest information regarding
+          your flight.
         </p>
       </div>
 
-      <app-contacts-form/>
+      <app-contacts-form />
 
     </div>
 
