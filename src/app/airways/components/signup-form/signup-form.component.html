@@ -176,19 +176,23 @@
             [formControl]="signUpForm.controls.countryCode"
             [errorStateMatcher]="matcher"
           />
-          <mat-error *ngIf="signUpForm.controls.countryCode.hasError('pattern')">
+          <mat-error
+            *ngIf="signUpForm.controls.countryCode.hasError('pattern')"
+          >
             Country code example
             <strong>+375</strong>
           </mat-error>
-          <mat-error *ngIf="signUpForm.controls.countryCode.hasError('required')">
+          <mat-error
+            *ngIf="signUpForm.controls.countryCode.hasError('required')"
+          >
             Country code is
             <strong>required</strong>
           </mat-error>
           <mat-error
             *ngIf="
-            signUpForm.controls.phone.hasError('pattern') &&
-            !signUpForm.controls.phone.hasError('required')
-          "
+              signUpForm.controls.phone.hasError('pattern') &&
+              !signUpForm.controls.phone.hasError('required')
+            "
           >
             Invalid phone number
           </mat-error>
@@ -209,9 +213,9 @@
           </mat-error>
           <mat-error
             *ngIf="
-            signUpForm.controls.phone.hasError('pattern') &&
-            !signUpForm.controls.phone.hasError('required')
-          "
+              signUpForm.controls.phone.hasError('pattern') &&
+              !signUpForm.controls.phone.hasError('required')
+            "
           >
             Invalid phone number
           </mat-error>

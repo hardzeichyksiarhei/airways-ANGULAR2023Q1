@@ -9,7 +9,7 @@
     <app-currency-selector />
 
     <button
-      *ngIf="(isAuth$|async) === null"
+      *ngIf="(isAuth$ | async) === null"
       mat-flat-button
       extended
       color="primary"
@@ -19,7 +19,7 @@
       Sign In
     </button>
     <button
-      *ngIf="isAuth$|async"
+      *ngIf="isAuth$ | async"
       mat-flat-button
       extended
       color="primary"
