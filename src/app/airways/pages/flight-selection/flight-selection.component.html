@@ -33,6 +33,7 @@
         [disabled]="
           !(fromSlotSelected$ | async)! || !(toSlotSelected$ | async)!
         "
+        (click)="clickToContinue()"
       >
         Continue
       </button>
