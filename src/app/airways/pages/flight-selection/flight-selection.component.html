@@ -12,10 +12,8 @@
         (clickSelectSlot)="handleClickSelectFromSlot()"
       />
 
-      <br />
-      <br />
-
       <app-flight-selector
+        *ngIf="toCurrentSlot$ | async"
         direction="TO"
         [selected]="(toSlotSelected$ | async)!"
         [currentSlot]="toCurrentSlot$ | async"

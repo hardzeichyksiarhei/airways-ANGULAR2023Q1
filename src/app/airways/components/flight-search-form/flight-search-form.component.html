@@ -6,6 +6,8 @@
         aria-label="Select an type"
         name="type"
         formControlName="type"
+        (change)="onChangeType($event.value)"
+
       >
         <mat-radio-button value="ROUND_TRIP">Round Trip</mat-radio-button>
         <mat-radio-button value="ONE_WAY">One Way</mat-radio-button>
@@ -41,7 +43,7 @@
       </div>
 
       <div class="flight-search-form__meta">
-        <mat-form-field appearance="outline">
+        <mat-form-field *ngIf="type === 'ROUND_TRIP'" appearance="outline">
           <mat-label>Dates</mat-label>
           <mat-date-range-input [rangePicker]="picker">
             <input
@@ -75,6 +77,22 @@
           >
             Invalid end date
           </mat-error>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="type === 'ONE_WAY'" appearance="outline">
+          <mat-label>Date</mat-label>
+          <input
+            matInput
+            name="startDate"
+            formControlName="startDate"
+            placeholder="Start date"
+            [matDatepicker]="picker"
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
         <div>
