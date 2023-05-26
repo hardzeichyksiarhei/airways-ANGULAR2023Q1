@@ -1,7 +1,11 @@
 <div class="contacts-info">
   <div class="contacts-info__card card">
     <div class="contacts-info-form-container">
-      <form class="contacts-info-form-container__form" [formGroup]="contactsForm" (change)="onContactsFormChange()" >
+      <form
+        class="contacts-info-form-container__form"
+        [formGroup]="contactsForm"
+        (change)="onContactsFormChange()"
+      >
         <mat-form-field class="countryCode" appearance="outline">
           <mat-label>Country code</mat-label>
           <input
@@ -24,7 +28,6 @@
             Country code is
             <strong>required</strong>
           </mat-error>
-
         </mat-form-field>
 
         <mat-form-field class="phone" appearance="outline">
@@ -63,9 +66,9 @@
           />
           <mat-error
             *ngIf="
-            contactsForm.controls.email.hasError('email') &&
-            !contactsForm.controls.email.hasError('required')
-          "
+              contactsForm.controls.email.hasError('email') &&
+              !contactsForm.controls.email.hasError('required')
+            "
           >
             Please enter a valid email address
           </mat-error>

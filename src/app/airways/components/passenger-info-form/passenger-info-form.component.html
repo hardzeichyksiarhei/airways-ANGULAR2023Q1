@@ -1,5 +1,9 @@
 <div class="passenger-info">
-  <form class="passenger-info__form" (change)="onFormChange()" [formGroup]="passengerInfoForm">
+  <form
+    class="passenger-info__form"
+    (change)="onFormChange()"
+    [formGroup]="passengerInfoForm"
+  >
     <mat-form-field class="firstName" appearance="outline">
       <mat-label>First Name</mat-label>
       <input
@@ -13,28 +17,32 @@
 
       <mat-error
         *ngIf="
-                  passengerInfoForm.controls.firstName.hasError('minlength') &&
-                  !passengerInfoForm.controls.firstName.hasError('pattern') &&
-                  !passengerInfoForm.controls.firstName.hasError('required')
-                "
+          passengerInfoForm.controls.firstName.hasError('minlength') &&
+          !passengerInfoForm.controls.firstName.hasError('pattern') &&
+          !passengerInfoForm.controls.firstName.hasError('required')
+        "
       >
         Minimal length of first name is 2 characters
       </mat-error>
       <mat-error
         *ngIf="
-                  passengerInfoForm.controls.firstName.hasError('pattern') &&
-                  !passengerInfoForm.controls.firstName.hasError('minlength') &&
-                  !passengerInfoForm.controls.firstName.hasError('required')
-                "
+          passengerInfoForm.controls.firstName.hasError('pattern') &&
+          !passengerInfoForm.controls.firstName.hasError('minlength') &&
+          !passengerInfoForm.controls.firstName.hasError('required')
+        "
       >
         Invalid characters
       </mat-error>
-      <mat-error *ngIf="passengerInfoForm.controls.firstName.hasError('required')">
+      <mat-error
+        *ngIf="passengerInfoForm.controls.firstName.hasError('required')"
+      >
         First name is
         <strong>required</strong>
       </mat-error>
-      <mat-icon matSuffix
-                matTooltip="Add the passenger's name as it is written on their documents (passport or ID). Do not use any accents or special characters. Do not use a nickname. ">
+      <mat-icon
+        matSuffix
+        matTooltip="Add the passenger's name as it is written on their documents (passport or ID). Do not use any accents or special characters. Do not use a nickname. "
+      >
         info
       </mat-icon>
     </mat-form-field>
@@ -51,23 +59,25 @@
       />
       <mat-error
         *ngIf="
-            passengerInfoForm.controls.lastName.hasError('minlength') &&
-            !passengerInfoForm.controls.lastName.hasError('pattern') &&
-            !passengerInfoForm.controls.lastName.hasError('required')
-          "
+          passengerInfoForm.controls.lastName.hasError('minlength') &&
+          !passengerInfoForm.controls.lastName.hasError('pattern') &&
+          !passengerInfoForm.controls.lastName.hasError('required')
+        "
       >
         Minimal length of last name is 2 characters
       </mat-error>
       <mat-error
         *ngIf="
-            passengerInfoForm.controls.lastName.hasError('pattern') &&
-            !passengerInfoForm.controls.lastName.hasError('minlength') &&
-            !passengerInfoForm.controls.lastName.hasError('required')
-          "
+          passengerInfoForm.controls.lastName.hasError('pattern') &&
+          !passengerInfoForm.controls.lastName.hasError('minlength') &&
+          !passengerInfoForm.controls.lastName.hasError('required')
+        "
       >
         Invalid characters
       </mat-error>
-      <mat-error *ngIf="passengerInfoForm.controls.lastName.hasError('required')">
+      <mat-error
+        *ngIf="passengerInfoForm.controls.lastName.hasError('required')"
+      >
         Last name is
         <strong>required</strong>
       </mat-error>
@@ -76,25 +86,36 @@
         matTooltip="Add the passenger's name as it is
                   written on their documents (passport or ID).
                   Do not use any accents or special characters.
-                  Do not use a nickname. ">info
+                  Do not use a nickname. "
+      >
+        info
       </mat-icon>
     </mat-form-field>
 
-    <mat-button-toggle-group class="gender" name="gender" aria-label="Favorite Color"
-                             [formControl]="passengerInfoForm.controls.gender">
+    <mat-button-toggle-group
+      class="gender"
+      name="gender"
+      aria-label="Favorite Color"
+      [formControl]="passengerInfoForm.controls.gender"
+    >
       <mat-button-toggle value="Male">
         <div class="access">
-          <mat-icon matSuffix *ngIf="passengerInfoForm.controls.gender.value === 'Male'">
-            <img src="../../../../assets/access.png" alt="+">
+          <mat-icon
+            matSuffix
+            *ngIf="passengerInfoForm.controls.gender.value === 'Male'"
+          >
+            <img src="../../../../assets/access.png" alt="+" />
           </mat-icon>
           <span>Male</span>
         </div>
       </mat-button-toggle>
       <mat-button-toggle value="Female">
         <div class="access">
-          <mat-icon matSuffix
-                    *ngIf="passengerInfoForm.controls.gender.value === 'Female'">
-            <img src="../../../../assets/access.png" alt="+">
+          <mat-icon
+            matSuffix
+            *ngIf="passengerInfoForm.controls.gender.value === 'Female'"
+          >
+            <img src="../../../../assets/access.png" alt="+" />
           </mat-icon>
           <span>Female</span>
         </div>
@@ -110,7 +131,9 @@
         [formControl]="passengerInfoForm.controls.dateOfBirth"
         [errorStateMatcher]="matcher"
       />
-      <mat-error *ngIf="passengerInfoForm.controls.dateOfBirth.hasError('required')">
+      <mat-error
+        *ngIf="passengerInfoForm.controls.dateOfBirth.hasError('required')"
+      >
         Date of birth is
         <strong>required</strong>
       </mat-error>

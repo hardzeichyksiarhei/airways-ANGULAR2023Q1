@@ -29,7 +29,9 @@
         mat-raised-button
         color="primary"
         [disabled]="
-          !(fromSlotSelected$ | async)! || (((searchType$|async) === 'ROUND_TRIP')  && !(toSlotSelected$ | async)!)
+          !(fromSlotSelected$ | async)! ||
+          ((searchType$ | async) === 'ROUND_TRIP' &&
+            !(toSlotSelected$ | async)!)
         "
         (click)="clickToContinue()"
       >

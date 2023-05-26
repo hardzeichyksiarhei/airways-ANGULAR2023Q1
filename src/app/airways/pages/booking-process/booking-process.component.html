@@ -12,13 +12,13 @@
           <div class="title">Passengers</div>
         </div>
         <p class="description">
-          Enter the passenger's names as they appear on document (passport or ID).
+          Enter the passenger's names as they appear on document (passport or
+          ID).
         </p>
       </div>
 
       <!--      PASSENGER FORMS LIST-->
-      <app-passengers-card-list/>
-
+      <app-passengers-card-list />
 
       <div class="content-title">
         <div class="title-area">
@@ -28,23 +28,17 @@
           <div class="title">Contact details</div>
         </div>
         <p class="description">
-          We need contact details to be able to deliver the latest information regarding
-          your flight.
+          We need contact details to be able to deliver the latest information
+          regarding your flight.
         </p>
       </div>
 
       <app-contacts-form />
-
     </div>
-
 
     <div class="booking-process-page__footer">
       <button mat-button (click)="clickToBack()">Back</button>
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="clickToContinue()"
-      >
+      <button mat-raised-button color="primary" (click)="clickToContinue()">
         Continue
       </button>
     </div>

@@ -2,7 +2,7 @@
   .access {
     display: flex;
     align-items: center;
-    img{
+    img {
       margin: 0 11px 7px 0;
     }
   }
@@ -23,11 +23,10 @@
       display: flex;
       align-items: center;
       //border-color: #494949;
-      &>* {
+      & > * {
         //flex-grow: 1;
         width: 50%;
       }
     }
   }
-
 }

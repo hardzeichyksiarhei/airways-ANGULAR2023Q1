@@ -45,8 +45,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 import { MatTooltipModule } from '@angular/material/tooltip'
 import { MatButtonToggleModule } from '@angular/material/button-toggle'
 import { PassengerInfoFormComponent } from './components/passenger-info-form/passenger-info-form.component'
-import { ContactsFormComponent } from './components/contacts-form/contacts-form.component';
-import { PassengerCardComponent } from './components/passenger-card/passenger-card.component';
+import { ContactsFormComponent } from './components/contacts-form/contacts-form.component'
+import { PassengerCardComponent } from './components/passenger-card/passenger-card.component'
 import { PassengersCardListComponent } from './components/passengers-card-list/passengers-card-list.component'
 
 export function localStorageSyncReducer(
