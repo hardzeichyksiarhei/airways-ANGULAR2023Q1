@@ -1,7 +1,7 @@
 <div class="passengers-card">
 
   <div class="passenger-type">
-    {{ index + '. ' }} {{ passengerType }}
+    {{ +index + '. ' }} {{ passengerType }}
   </div>
 
   <app-passenger-info-form (formChange)="onFormChange($event)" />

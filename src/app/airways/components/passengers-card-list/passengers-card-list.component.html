@@ -1,1 +1,5 @@
-<p>passengers-card-list works!</p>
+<div class="passengers-list-container">
+  <app-passenger-card *ngFor="let card of cardsList" [index]="card.index"
+                      [passengerType]="card.passengerType"
+                      (cardChange)="onCardChange($event)" />
+</div>
