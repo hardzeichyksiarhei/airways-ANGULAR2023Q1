@@ -45,6 +45,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 import { MatTooltipModule } from '@angular/material/tooltip'
 import { MatButtonToggleModule } from '@angular/material/button-toggle'
 import { PassengerInfoFormComponent } from './components/passenger-info-form/passenger-info-form.component'
+import { ContactsFormComponent } from './components/contacts-form/contacts-form.component'
 
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>
@@ -75,6 +76,7 @@ export function localStorageSyncReducer(
     SignupFormComponent,
     FlightEditSearchFormComponent,
     PassengerInfoFormComponent,
+    ContactsFormComponent,
   ],
   imports: [
     CommonModule,
