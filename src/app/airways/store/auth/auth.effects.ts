@@ -11,15 +11,10 @@ import {
   setAuthError,
 } from './auth.actions'
 import { AuthService, SignUpDto } from './auth.service'
-import { Store } from '@ngrx/store'
 
 @Injectable()
 export class AuthEffects {
-  constructor(
-    private actions$: Actions,
-    private authService: AuthService,
-    private store: Store
-  ) {}
+  constructor(private actions$: Actions, private authService: AuthService) {}
 
   login$ = createEffect(() => {
     return this.actions$.pipe(
