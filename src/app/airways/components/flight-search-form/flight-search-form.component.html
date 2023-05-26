@@ -1,93 +1,112 @@
 <mat-card class="flight-search-form">
   <mat-card-content>
-    <mat-radio-group
-      class="flight-search-form__type"
-      aria-label="Select an type"
-      [value]="searchType$ | async"
-      (change)="onChangeSearchType($event.value)"
-    >
-      <mat-radio-button value="ROUND_TRIP">Round Trip</mat-radio-button>
-      <mat-radio-button value="ONE_WAY">One Way</mat-radio-button>
-    </mat-radio-group>
+    <form [formGroup]="searchForm">
+      <mat-radio-group
+        class="flight-search-form__type"
+        aria-label="Select an type"
+        name="type"
+        formControlName="type"
+      >
+        <mat-radio-button value="ROUND_TRIP">Round Trip</mat-radio-button>
+        <mat-radio-button value="ONE_WAY">One Way</mat-radio-button>
+      </mat-radio-group>
 
-    <div class="flight-search-form__route">
-      <mat-form-field appearance="outline">
-        <mat-label>From</mat-label>
-        <mat-select (selectionChange)="onChangeRouteFrom($event.value)">
-          <mat-option
-            *ngFor="let airport of airports$ | async"
-            [value]="airport"
-          >
-            <b>{{ airport.city }} ({{ airport.key }})</b>
-            <br />
-            <small>{{ airport.name }}, {{ airport.city }}</small>
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>To</mat-label>
-        <mat-select (selectionChange)="onChangeRouteTo($event.value)">
-          <mat-option
-            *ngFor="let airport of airports$ | async"
-            [value]="airport"
-          >
-            {{ airport.city }} ({{ airport.key }}) – {{ airport.name }},
-            {{ airport.city }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-
-    <div class="flight-search-form__meta">
-      <mat-form-field appearance="outline">
-        <mat-label>Dates</mat-label>
-        <mat-date-range-input [formGroup]="dates" [rangePicker]="picker">
-          <input
-            matStartDate
-            formControlName="start"
-            placeholder="Start date"
-            (dateChange)="onChangeStartDate($event.value)"
-          />
-          <input
-            matEndDate
-            formControlName="end"
-            placeholder="End date"
-            (dateChange)="onChangeEndDate($event.value)"
-          />
-        </mat-date-range-input>
-        <mat-datepicker-toggle
-          matIconSuffix
-          [for]="picker"
-        ></mat-datepicker-toggle>
-        <mat-date-range-picker #picker></mat-date-range-picker>
-
-        <mat-error *ngIf="dates.controls.start.hasError('matStartDateInvalid')">
-          Invalid start date
-        </mat-error>
-        <mat-error *ngIf="dates.controls.end.hasError('matEndDateInvalid')">
-          Invalid end date
-        </mat-error>
-      </mat-form-field>
-
-      <div>
-        <mat-form-field appearance="outline" [matMenuTriggerFor]="menu">
-          <mat-label>
-            Passengers:
-            {{ passengers.adults + passengers.child + passengers.infant }}
-          </mat-label>
-          <mat-select disabled />
+      <div class="flight-search-form__route">
+        <mat-form-field appearance="outline">
+          <mat-label>From</mat-label>
+          <mat-select name="routeFrom" formControlName="routeFrom">
+            <mat-option
+              *ngFor="let airport of airports$ | async"
+              [value]="airport"
+            >
+              <b>{{ airport.city }} ({{ airport.key }})</b>
+              <br />
+              <small>{{ airport.name }}, {{ airport.city }}</small>
+            </mat-option>
+          </mat-select>
         </mat-form-field>
-        <mat-menu #menu="matMenu">
-          <app-change-passengers-count-item
-            *ngFor="let item of passengers | keyvalue"
-            passengerType="{{ item.key }}"
-            passengerCount="{{ item.value }}"
-            (changePassengersCount)="onChangePassengers($event)"
-          />
-        </mat-menu>
+
+        <mat-form-field appearance="outline">
+          <mat-label>To</mat-label>
+          <mat-select name="routeTo" formControlName="routeTo">
+            <mat-option
+              *ngFor="let airport of airports$ | async"
+              [value]="airport"
+            >
+              {{ airport.city }} ({{ airport.key }}) – {{ airport.name }},
+              {{ airport.city }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
-    </div>
+
+      <div class="flight-search-form__meta">
+        <mat-form-field appearance="outline">
+          <mat-label>Dates</mat-label>
+          <mat-date-range-input [rangePicker]="picker">
+            <input
+              matStartDate
+              name="startDate"
+              formControlName="startDate"
+              placeholder="Start date"
+            />
+            <input
+              matEndDate
+              name="endDate"
+              formControlName="endDate"
+              placeholder="End date"
+            />
+          </mat-date-range-input>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+
+          <mat-error
+            *ngIf="
+              searchForm.controls.startDate.hasError('matStartDateInvalid')
+            "
+          >
+            Invalid start date
+          </mat-error>
+          <mat-error
+            *ngIf="searchForm.controls.endDate.hasError('matEndDateInvalid')"
+          >
+            Invalid end date
+          </mat-error>
+        </mat-form-field>
+
+        <div>
+          <mat-form-field appearance="outline" [matMenuTriggerFor]="menu">
+            <mat-label>
+              Passengers:
+              {{ totalPassengers }}
+            </mat-label>
+            <mat-select disabled />
+          </mat-form-field>
+          <mat-menu #menu="matMenu">
+            <app-change-passengers-count-item
+              passengerType="adults"
+              passengerCount="{{ adults }}"
+              (changePassengersCount)="onChangePassengers($event)"
+            />
+
+            <app-change-passengers-count-item
+              passengerType="child"
+              passengerCount="{{ child }}"
+              (changePassengersCount)="onChangePassengers($event)"
+            />
+
+            <app-change-passengers-count-item
+              passengerType="infant"
+              passengerCount="{{ infant }}"
+              (changePassengersCount)="onChangePassengers($event)"
+            />
+          </mat-menu>
+        </div>
+      </div>
+    </form>
 
     <mat-divider></mat-divider>
   </mat-card-content>
