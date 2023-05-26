@@ -188,14 +188,6 @@
             Country code is
             <strong>required</strong>
           </mat-error>
-          <mat-error
-            *ngIf="
-              signUpForm.controls.phone.hasError('pattern') &&
-              !signUpForm.controls.phone.hasError('required')
-            "
-          >
-            Invalid phone number
-          </mat-error>
         </mat-form-field>
 
         <mat-form-field class="phone-input" appearance="outline">
