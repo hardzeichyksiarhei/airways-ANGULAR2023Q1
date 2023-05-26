@@ -29,7 +29,7 @@ export class AuthService {
     password,
     email,
   }: SignUpDto) {
-    return this.http.post(`${apiURL}/auth/registration`, {
+    return this.http.post<{ token: string }>(`${apiURL}/auth/registration`, {
       email,
       password,
       countryCode,
