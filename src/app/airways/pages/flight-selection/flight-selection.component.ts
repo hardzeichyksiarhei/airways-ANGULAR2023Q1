@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
 
@@ -27,7 +27,11 @@ import { ISlot } from '../../../flights/store/flights.reducer'
   styleUrls: ['./flight-selection.component.scss'],
 })
 export class FlightSelectionComponent implements OnInit {
-  constructor(private store: Store, private route: ActivatedRoute) {}
+  constructor(
+    private store: Store,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   fromCurrentSlot$: Observable<ISlot | null> = this.store.select(
     selectFromCurrentSlot
@@ -73,5 +77,9 @@ export class FlightSelectionComponent implements OnInit {
 
   handleClickSelectToSlot() {
     this.store.dispatch(toggleToSlotSelected())
+  }
+
+  clickToContinue() {
+    this.router.navigate(['booking'], {})
   }
 }
