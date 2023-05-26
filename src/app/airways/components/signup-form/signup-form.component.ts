@@ -7,7 +7,9 @@ import {
   NgForm,
   Validators,
 } from '@angular/forms'
-import { AuthService } from '../../services/auth.service'
+import { AuthService, SignUpDto } from '../../store/auth/auth.service'
+import { Store } from '@ngrx/store'
+import { trySignup } from '../../store/auth/auth.actions'
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -29,7 +31,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./signup-form.component.scss'],
 })
 export class SignupFormComponent {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private store: Store) {}
 
   signUpForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -50,7 +52,7 @@ export class SignupFormComponent {
     dateOfBirth: new FormControl('', [Validators.required]),
     countryCode: new FormControl('', [
       Validators.required,
-      Validators.pattern('\\+([0-9]{1-3})\\)'),
+      Validators.pattern('^[\\+]([0-9]{1,3})'),
     ]),
     phone: new FormControl('', [
       Validators.required,
@@ -59,18 +61,14 @@ export class SignupFormComponent {
     ]),
     citizenship: new FormControl(),
     gender: new FormControl('Female'),
-    privacy: new FormControl(true),
+    privacy: new FormControl(false),
   })
 
   matcher = new MyErrorStateMatcher()
 
   onSubmit() {
     console.log(this.signUpForm.value)
-
-    const aa = this.signUpForm.value
-    const data = { ...aa, countryCode: '+375' }
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    this.authService.signup(data).subscribe(console.log)
+    const data = this.signUpForm.value as SignUpDto
+    this.store.dispatch(trySignup(data))
   }
 }

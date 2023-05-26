@@ -57,9 +57,15 @@
       .citizenship-select,
       .firstname-input,
       .lastname-input,
-      .birthdate-input,
-      .phone-input {
+      .birthdate-input {
+        //.phone-input {
         width: 100%;
+      }
+
+      .codeAndPhone {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
       }
 
       .privacy-checkbox,
