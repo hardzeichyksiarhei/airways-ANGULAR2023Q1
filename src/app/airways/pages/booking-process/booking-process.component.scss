@@ -1,0 +1,166 @@
+:host {
+  flex-grow: 1;
+  margin-top: 88px;
+
+  background-color: #f5f5f5;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.booking-process-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+
+  &__container {
+    width: 100%;
+  }
+
+  &__body {
+
+    .access {
+      display: flex;
+      align-items: center;
+      img{
+        margin: 0 11px 7px 0;
+      }
+    }
+    .content-title {
+      margin-top: 50px;
+
+      .title-area {
+        font-family: Roboto, sans-serif;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+
+        .image-container {
+          height: inherit;
+          display: flex;
+          align-items: center;
+        }
+
+        .title {
+          //font-family: Roboto, sans-serif;
+          font-size: 24px;
+          line-height: 28px;
+          font-weight: 700;
+          color: #11397E;
+          display: flex;
+          align-items: center;
+        }
+
+      }
+
+      .description {
+        font-family: Roboto, sans-serif;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 400;
+        color: #49454F;
+        margin: 8px 0 20px;
+      }
+    }
+
+    .card {
+      background-color: #fff;
+      width: 100%;
+      border-radius: 8px;
+      padding: 32px 44px;
+      display: flex;
+      gap: 24px;
+      flex-direction: column;
+    }
+
+    .passengers-list-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      &__card {
+        .passenger-type {
+          font-weight: 700;
+          font-size: 24px;
+          line-height: 28px;
+          color: #10264C;
+        }
+
+        .passenger-info {
+          &__form {
+            display: flex;
+            width: 100%;
+            gap: 10px;
+
+            & > * {
+              flex-grow: 1;
+              max-width: 25%;
+            }
+
+            .gender {
+              flex-grow: 1;
+              height: 56px;
+              display: flex;
+              align-items: center;
+              //border-color: #494949;
+              &>* {
+                //flex-grow: 1;
+                width: 50%;
+              }
+            }
+          }
+
+        }
+
+        .special-assistance {
+
+          &__container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: 20px;
+
+            .image-container {
+            }
+
+            .text {
+              font-size: 12px;
+              font-weight: 400;
+              line-height: 16px;
+              color: #000000;
+            }
+          }
+        }
+      }
+    }
+
+    .contacts-info {
+      &__card {
+
+        .contacts-info-form-container {
+
+          &__form {
+            display: flex;
+            width: 100%;
+            gap: 10px;
+
+            & > * {
+              flex-grow: 1;
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  &__footer {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 30px;
+    justify-content: flex-end;
+
+    margin: 60px 0;
+  }
+}

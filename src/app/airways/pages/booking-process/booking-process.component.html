@@ -1,1 +1,169 @@
-<p>booking-process works!</p>
+<div class="booking-process-page">
+  <app-flight-edit-search-form />
+
+  <div class="booking-process-page__container container">
+    <div class="booking-process-page__body">
+<!--      Title OF CONTENT-->
+      <div class="content-title">
+        <div class="title-area">
+          <div class="image-container">
+            <img src="../../../../assets/passengers-primary.png" />
+          </div>
+          <div class="title">Passengers</div>
+        </div>
+        <p class="description">
+          Enter the passenger's names as they appear on document (passport or ID).
+        </p>
+      </div>
+
+<!--      PASSENGER FORMS LIST-->
+      <div class="passengers-list-container">
+        <div class="passengers-list-container__card card">
+
+          <div class="passenger-type">
+            1. Adult
+          </div>
+
+          <div class="passenger-info">
+            <form class="passenger-info__form">
+              <mat-form-field class="firstName" appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  [autocomplete]="false"
+                  placeholder="Ivan"
+                />
+                <mat-icon matSuffix matTooltip="Add the passenger's name as it is written on their documents (passport or ID). Do not use any accents or special characters. Do not use a nickname. ">info</mat-icon>
+              </mat-form-field>
+
+              <mat-form-field class="lastName" appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  [autocomplete]="false"
+                  placeholder="Ivanov"
+
+                />
+
+                <mat-icon
+                  matSuffix
+                  matTooltip="Add the passenger's name as it is
+                  written on their documents (passport or ID).
+                  Do not use any accents or special characters.
+                  Do not use a nickname. " >info</mat-icon>
+              </mat-form-field>
+
+<!--              <mat-form-field class="gender" >-->
+<!--              <div>-->
+                <mat-button-toggle-group class="gender" name="gender" aria-label="Favorite Color">
+                  <mat-button-toggle value="Male">
+                    <div class="access">
+                      <mat-icon matSuffix><img src="../../../../assets/access.png">
+                      </mat-icon>
+                      <span>Male</span>
+                    </div>
+                  </mat-button-toggle>
+                  <mat-button-toggle value="Female">
+                    <div class="access">
+                      <mat-icon matSuffix><img src="../../../../assets/access.png">
+                      </mat-icon>
+                      <span>Female</span>
+                    </div>
+                  </mat-button-toggle>
+                </mat-button-toggle-group>
+<!--              </div>-->
+<!--              </mat-form-field>-->
+
+              <mat-form-field class="birthDate" appearance="outline">
+                <mat-label>Date of birth</mat-label>
+                <input
+                  type="date"
+                  matInput
+                  [autocomplete]="false"
+                />
+                <mat-datepicker-toggle matIconSuffix></mat-datepicker-toggle>
+              </mat-form-field>
+            </form>
+
+          </div>
+
+          <div class="special-assistance">
+            <mat-slide-toggle color="primary">
+              <div class="special-assistance__container">
+                <div class="image-container">
+                  <img src="../../../../assets/assistance.png" />
+                </div>
+                <div class="text">Need special assistance?</div>
+              </div>
+            </mat-slide-toggle>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="content-title">
+        <div class="title-area">
+          <div class="image-container">
+            <img src="../../../../assets/contact-details.png" />
+          </div>
+          <div class="title">Contact details</div>
+        </div>
+        <p class="description">
+          We need contact details to be able to deliver the latest information regarding your flight.
+        </p>
+      </div>
+
+      <div class="contacts-info">
+        <div class="contacts-info__card card">
+          <div class="contacts-info-form-container">
+            <form class="contacts-info-form-container__form">
+              <mat-form-field class="countryCode" appearance="outline">
+                <mat-label>Country code</mat-label>
+                <input
+                  type="text"
+                  [autocomplete]="false"
+                  matInput
+                  placeholder="+375"
+                />
+              </mat-form-field>
+
+              <mat-form-field class="phone" appearance="outline">
+                <mat-label>Mobile phone number</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  [autocomplete]="false"
+                  placeholder="123456789"
+                />
+              </mat-form-field>
+
+              <mat-form-field class="email" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input
+                  type="email"
+                  matInput
+                  [autocomplete]="false"
+                  placeholder="e.g. example@gmail.com"
+                />
+              </mat-form-field>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="booking-process-page__footer">
+      <button mat-button (click)="clickToBack()">Back</button>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="clickToContinue()"
+      >
+        Continue
+      </button>
+    </div>
+  </div>
+</div>
