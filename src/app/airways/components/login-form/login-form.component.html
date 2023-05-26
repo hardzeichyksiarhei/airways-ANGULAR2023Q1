@@ -31,6 +31,7 @@
         <input
           type="email"
           matInput
+          [autocomplete]="false"
           [formControl]="loginForm.controls.email"
           [errorStateMatcher]="matcher"
           placeholder="Ex. example@example.com"
@@ -53,6 +54,7 @@
         <mat-label>Password</mat-label>
         <input
           type="password"
+          [autocomplete]="false"
           matInput
           [formControl]="loginForm.controls.password"
           [errorStateMatcher]="matcher"
@@ -83,6 +85,7 @@
         >
           Log in
         </button>
+        <div>{{ authError$ | async }}</div>
       </div>
     </form>
   </div>

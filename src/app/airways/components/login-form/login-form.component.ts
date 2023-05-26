@@ -1,13 +1,17 @@
-import { Component } from '@angular/core'
+import { Component } from "@angular/core"
 import {
   FormControl,
   FormGroup,
   FormGroupDirective,
   NgForm,
   Validators,
-} from '@angular/forms'
-import { ErrorStateMatcher } from '@angular/material/core'
-import { AuthService } from '../../services/auth.service'
+} from "@angular/forms"
+import { ErrorStateMatcher } from "@angular/material/core"
+import { AuthService } from "../../store/auth/auth.service"
+import { Store } from "@ngrx/store"
+import { tryLogin } from "../../store/auth/auth.actions"
+import { Observable } from "rxjs"
+import { selectAuthError } from "../../store/auth/auth.selectors"
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -24,17 +28,19 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 }
 
 @Component({
-  selector: 'app-login-form',
-  templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.scss'],
+  selector: "app-login-form",
+  templateUrl: "./login-form.component.html",
+  styleUrls: ["./login-form.component.scss"],
 })
 export class LoginFormComponent {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private store: Store) {}
+
+  authError$: Observable<string | null> = this.store.select(selectAuthError)
 
   loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl("", [Validators.required, Validators.email]),
 
-    password: new FormControl('', [
+    password: new FormControl("", [
       Validators.required,
       Validators.minLength(8),
     ]),
@@ -46,7 +52,7 @@ export class LoginFormComponent {
     const email = this.loginForm.value.email
     const password = this.loginForm.value.password
     if (!email || !password) return
-    console.log(this.loginForm.value)
-    this.authService.login(email, password).subscribe(console.log)
+
+    this.store.dispatch(tryLogin({ email, password }))
   }
 }
