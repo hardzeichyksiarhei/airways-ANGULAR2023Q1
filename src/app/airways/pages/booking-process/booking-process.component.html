@@ -52,43 +52,8 @@
         </p>
       </div>
 
-      <div class="contacts-info">
-        <div class="contacts-info__card card">
-          <div class="contacts-info-form-container">
-            <form class="contacts-info-form-container__form">
-              <mat-form-field class="countryCode" appearance="outline">
-                <mat-label>Country code</mat-label>
-                <input
-                  type="text"
-                  [autocomplete]="false"
-                  matInput
-                  placeholder="+375"
-                />
-              </mat-form-field>
+      <app-contacts-form/>
 
-              <mat-form-field class="phone" appearance="outline">
-                <mat-label>Mobile phone number</mat-label>
-                <input
-                  type="text"
-                  matInput
-                  [autocomplete]="false"
-                  placeholder="123456789"
-                />
-              </mat-form-field>
-
-              <mat-form-field class="email" appearance="outline">
-                <mat-label>Email</mat-label>
-                <input
-                  type="email"
-                  matInput
-                  [autocomplete]="false"
-                  placeholder="e.g. example@gmail.com"
-                />
-              </mat-form-field>
-            </form>
-          </div>
-        </div>
-      </div>
     </div>
 
 
