@@ -24,70 +24,7 @@
             1. Adult
           </div>
 
-          <div class="passenger-info">
-            <form class="passenger-info__form">
-              <mat-form-field class="firstName" appearance="outline">
-                <mat-label>First Name</mat-label>
-                <input
-                  type="text"
-                  matInput
-                  [autocomplete]="false"
-                  placeholder="Ivan"
-                />
-                <mat-icon matSuffix matTooltip="Add the passenger's name as it is written on their documents (passport or ID). Do not use any accents or special characters. Do not use a nickname. ">info</mat-icon>
-              </mat-form-field>
-
-              <mat-form-field class="lastName" appearance="outline">
-                <mat-label>Last Name</mat-label>
-                <input
-                  type="text"
-                  matInput
-                  [autocomplete]="false"
-                  placeholder="Ivanov"
-
-                />
-
-                <mat-icon
-                  matSuffix
-                  matTooltip="Add the passenger's name as it is
-                  written on their documents (passport or ID).
-                  Do not use any accents or special characters.
-                  Do not use a nickname. " >info</mat-icon>
-              </mat-form-field>
-
-<!--              <mat-form-field class="gender" >-->
-<!--              <div>-->
-                <mat-button-toggle-group class="gender" name="gender" aria-label="Favorite Color">
-                  <mat-button-toggle value="Male">
-                    <div class="access">
-                      <mat-icon matSuffix><img src="../../../../assets/access.png">
-                      </mat-icon>
-                      <span>Male</span>
-                    </div>
-                  </mat-button-toggle>
-                  <mat-button-toggle value="Female">
-                    <div class="access">
-                      <mat-icon matSuffix><img src="../../../../assets/access.png">
-                      </mat-icon>
-                      <span>Female</span>
-                    </div>
-                  </mat-button-toggle>
-                </mat-button-toggle-group>
-<!--              </div>-->
-<!--              </mat-form-field>-->
-
-              <mat-form-field class="birthDate" appearance="outline">
-                <mat-label>Date of birth</mat-label>
-                <input
-                  type="date"
-                  matInput
-                  [autocomplete]="false"
-                />
-                <mat-datepicker-toggle matIconSuffix></mat-datepicker-toggle>
-              </mat-form-field>
-            </form>
-
-          </div>
+         <app-passenger-info-form/>
 
           <div class="special-assistance">
             <mat-slide-toggle color="primary">
