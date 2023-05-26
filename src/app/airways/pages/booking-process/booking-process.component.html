@@ -17,14 +17,7 @@
       </div>
 
       <!--      PASSENGER FORMS LIST-->
-      <div class="passengers-list-container">
-        <app-passenger-card [index]="1" [passengerType]="'Adult'"
-                            (cardChange)="onCardChange($event)" />
-        <app-passenger-card [index]="2" [passengerType]="'Infant'"
-                            (cardChange)="onCardChange($event)" />
-        <app-passenger-card [index]="3" [passengerType]="'Child'"
-                            (cardChange)="onCardChange($event)" />
-      </div>
+      <app-passengers-card-list/>
 
 
       <div class="content-title">

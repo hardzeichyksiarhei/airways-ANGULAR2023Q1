@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store'
 import { ActivatedRoute, Router } from '@angular/router'
 import { selectSearchFeature } from '../../store/search/search.selectors'
 import { take } from 'rxjs'
-import { CardValue } from '../../components/passenger-card/passenger-card.component'
 
 @Component({
   selector: 'app-booking-process',
@@ -16,10 +15,6 @@ export class BookingProcessComponent {
     private route: ActivatedRoute,
     private router: Router
   ) {}
-
-  onCardChange(e: CardValue) {
-    console.log(e)
-  }
 
   clickToContinue() {
     this.router.navigate(['summary'], {})

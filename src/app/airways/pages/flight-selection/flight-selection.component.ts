@@ -20,6 +20,8 @@ import {
   selectToSlots,
 } from '../../../flights/store/flights.selectors'
 import { ISlot } from '../../../flights/store/flights.reducer'
+import { selectSearchType } from '../../store/search/search.selectors'
+import { SearchType } from '../../store/search/search.reducer'
 
 @Component({
   selector: 'app-flight-selection',
@@ -49,6 +51,8 @@ export class FlightSelectionComponent implements OnInit {
   )
 
   toSlotSelected$: Observable<boolean> = this.store.select(selectToSlotSelected)
+
+  searchType$: Observable<SearchType> = this.store.select(selectSearchType)
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
