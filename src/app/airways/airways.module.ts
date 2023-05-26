@@ -41,6 +41,9 @@ import { SignupFormComponent } from './components/signup-form/signup-form.compon
 import { FlightEditSearchFormComponent } from './components/flight-edit-search-form/flight-edit-search-form.component'
 import { authReducer } from './store/auth/auth.reducer'
 import { AuthEffects } from './store/auth/auth.effects'
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatTooltipModule } from "@angular/material/tooltip";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
 
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>
@@ -84,16 +87,19 @@ export function localStorageSyncReducer(
     MatCheckboxModule,
 
     StoreModule.forFeature(
-      'airway',
+      "airway",
       combineReducers<AirwayState>({
         settings: settingsReducer,
         airports: airportsReducer,
         search: searchReducer,
-        auth: authReducer,
+        auth: authReducer
       }),
       { metaReducers: [localStorageSyncReducer] }
     ),
     EffectsModule.forFeature(AirportsEffects, AuthEffects),
-  ],
+    MatSlideToggleModule,
+    MatTooltipModule,
+    MatButtonToggleModule
+  ]
 })
 export class AirwaysModule {}

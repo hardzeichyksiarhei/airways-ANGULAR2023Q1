@@ -17,7 +17,7 @@ const routes: Routes = [
       { path: '', component: FlightSearchComponent },
       { path: 'selection', component: FlightSelectionComponent },
       { path: 'booking', component: BookingProcessComponent },
-      { path: 'summory', component: SummaryComponent },
+      { path: 'summary', component: SummaryComponent },
       { path: 'cart', component: ShoppingCartComponent },
     ],
   },
