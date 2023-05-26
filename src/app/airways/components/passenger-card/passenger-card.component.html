@@ -1,0 +1,19 @@
+<div class="passengers-card">
+
+  <div class="passenger-type">
+    {{ index + '. ' }} {{ passengerType }}
+  </div>
+
+  <app-passenger-info-form (formChange)="onFormChange($event)" />
+
+  <div class="special-assistance">
+    <mat-slide-toggle color="primary" (change)="onSpecialAssistanceChange()" [formControl]="specialAssistance">
+      <div class="special-assistance__container">
+        <div class="image-container">
+          <img src="../../../../assets/assistance.png" />
+        </div>
+        <div class="text">Need special assistance?</div>
+      </div>
+    </mat-slide-toggle>
+  </div>
+</div>

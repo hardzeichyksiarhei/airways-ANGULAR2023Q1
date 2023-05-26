@@ -1,0 +1,37 @@
+.passengers-card {
+
+  background-color: #fff;
+  width: 100%;
+  border-radius: 8px;
+  padding: 32px 44px;
+  display: flex;
+  gap: 24px;
+  flex-direction: column;
+
+  .passenger-type {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    color: #10264C;
+  }
+
+  .special-assistance {
+
+    &__container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: 20px;
+
+      .image-container {
+      }
+
+      .text {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16px;
+        color: #000000;
+      }
+    }
+  }
+}
