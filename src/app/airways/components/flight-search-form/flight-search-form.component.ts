@@ -10,7 +10,7 @@ import {
   selectPassengers,
   selectSearchType,
 } from '../../store/search/search.selectors'
-import { Passengers, SearchType } from '../../store/search/search.reducer'
+import { IPassengers, SearchType } from '../../store/search/search.reducer'
 import {
   changeEndDate,
   changePassengers,
@@ -21,12 +21,6 @@ import {
 } from '../../store/search/search.actions'
 import { IAirport } from '../../store/airports/airports.model'
 import { Router } from '@angular/router'
-
-interface IPassengers {
-  adults: number
-  child: number
-  infant: number
-}
 
 @Component({
   selector: 'app-flight-search-form',
@@ -49,7 +43,7 @@ export class FlightSearchFormComponent implements OnInit {
 
   searchType$: Observable<SearchType> = this.store.select(selectSearchType)
 
-  passengers$: Observable<Passengers> = this.store.select(selectPassengers)
+  passengers$: Observable<IPassengers> = this.store.select(selectPassengers)
 
   constructor(private store: Store, private router: Router) {}
 
@@ -93,7 +87,7 @@ export class FlightSearchFormComponent implements OnInit {
           queryParams: {
             fromKey: search.route.from?.key,
             toKey: search.route.to?.key,
-            forwardDate: search.dates.start.toISOString(),
+            forwardDate: search.dates.start?.toISOString(),
             backDate: search.dates.end?.toISOString(),
           },
         })

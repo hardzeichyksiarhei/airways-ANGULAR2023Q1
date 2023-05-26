@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store'
 
-import { SearchType } from './search.reducer'
+import { SearchState, SearchType } from './search.reducer'
 import { IAirport } from '../airports/airports.model'
 
 export const changeSearchType = createAction(
@@ -35,4 +35,9 @@ export const changePassengers = createAction(
     child?: number
     infant?: number
   }>()
+)
+
+export const changeSearch = createAction(
+  '[Airway Search] Change Search',
+  props<{ search: Partial<SearchState> }>()
 )

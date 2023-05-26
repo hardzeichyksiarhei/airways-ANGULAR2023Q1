@@ -1,7 +1,11 @@
 :host {
   position: sticky;
-  z-index: 99999;
+  z-index: 1000;
   top: 88px;
+}
+
+:host .mat-mdc-form-field {
+  margin-bottom: -1.25em;
 }
 
 .app-flight-edit-search-form {
@@ -13,6 +17,18 @@
     height: 100%;
     display: flex;
     align-items: center;
+  }
+
+  &__edit-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+
+    position: relative;
+    top: 10px;
+    background: #fff;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+    padding: 20px;
   }
 }
 
@@ -52,5 +68,17 @@
   &__divider {
     display: block;
     margin: 0 5px;
+  }
+}
+
+.app-flight-action {
+  margin-left: 30px;
+
+  button {
+    margin-right: 10px;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
   }
 }

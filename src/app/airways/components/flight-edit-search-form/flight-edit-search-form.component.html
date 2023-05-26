@@ -2,26 +2,148 @@
   <div class="app-flight-edit-search-form__container container">
     <div class="app-flight-route">
       <span class="app-flight-route__from">
-        {{ (routeFrom$ | async)!.city }}
+        {{ routeFrom?.city }}
       </span>
       <span class="app-flight-route__icon">
         <img src="../../../../assets/from-to-air.png" />
       </span>
-      <span class="app-flight-route__to">{{ (routeTo$ | async)!.city }}</span>
+      <span class="app-flight-route__to">
+        {{ routeTo?.city }}
+      </span>
     </div>
 
     <div class="app-flight-meta">
       <span class="app-flight-meta__direction">Return</span>
       <span class="app-flight-meta__divider">•</span>
       <span class="app-flight-meta__dates">
-        {{ startDate$ | async | date : "dd MMM" }} -
-        {{ endDate$ | async | date : "dd MMM" }}
+        {{ startDate | date : "dd MMM" }} -
+        {{ endDate | date : "dd MMM" }}
       </span>
       <span class="app-flight-meta__divider">•</span>
       <span class="app-flight-meta__passengers">
-        {{ passengers$ | async }}
+        {{ totalPassengers }}
         <img src="../../../../assets/passengers.png" />
       </span>
     </div>
+
+    <div class="app-flight-action">
+      <button *ngIf="!edit" mat-raised-button (click)="handleClickEdit()">
+        Edit
+      </button>
+      <button
+        *ngIf="edit"
+        mat-raised-button
+        color="primary"
+        (click)="handleClickSearch()"
+      >
+        Search
+      </button>
+      <button *ngIf="edit" mat-raised-button (click)="handleClickClose()">
+        Close
+      </button>
+    </div>
   </div>
+
+  <form
+    *ngIf="edit"
+    class="app-flight-edit-search-form__edit-container container"
+    [formGroup]="editSearchForm"
+  >
+    <mat-form-field appearance="outline">
+      <mat-label>From</mat-label>
+      <mat-select
+        name="routeFrom"
+        formControlName="routeFrom"
+        (selectionChange)="onChangeRouteFrom($event.value)"
+        [compareWith]="compareWithRoute"
+      >
+        <mat-option *ngFor="let airport of airports$ | async" [value]="airport">
+          <b>{{ airport.city }} ({{ airport.key }})</b>
+          <br />
+          <small>{{ airport.name }}, {{ airport.city }}</small>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>To</mat-label>
+      <mat-select
+        name="routeTo"
+        formControlName="routeTo"
+        (selectionChange)="onChangeRouteTo($event.value)"
+        [compareWith]="compareWithRoute"
+      >
+        <mat-option *ngFor="let airport of airports$ | async" [value]="airport">
+          <b>{{ airport.city }} ({{ airport.key }})</b>
+          <br />
+          <small>{{ airport.name }}, {{ airport.city }}</small>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Dates</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input
+          matStartDate
+          name="startDate"
+          formControlName="startDate"
+          placeholder="Start date"
+          (dateChange)="onChangeStartDate($event.value)"
+        />
+        <input
+          matEndDate
+          name="endDate"
+          formControlName="endDate"
+          placeholder="End date"
+          (dateChange)="onChangeEndDate($event.value)"
+        />
+      </mat-date-range-input>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+
+      <mat-error
+        *ngIf="
+          editSearchForm.controls.startDate.hasError('matStartDateInvalid')
+        "
+      >
+        Invalid start date
+      </mat-error>
+      <mat-error
+        *ngIf="editSearchForm.controls.endDate.hasError('matEndDateInvalid')"
+      >
+        Invalid end date
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" [matMenuTriggerFor]="menu">
+      <mat-label>
+        Passengers:
+        {{ totalPassengers }}
+      </mat-label>
+      <mat-select disabled />
+    </mat-form-field>
+    <mat-menu #menu="matMenu">
+      <app-change-passengers-count-item
+        passengerType="adults"
+        passengerCount="{{ adults }}"
+        (changePassengersCount)="onChangePassengers($event)"
+      />
+
+      <app-change-passengers-count-item
+        passengerType="child"
+        passengerCount="{{ child }}"
+        (changePassengersCount)="onChangePassengers($event)"
+      />
+
+      <app-change-passengers-count-item
+        passengerType="infant"
+        passengerCount="{{ infant }}"
+        (changePassengersCount)="onChangePassengers($event)"
+      />
+    </mat-menu>
+  </form>
 </div>
