@@ -42,6 +42,10 @@ export class FlightSearchFormComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
+  get type() {
+    return this.searchForm.get('type')?.value
+  }
+
   get adults() {
     return this.searchForm.get('adults')?.value
   }
@@ -66,6 +70,16 @@ export class FlightSearchFormComponent implements OnInit {
     this.store.dispatch(searchAirports())
   }
 
+  onChangeType(value: SearchType) {
+    if (value === 'ROUND_TRIP') {
+      this.searchForm.controls.endDate.setValidators([Validators.required])
+      this.searchForm.controls.endDate.updateValueAndValidity()
+    } else if (value === 'ONE_WAY') {
+      this.searchForm.controls.endDate.removeValidators([Validators.required])
+      this.searchForm.controls.endDate.updateValueAndValidity()
+    }
+  }
+
   onChangePassengers(event: { key: string; value: number }) {
     this.searchForm.patchValue({
       [event.key as keyof IPassengers]: +event.value,
@@ -73,6 +87,8 @@ export class FlightSearchFormComponent implements OnInit {
   }
 
   onSearch() {
+    console.log(this.searchForm)
+
     if (!this.searchForm.valid) return
 
     const {
@@ -94,7 +110,7 @@ export class FlightSearchFormComponent implements OnInit {
       },
       dates: {
         start: startDate.value,
-        end: endDate.value,
+        end: type.value === 'ROUND_TRIP' ? endDate.value : null,
       },
       passengers: {
         adults: adults.value || 1,

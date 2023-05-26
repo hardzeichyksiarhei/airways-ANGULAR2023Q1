@@ -13,10 +13,13 @@
     </div>
 
     <div class="app-flight-meta">
-      <span class="app-flight-meta__direction">Return</span>
+      <span *ngIf="endDate" class="app-flight-meta__direction">Round Trip</span>
+      <span *ngIf="!endDate" class="app-flight-meta__direction">One Way</span>
+
       <span class="app-flight-meta__divider">•</span>
       <span class="app-flight-meta__dates">
-        {{ startDate | date : "dd MMM" }} -
+        {{ startDate | date : "dd MMM" }}
+        <span *ngIf="endDate">-</span>
         {{ endDate | date : "dd MMM" }}
       </span>
       <span class="app-flight-meta__divider">•</span>

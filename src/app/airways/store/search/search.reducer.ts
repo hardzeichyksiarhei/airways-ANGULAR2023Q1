@@ -116,19 +116,18 @@ export const searchReducer = createReducer(
   on(changeSearch, (state, action): SearchState => {
     return {
       ...state,
-      type: action.search.type || state.type,
+      ...action.search,
       route: {
-        from: action.search.route?.from || state.route.from,
-        to: action.search.route?.to || state.route.to,
+        ...state.route,
+        ...action.search.route,
       },
       dates: {
-        start: action.search.dates?.start || state.dates.start,
-        end: action.search.dates?.end || state.dates.end,
+        ...state.dates,
+        ...action.search.dates,
       },
       passengers: {
-        adults: action.search.passengers?.adults || state.passengers.adults,
-        child: action.search.passengers?.child || state.passengers.child,
-        infant: action.search.passengers?.infant || state.passengers.infant,
+        ...state.passengers,
+        ...action.search.passengers,
       },
     }
   })
