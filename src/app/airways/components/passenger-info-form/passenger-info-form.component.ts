@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import {
   FormControl,
   FormGroup,
@@ -7,6 +7,10 @@ import {
   Validators,
 } from '@angular/forms'
 import { ErrorStateMatcher } from '@angular/material/core'
+import { Store } from '@ngrx/store'
+import { selectPassengersList } from '../../store/passengers/passengers.selectors'
+import { Observable, take } from 'rxjs'
+import { CardValue } from '../passenger-card/passenger-card.component'
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -27,7 +31,11 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './passenger-info-form.component.html',
   styleUrls: ['./passenger-info-form.component.scss'],
 })
-export class PassengerInfoFormComponent {
+export class PassengerInfoFormComponent implements OnInit {
+  constructor(private store: Store) {}
+
+  @Input() index = 0
+
   @Output() formChange = new EventEmitter<{
     formValue: FormValue
     formValid: boolean
@@ -49,6 +57,30 @@ export class PassengerInfoFormComponent {
   })
 
   matcher = new MyErrorStateMatcher()
+
+  passengersList$: Observable<CardValue[]> =
+    this.store.select(selectPassengersList)
+
+  card: CardValue = {} as CardValue
+
+  ngOnInit(): void {
+    // this.card$ = this.store.select(se(this.index))
+    //
+    this.passengersList$.pipe(take(1)).subscribe((list) => {
+      const card = list.find((el) => el.index === this.index)
+      if (!card) return
+
+      const formValueCard = card as unknown as FormValue
+      this.passengerInfoForm.controls.firstName.setValue(
+        formValueCard.firstName
+      )
+      this.passengerInfoForm.controls.lastName.setValue(formValueCard.lastName)
+      this.passengerInfoForm.controls.dateOfBirth.setValue(
+        formValueCard.dateOfBirth
+      )
+      this.passengerInfoForm.controls.gender.setValue(formValueCard.gender)
+    })
+  }
 
   onFormChange() {
     const formValue = this.passengerInfoForm.value as FormValue

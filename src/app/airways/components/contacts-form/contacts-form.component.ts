@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core'
+import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 import {
   FormControl,
   FormGroup,
@@ -7,6 +7,10 @@ import {
   Validators,
 } from '@angular/forms'
 import { ErrorStateMatcher } from '@angular/material/core'
+import { Store } from '@ngrx/store'
+import { Observable, take } from 'rxjs'
+import { selectContacts } from 'src/app/airways/store/passengers/passengers.selectors'
+import { changeContacts } from 'src/app/airways/store/passengers/passengers.actions'
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -27,8 +31,10 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './contacts-form.component.html',
   styleUrls: ['./contacts-form.component.scss'],
 })
-export class ContactsFormComponent {
+export class ContactsFormComponent implements OnInit {
   @Output() changeForm = new EventEmitter<ContactsForValue>()
+
+  constructor(private store: Store) {}
 
   contactsForm = new FormGroup({
     countryCode: new FormControl('', [
@@ -45,14 +51,29 @@ export class ContactsFormComponent {
 
   matcher = new MyErrorStateMatcher()
 
+  contacts$: Observable<Contacts> = this.store.select(selectContacts)
+
+  ngOnInit(): void {
+    this.contacts$.pipe(take(1)).subscribe((contacts) => {
+      this.contactsForm.controls.email.setValue(contacts.email)
+      this.contactsForm.controls.countryCode.setValue(contacts.countryCode)
+      this.contactsForm.controls.phone.setValue(contacts.phone)
+    })
+  }
+
   onContactsFormChange() {
-    const data = this.contactsForm.value as ContactsForValue
+    const contacts = this.contactsForm.value as ContactsForValue
+    const valid = this.contactsForm.valid
+    const data = { ...contacts, valid }
     this.changeForm.emit(data)
   }
 }
 
-interface ContactsForValue {
+export interface Contacts {
   countryCode: string | null
   phone: string | null
   email: string | null
+}
+export interface ContactsForValue extends Contacts {
+  valid: boolean
 }
