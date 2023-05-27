@@ -1,1 +1,15 @@
-<p>summary works!</p>
+<div class="summary-page">
+  <app-flight-edit-search-form />
+
+  <div class="summary-page__container container">
+    <h1 class="summary-page__title">Summary</h1>
+
+    <div class="summary-page__body">
+      <app-summary-card />
+
+      <app-summary-card *ngIf="toCurrentSlot$ | async" />
+    </div>
+
+    <div class="summary-page__footer"></div>
+  </div>
+</div>

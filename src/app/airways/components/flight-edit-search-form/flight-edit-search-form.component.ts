@@ -93,7 +93,11 @@ export class FlightEditSearchFormComponent implements OnInit {
   passengers$: Observable<number> = this.store.select(selectTotalPassengers)
 
   ngOnInit() {
-    if (this.router.url.indexOf('/booking') !== -1) this.showEdit = false
+    if (
+      this.router.url.indexOf('/booking') !== -1 ||
+      this.router.url.indexOf('/summary') !== -1
+    )
+      this.showEdit = false
 
     this.store.dispatch(searchAirports())
 

@@ -50,11 +50,14 @@ import { PassengerCardComponent } from './components/passenger-card/passenger-ca
 import { PassengersCardListComponent } from './components/passengers-card-list/passengers-card-list.component'
 import { passengersReducer } from './store/passengers/passengers.reducer'
 import { CurrencyFormatPipe } from './pipes/currency-format.pipe'
+import { SummaryCardComponent } from './components/summary-card/summary-card.component'
 
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>
 ): ActionReducer<any> {
-  return localStorageSync({ keys: ['search'], rehydrate: true })(reducer)
+  return localStorageSync({ keys: ['search', 'passengers'], rehydrate: true })(
+    reducer
+  )
 }
 
 @NgModule({
@@ -84,6 +87,7 @@ export function localStorageSyncReducer(
     PassengerCardComponent,
     PassengersCardListComponent,
     CurrencyFormatPipe,
+    SummaryCardComponent,
   ],
   imports: [
     CommonModule,
