@@ -13,6 +13,7 @@ import {
 import { changeSearch } from '../../store/search/search.actions'
 import { IAirport } from '../../store/airports/airports.model'
 import { ActivatedRoute, Router } from '@angular/router'
+import { selectDate } from '../../store/settings/settings.selectors'
 
 @Component({
   selector: 'app-flight-search-form',
@@ -20,6 +21,8 @@ import { ActivatedRoute, Router } from '@angular/router'
   styleUrls: ['./flight-search-form.component.scss'],
 })
 export class FlightSearchFormComponent implements OnInit {
+  minDate = new Date()
+
   searchForm = new FormGroup({
     type: new FormControl<SearchType>('ROUND_TRIP'),
 
@@ -68,6 +71,17 @@ export class FlightSearchFormComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(searchAirports())
+
+    this.store.select(selectDate).subscribe((data) => {
+      this.searchForm.setControl(
+        'startDate',
+        new FormControl(this.searchForm.controls.startDate.value)
+      )
+      this.searchForm.setControl(
+        'endDate',
+        new FormControl(this.searchForm.controls.endDate.value)
+      )
+    })
   }
 
   onChangeType(value: SearchType) {
