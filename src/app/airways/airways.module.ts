@@ -48,6 +48,7 @@ import { PassengerInfoFormComponent } from './components/passenger-info-form/pas
 import { ContactsFormComponent } from './components/contacts-form/contacts-form.component'
 import { PassengerCardComponent } from './components/passenger-card/passenger-card.component'
 import { PassengersCardListComponent } from './components/passengers-card-list/passengers-card-list.component'
+import { passengersReducer } from './store/passengers/passengers.reducer'
 
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>
@@ -101,6 +102,7 @@ export function localStorageSyncReducer(
         airports: airportsReducer,
         search: searchReducer,
         auth: authReducer,
+        passengers: passengersReducer,
       }),
       { metaReducers: [localStorageSyncReducer] }
     ),
