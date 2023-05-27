@@ -14,7 +14,10 @@ import { localStorageSync } from 'ngrx-store-localstorage'
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>
 ): ActionReducer<any> {
-  return localStorageSync({ keys: ['flights'], rehydrate: true })(reducer)
+  return localStorageSync({
+    keys: ['flights', 'fromCurrentSlot', 'toCurrentSlot'],
+    rehydrate: true,
+  })(reducer)
 }
 
 @NgModule({

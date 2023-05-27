@@ -1,3 +1,18 @@
-<mat-card>
-  <mat-card-content>Simple card</mat-card-content>
+<mat-card class="summary-card">
+  <mat-card-header class="summary-card__header">
+    <div *ngIf="currentSlot">
+      <span class="summary-card__number">
+        {{ currentSlot.flight?.flightNumber }}
+      </span>
+      <span class="summary-card__route">
+        {{ currentSlot.flight?.form?.city }} —
+        {{ currentSlot.flight?.to?.city }}
+      </span>
+    </div>
+    <div>
+      <span class="summary-card__date">{{ dateFormat }}</span>
+      <span class="summary-card__time">{{ timeFormat }}</span>
+    </div>
+  </mat-card-header>
+  <mat-card-content class="summary-card__content">Simple card</mat-card-content>
 </mat-card>

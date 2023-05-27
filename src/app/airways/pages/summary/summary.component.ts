@@ -3,7 +3,10 @@ import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
 
 import { ISlot } from '../../../flights/store/flights.reducer'
-import { selectToCurrentSlot } from '../../../flights/store/flights.selectors'
+import {
+  selectFromCurrentSlot,
+  selectToCurrentSlot,
+} from '../../../flights/store/flights.selectors'
 
 @Component({
   selector: 'app-summary',
@@ -12,6 +15,10 @@ import { selectToCurrentSlot } from '../../../flights/store/flights.selectors'
 })
 export class SummaryComponent {
   constructor(private store: Store) {}
+
+  fromCurrentSlot$: Observable<ISlot | null> = this.store.select(
+    selectFromCurrentSlot
+  )
 
   toCurrentSlot$: Observable<ISlot | null> =
     this.store.select(selectToCurrentSlot)
