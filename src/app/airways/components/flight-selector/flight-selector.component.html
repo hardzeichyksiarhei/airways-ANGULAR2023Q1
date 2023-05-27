@@ -36,7 +36,7 @@
         <span class="formatDate">{{ slot.formatDate }}</span>
         <span class="dayOfWeek">{{ slot.dayOfWeek }}</span>
         <span *ngIf="!slot.disabled" class="price">
-          €{{ slot?.flight?.price?.['eur'] }}
+          {{ slot?.flight?.price | currencyFormat }}
         </span>
       </div>
     </div>
@@ -93,7 +93,9 @@
         available
       </div>
       <b class="app-flight-selector-available__price-label">Price</b>
-      <span class="app-flight-selector-available__price">€146.70</span>
+      <span class="app-flight-selector-available__price">
+        {{ currentSlot?.flight?.price | currencyFormat }}
+      </span>
     </div>
 
     <div class="app-flight-selector-select">

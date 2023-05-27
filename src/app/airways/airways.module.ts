@@ -49,6 +49,7 @@ import { ContactsFormComponent } from './components/contacts-form/contacts-form.
 import { PassengerCardComponent } from './components/passenger-card/passenger-card.component'
 import { PassengersCardListComponent } from './components/passengers-card-list/passengers-card-list.component'
 import { passengersReducer } from './store/passengers/passengers.reducer'
+import { CurrencyFormatPipe } from './pipes/currency-format.pipe'
 
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>
@@ -82,6 +83,7 @@ export function localStorageSyncReducer(
     ContactsFormComponent,
     PassengerCardComponent,
     PassengersCardListComponent,
+    CurrencyFormatPipe,
   ],
   imports: [
     CommonModule,
