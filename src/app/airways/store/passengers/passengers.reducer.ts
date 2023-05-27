@@ -1,5 +1,4 @@
 import { createReducer, on } from '@ngrx/store'
-import { Card } from '../../components/passengers-card-list/passengers-card-list.component'
 import {
   addPassenger,
   changeContacts,
@@ -7,10 +6,20 @@ import {
   changePassengersListValid,
   createPassengersList,
 } from './passengers.actions'
-import { CardValue } from '../../components/passenger-card/passenger-card.component'
+
+export interface PassengerCard {
+  dateOfBirth: string
+  firstName: string
+  gender: string
+  index: number
+  lastName: string
+  passengerType: string
+  specialAssistance: boolean
+  valid: boolean
+}
 
 export interface PassengersState {
-  passengersList: CardValue[]
+  passengersList: PassengerCard[]
   passengersListValid: boolean
   contacts: {
     countryCode: string
@@ -35,13 +44,13 @@ export const passengersReducer = createReducer(
   initialState,
   on(createPassengersList, (state, action) => ({
     ...state,
-    passengersList: action.list,
+    passengersList: action.list as unknown as PassengerCard[],
   })),
   on(addPassenger, (state, action) => ({
     ...state,
     passengersList: state.passengersList.map((el) => {
       return el.index === action.index
-        ? { ...el, ...action.value, valid: action.valid }
+        ? ({ ...el, ...action.value, valid: action.valid } as PassengerCard)
         : el
     }),
   })),

@@ -29,8 +29,6 @@ export class BookingProcessComponent implements OnInit {
 
   contactsValid = false
 
-  // allFormsValid = this.passengersListValid && this.contactsValid
-
   passengersListValid$: Observable<boolean> = this.store.select(
     selectPassengersListValid
   )

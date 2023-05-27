@@ -6,7 +6,9 @@ export const selectPassengersFeature =
 
 export const selectPassengersList = createSelector(
   selectPassengersFeature,
-  (state) => state.passengers.passengersList
+  (state) => {
+    return state.passengers.passengersList
+  }
 )
 
 export const selectPassengersListValid = createSelector(
@@ -22,7 +24,6 @@ export const selectContacts = createSelector(
 export const selectContactsValid = createSelector(
   selectPassengersFeature,
   (state) => {
-    // console.log(state.passengers)
     return state.passengers.contactsValid
   }
 )
