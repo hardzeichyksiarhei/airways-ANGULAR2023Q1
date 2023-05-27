@@ -11,6 +11,7 @@ import { Store } from '@ngrx/store'
 import { selectPassengersList } from '../../store/passengers/passengers.selectors'
 import { Observable, take } from 'rxjs'
 import { CardValue } from '../passenger-card/passenger-card.component'
+import { PassengerCard } from '../../store/passengers/passengers.reducer'
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -58,27 +59,26 @@ export class PassengerInfoFormComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher()
 
-  passengersList$: Observable<CardValue[]> =
+  passengersList$: Observable<PassengerCard[]> =
     this.store.select(selectPassengersList)
 
   card: CardValue = {} as CardValue
 
   ngOnInit(): void {
-    // this.card$ = this.store.select(se(this.index))
-    //
     this.passengersList$.pipe(take(1)).subscribe((list) => {
-      const card = list.find((el) => el.index === this.index)
-      if (!card) return
+      const formValueCard = list.find((el) => el.index === this.index)
+      if (!formValueCard) return
 
-      const formValueCard = card as unknown as FormValue
+      // const formValueCard = card as unknown as FormValue
       this.passengerInfoForm.controls.firstName.setValue(
-        formValueCard.firstName
+        formValueCard.firstName || ''
       )
-      this.passengerInfoForm.controls.lastName.setValue(formValueCard.lastName)
+      this.passengerInfoForm.controls.lastName.setValue(
+        formValueCard.lastName || ''
+      )
       this.passengerInfoForm.controls.dateOfBirth.setValue(
-        formValueCard.dateOfBirth
+        formValueCard.dateOfBirth || ''
       )
-      this.passengerInfoForm.controls.gender.setValue(formValueCard.gender)
     })
   }
 

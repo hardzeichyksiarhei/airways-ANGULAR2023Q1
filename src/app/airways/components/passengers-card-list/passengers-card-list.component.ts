@@ -16,6 +16,7 @@ import {
   selectPassengersList,
   selectPassengersListValid,
 } from '../../store/passengers/passengers.selectors'
+import { PassengerCard } from '../../store/passengers/passengers.reducer'
 
 @Component({
   selector: 'app-passengers-card-list',
@@ -31,7 +32,7 @@ export class PassengersCardListComponent implements OnInit {
 
   passengers$: Observable<IPassengers> = this.store.select(selectPassengers)
 
-  passengersList$: Observable<CardValue[]> =
+  passengersList$: Observable<PassengerCard[]> =
     this.store.select(selectPassengersList)
 
   passengersListValid$: Observable<boolean> = this.store.select(
@@ -41,11 +42,7 @@ export class PassengersCardListComponent implements OnInit {
   cardsList: Card[] = []
 
   onCardChange(e: CardValue) {
-    // const card = this.cardsList.find((el) => el.index === e.index)
-    // if (!card) return
-    // card.passengerInfo = e
     this.store.dispatch(addPassenger(e))
-    // console.log(this.cardsList)
   }
 
   ngOnInit(): void {
@@ -56,7 +53,6 @@ export class PassengersCardListComponent implements OnInit {
   checkValid() {
     this.passengersList$.subscribe((pass) => {
       let valid = true
-      // console.log(pass)
       if (pass.length) {
         for (let i = 0; i < pass.length; i++) {
           if (!pass[i].valid) {
@@ -76,21 +72,18 @@ export class PassengersCardListComponent implements OnInit {
           ? []
           : new Array(passengers.adults).fill({
               passengerType: 'Adult',
-              // passengerInfo: {},
             })
       const child =
         passengers?.child === 0
           ? []
           : new Array(passengers.child).fill({
               passengerType: 'Child',
-              // passengerInfo: {},
             })
       const infant =
         passengers?.infant === 0
           ? []
           : new Array(passengers.infant).fill({
               passengerType: 'Infant',
-              // passengerInfo: {},
             })
       const list = adults
         .concat(child)
@@ -133,16 +126,10 @@ export class PassengersCardListComponent implements OnInit {
             this.store.dispatch(createPassengersList({ list }))
             this.cardsList = list
           } else {
-            // this.store.dispatch(createPassengersList({ list }))
             this.cardsList = list
           }
         }
       })
-
-      // this.store.dispatch(createPassengersList({ list }))
-      //
-      // this.cardsList = list
-      //  check logic
     })
   }
 }

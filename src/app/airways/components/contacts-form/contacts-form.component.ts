@@ -9,8 +9,8 @@ import {
 import { ErrorStateMatcher } from '@angular/material/core'
 import { Store } from '@ngrx/store'
 import { Observable, take } from 'rxjs'
-import { selectContacts } from 'src/app/airways/store/passengers/passengers.selectors'
-import { changeContacts } from 'src/app/airways/store/passengers/passengers.actions'
+import { selectContacts } from '../../store/passengers/passengers.selectors'
+import { changeContacts } from '../../store/passengers/passengers.actions'
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
