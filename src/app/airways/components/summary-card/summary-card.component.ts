@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core'
 
 import { ISlot } from '../../../flights/store/flights.reducer'
 import dayjs from 'dayjs'
-import { IPassengers } from '../../store/search/search.reducer'
 import { PassengerCard } from '../../store/passengers/passengers.reducer'
 
 @Component({

@@ -50,7 +50,8 @@ import { PassengerCardComponent } from './components/passenger-card/passenger-ca
 import { PassengersCardListComponent } from './components/passengers-card-list/passengers-card-list.component'
 import { passengersReducer } from './store/passengers/passengers.reducer'
 import { CurrencyFormatPipe } from './pipes/currency-format.pipe'
-import { SummaryCardComponent } from './components/summary-card/summary-card.component'
+import { SummaryCardComponent } from './components/summary-card/summary-card.component';
+import { SummaryPriceCardComponent } from './components/summary-price-card/summary-price-card.component'
 
 export function localStorageSyncReducer(
   reducer: ActionReducer<any>
@@ -88,6 +89,7 @@ export function localStorageSyncReducer(
     PassengersCardListComponent,
     CurrencyFormatPipe,
     SummaryCardComponent,
+    SummaryPriceCardComponent,
   ],
   imports: [
     CommonModule,
