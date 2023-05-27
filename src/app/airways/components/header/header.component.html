@@ -1,8 +1,10 @@
 <div class="app-header" [class]="getHeaderClasses()">
   <div class="app-header__container container">
-    <div class="app-logo">
+    <a class="app-logo" [routerLink]="['/']">
       <img src="/assets/logo.png" alt="Logo" />
-    </div>
+    </a>
+
+    <div></div>
 
     <app-date-format-selector />
 

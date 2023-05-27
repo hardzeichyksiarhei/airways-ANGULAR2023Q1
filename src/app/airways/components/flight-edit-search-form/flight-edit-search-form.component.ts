@@ -5,14 +5,20 @@ import { Observable, take } from 'rxjs'
 
 import {
   selectSearchFeature,
+  selectSearchType,
   selectTotalPassengers,
 } from '../../store/search/search.selectors'
 import { IAirport } from '../../store/airports/airports.model'
 import { selectAirports } from '../../store/airports/airports.selectors'
 import { searchAirports } from '../../store/airports/airports.actions'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
-import { IPassengers, SearchState } from '../../store/search/search.reducer'
+import {
+  IPassengers,
+  SearchState,
+  SearchType,
+} from '../../store/search/search.reducer'
 import { changeSearch } from '../../store/search/search.actions'
+import { selectDate } from '../../store/settings/settings.selectors'
 
 @Component({
   selector: 'app-flight-edit-search-form',
@@ -26,9 +32,13 @@ export class FlightEditSearchFormComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
+  minDate = new Date()
+
   edit = false
 
   airports$: Observable<IAirport[]> = this.store.select(selectAirports)
+
+  searchType$: Observable<SearchType> = this.store.select(selectSearchType)
 
   editSearchForm = new FormGroup({
     routeFrom: new FormControl<IAirport | null>(null),
@@ -97,6 +107,17 @@ export class FlightEditSearchFormComponent implements OnInit {
           infant: search.passengers.infant,
         })
       })
+
+    this.store.select(selectDate).subscribe(() => {
+      this.editSearchForm.setControl(
+        'startDate',
+        new FormControl(this.editSearchForm.controls.startDate.value)
+      )
+      this.editSearchForm.setControl(
+        'endDate',
+        new FormControl(this.editSearchForm.controls.endDate.value)
+      )
+    })
   }
 
   handleClickEdit() {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, Inject } from '@angular/core'
 import { Observable } from 'rxjs'
 import { Store } from '@ngrx/store'
 
@@ -7,6 +7,8 @@ import {
   selectDates,
 } from '../../store/settings/settings.selectors'
 import { changeDate } from '../../store/settings/settings.actions'
+import { DateAdapter } from '@angular/material/core'
+import { CustomDateAdapter } from '../../../material.module'
 
 @Component({
   selector: 'app-date-format-selector',
@@ -18,9 +20,13 @@ export class DateFormatSelectorComponent {
 
   dates$: Observable<string[]> = this.store.select(selectDates)
 
-  constructor(private store: Store) {}
+  constructor(
+    private store: Store,
+    @Inject(DateAdapter) private customDateAdapter: CustomDateAdapter
+  ) {}
 
   onChangeDate(date: string) {
+    this.customDateAdapter.formatto = date
     this.store.dispatch(changeDate({ date }))
   }
 }
