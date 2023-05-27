@@ -5,13 +5,18 @@ import { Observable, take } from 'rxjs'
 
 import {
   selectSearchFeature,
+  selectSearchType,
   selectTotalPassengers,
 } from '../../store/search/search.selectors'
 import { IAirport } from '../../store/airports/airports.model'
 import { selectAirports } from '../../store/airports/airports.selectors'
 import { searchAirports } from '../../store/airports/airports.actions'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
-import { IPassengers, SearchState } from '../../store/search/search.reducer'
+import {
+  IPassengers,
+  SearchState,
+  SearchType,
+} from '../../store/search/search.reducer'
 import { changeSearch } from '../../store/search/search.actions'
 
 @Component({
@@ -29,6 +34,8 @@ export class FlightEditSearchFormComponent implements OnInit {
   edit = false
 
   airports$: Observable<IAirport[]> = this.store.select(selectAirports)
+
+  searchType$: Observable<SearchType> = this.store.select(selectSearchType)
 
   editSearchForm = new FormGroup({
     routeFrom: new FormControl<IAirport | null>(null),

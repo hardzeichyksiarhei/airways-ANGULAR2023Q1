@@ -84,7 +84,10 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field
+      *ngIf="(searchType$ | async) === 'ROUND_TRIP'"
+      appearance="outline"
+    >
       <mat-label>Dates</mat-label>
       <mat-date-range-input [rangePicker]="picker">
         <input
@@ -92,14 +95,12 @@
           name="startDate"
           formControlName="startDate"
           placeholder="Start date"
-          (dateChange)="onChangeStartDate($event.value)"
         />
         <input
           matEndDate
           name="endDate"
           formControlName="endDate"
           placeholder="End date"
-          (dateChange)="onChangeEndDate($event.value)"
         />
       </mat-date-range-input>
       <mat-datepicker-toggle
@@ -109,9 +110,7 @@
       <mat-date-range-picker #picker></mat-date-range-picker>
 
       <mat-error
-        *ngIf="
-          editSearchForm.controls.startDate.hasError('matStartDateInvalid')
-        "
+        *ngIf="editSearchForm.controls.startDate.hasError('matStartDateInvalid')"
       >
         Invalid start date
       </mat-error>
@@ -120,6 +119,25 @@
       >
         Invalid end date
       </mat-error>
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="(searchType$ | async) === 'ONE_WAY'"
+      appearance="outline"
+    >
+      <mat-label>Date</mat-label>
+      <input
+        matInput
+        name="startDate"
+        formControlName="startDate"
+        placeholder="Start date"
+        [matDatepicker]="picker"
+      />
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field appearance="outline" [matMenuTriggerFor]="menu">
