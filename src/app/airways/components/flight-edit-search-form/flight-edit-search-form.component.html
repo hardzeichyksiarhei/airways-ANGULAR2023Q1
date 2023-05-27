@@ -29,7 +29,7 @@
       </span>
     </div>
 
-    <div class="app-flight-action">
+    <div *ngIf="showEdit" class="app-flight-action">
       <button *ngIf="!edit" mat-raised-button (click)="handleClickEdit()">
         Edit
       </button>

@@ -54,7 +54,9 @@ export class HeaderComponent {
 
   getHeaderClasses() {
     return {
-      fill: this.router.url.indexOf('/selection') !== -1,
+      fill:
+        this.router.url.indexOf('/selection') !== -1 ||
+        this.router.url.indexOf('/booking') !== -1,
     }
   }
 }
