@@ -7,6 +7,8 @@ import {
   selectFromCurrentSlot,
   selectToCurrentSlot,
 } from '../../../flights/store/flights.selectors'
+import { selectPassengersList } from '../../store/passengers/passengers.selectors'
+import { PassengerCard } from '../../store/passengers/passengers.reducer'
 
 @Component({
   selector: 'app-summary',
@@ -22,4 +24,7 @@ export class SummaryComponent {
 
   toCurrentSlot$: Observable<ISlot | null> =
     this.store.select(selectToCurrentSlot)
+
+  passengers$: Observable<PassengerCard[]> =
+    this.store.select(selectPassengersList)
 }

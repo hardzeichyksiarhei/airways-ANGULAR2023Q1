@@ -38,4 +38,41 @@
   &__date {
     margin-right: 35px;
   }
+
+  &__content {
+    padding: 0;
+  }
+}
+
+.passenger-item {
+  border-bottom: 2px solid #e1e5eb;
+  padding: 20px;
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+
+  &__name {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #1c1b1f;
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+
+    margin-left: 30px;
+
+    span {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 0.5px;
+      color: #000;
+    }
+  }
 }

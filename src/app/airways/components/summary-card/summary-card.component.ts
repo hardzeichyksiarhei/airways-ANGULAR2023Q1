@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core'
 
 import { ISlot } from '../../../flights/store/flights.reducer'
 import dayjs from 'dayjs'
+import { IPassengers } from '../../store/search/search.reducer'
+import { PassengerCard } from '../../store/passengers/passengers.reducer'
 
 @Component({
   selector: 'app-summary-card',
@@ -12,6 +14,8 @@ export class SummaryCardComponent {
   @Input() currentSlot: ISlot | null = null
 
   @Input() direction!: 'FROM' | 'TO'
+
+  @Input() passengers: PassengerCard[] = []
 
   get dateFormat() {
     if (!this.currentSlot || !this.currentSlot.date) return ''

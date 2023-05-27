@@ -14,5 +14,16 @@
       <span class="summary-card__time">{{ timeFormat }}</span>
     </div>
   </mat-card-header>
-  <mat-card-content class="summary-card__content">Simple card</mat-card-content>
+  <mat-card-content class="summary-card__content">
+    <div *ngFor="let passenger of passengers" class="passenger-item">
+      <span class="passenger-item__name">
+        {{ passenger.firstName }} {{ passenger.lastName }}
+      </span>
+      <div class="passenger-item__meta">
+        <span>1 checked bag (total 23 kg) included</span>
+        <span>1 cabin bag + 1 personal item (max. 8kg) included</span>
+        <span *ngIf="passenger.passengerType !== 'Infant'">Seat 19E</span>
+      </div>
+    </div>
+  </mat-card-content>
 </mat-card>

@@ -5,11 +5,15 @@
     <h1 class="summary-page__title">Summary</h1>
 
     <div class="summary-page__body">
-      <app-summary-card [currentSlot]="fromCurrentSlot$ | async" />
+      <app-summary-card
+        [currentSlot]="fromCurrentSlot$ | async"
+        [passengers]="(passengers$ | async)!"
+      />
 
       <app-summary-card
         *ngIf="toCurrentSlot$ | async"
         [currentSlot]="toCurrentSlot$ | async"
+        [passengers]="(passengers$ | async)!"
       />
     </div>
 
