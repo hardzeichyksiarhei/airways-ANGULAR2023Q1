@@ -33,12 +33,17 @@
         </p>
       </div>
 
-      <app-contacts-form (changeForm)="onContactsFormChange($event)"  />
+      <app-contacts-form (changeForm)="onContactsFormChange($event)" />
     </div>
 
     <div class="booking-process-page__footer">
       <button mat-button (click)="clickToBack()">Back</button>
-      <button [disabled]="!(passengersListValid && contactsValid)" mat-raised-button color="primary" (click)="clickToContinue()">
+      <button
+        [disabled]="!(passengersListValid && contactsValid)"
+        mat-raised-button
+        color="primary"
+        (click)="clickToContinue()"
+      >
         Continue
       </button>
     </div>
