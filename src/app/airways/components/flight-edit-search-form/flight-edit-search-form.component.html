@@ -110,7 +110,9 @@
       <mat-date-range-picker #picker></mat-date-range-picker>
 
       <mat-error
-        *ngIf="editSearchForm.controls.startDate.hasError('matStartDateInvalid')"
+        *ngIf="
+          editSearchForm.controls.startDate.hasError('matStartDateInvalid')
+        "
       >
         Invalid start date
       </mat-error>

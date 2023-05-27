@@ -1,7 +1,10 @@
 <div class="passengers-card">
   <div class="passenger-type">{{ +index + ". " }} {{ passengerType }}</div>
 
-  <app-passenger-info-form [index]="+index" (formChange)="onFormChange($event)" />
+  <app-passenger-info-form
+    [index]="+index"
+    (formChange)="onFormChange($event)"
+  />
 
   <div class="special-assistance">
     <mat-slide-toggle
