@@ -17,6 +17,7 @@
       />
 
       <app-summary-price-card
+        [prices]="(fromCurrentSlot$ | async)?.flight?.price"
         [adults]="adults$ | async"
         [childs]="childs$ | async"
         [infants]="infants$ | async"
