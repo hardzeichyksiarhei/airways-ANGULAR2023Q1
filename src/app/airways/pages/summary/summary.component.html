@@ -15,6 +15,12 @@
         [currentSlot]="toCurrentSlot$ | async"
         [passengers]="(passengers$ | async)!"
       />
+
+      <app-summary-price-card
+        [adults]="adults$ | async"
+        [childs]="childs$ | async"
+        [infants]="infants$ | async"
+      />
     </div>
 
     <div class="summary-page__footer"></div>

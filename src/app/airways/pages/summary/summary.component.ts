@@ -7,7 +7,12 @@ import {
   selectFromCurrentSlot,
   selectToCurrentSlot,
 } from '../../../flights/store/flights.selectors'
-import { selectPassengersList } from '../../store/passengers/passengers.selectors'
+import {
+  selectAdultList,
+  selectChildList,
+  selectInfantList,
+  selectPassengersList,
+} from '../../store/passengers/passengers.selectors'
 import { PassengerCard } from '../../store/passengers/passengers.reducer'
 
 @Component({
@@ -27,4 +32,10 @@ export class SummaryComponent {
 
   passengers$: Observable<PassengerCard[]> =
     this.store.select(selectPassengersList)
+
+  adults$: Observable<PassengerCard[]> = this.store.select(selectAdultList)
+
+  childs$: Observable<PassengerCard[]> = this.store.select(selectChildList)
+
+  infants$: Observable<PassengerCard[]> = this.store.select(selectInfantList)
 }

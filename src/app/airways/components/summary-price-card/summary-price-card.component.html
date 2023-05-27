@@ -1,4 +1,17 @@
 <mat-card class="summary-price-card">
-  <mat-card-content class="summary-price-card__content"></mat-card-content>
+  <mat-card-content class="summary-price-card__content">
+    <div *ngIf="adults && adults.length">
+      <span>{{ adults.length }} x Adult Fare</span>
+    </div>
+
+    <div *ngIf="childs && childs.length">
+      <span>{{ childs.length }} x Child Fare</span>
+    </div>
+
+    <div *ngIf="infants && infants.length">
+      <span>{{ infants.length }} x Infant Fare</span>
+    </div>
+  </mat-card-content>
+
   <mat-card-footer class="summary-price-card__footer"></mat-card-footer>
 </mat-card>
