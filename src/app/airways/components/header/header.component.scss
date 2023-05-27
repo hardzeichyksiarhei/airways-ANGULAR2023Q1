@@ -11,7 +11,7 @@
   &__container {
     height: 100%;
     display: grid;
-    grid-template-columns: auto repeat(4, max-content);
+    grid-template-columns: max-content auto repeat(4, max-content);
     gap: 20px;
     align-items: center;
   }
@@ -22,6 +22,8 @@
 }
 
 .app-logo {
+  display: block;
+
   img {
     display: block;
   }

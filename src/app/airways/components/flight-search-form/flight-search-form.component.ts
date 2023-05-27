@@ -72,7 +72,7 @@ export class FlightSearchFormComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(searchAirports())
 
-    this.store.select(selectDate).subscribe((data) => {
+    this.store.select(selectDate).subscribe(() => {
       this.searchForm.setControl(
         'startDate',
         new FormControl(this.searchForm.controls.startDate.value)
@@ -101,8 +101,6 @@ export class FlightSearchFormComponent implements OnInit {
   }
 
   onSearch() {
-    console.log(this.searchForm)
-
     if (!this.searchForm.valid) return
 
     const {
