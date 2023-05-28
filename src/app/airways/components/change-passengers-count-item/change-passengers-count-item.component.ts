@@ -10,6 +10,8 @@ export class ChangePassengersCountItemComponent implements OnInit {
 
   @Input() passengerCount: number | string = 0
 
+  @Input() passengerMinCount: number | string = 0
+
   @Output() changePassengersCount = new EventEmitter<{
     key: /*'adults' | 'child' | 'infant' |*/ string
     value: number
@@ -27,7 +29,7 @@ export class ChangePassengersCountItemComponent implements OnInit {
   onValueDecrement(event: MouseEvent) {
     event.stopPropagation()
 
-    if (this.passengerCount <= 0) return
+    if (this.passengerCount <= this.passengerMinCount) return
     this.changePassengersCount.emit({
       key: this.passengerType,
       value: +this.passengerCount - 1,

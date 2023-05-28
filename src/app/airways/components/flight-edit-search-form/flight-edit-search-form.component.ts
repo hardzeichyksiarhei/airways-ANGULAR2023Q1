@@ -188,6 +188,8 @@ export class FlightEditSearchFormComponent implements OnInit {
   }
 
   compareWithRoute(o1: IAirport, o2: IAirport) {
+    if (!o1 || !o2) return false
+
     return o1.key === o2.key
   }
 

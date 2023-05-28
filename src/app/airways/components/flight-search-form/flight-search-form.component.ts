@@ -27,8 +27,8 @@ export class FlightSearchFormComponent implements OnInit {
   searchForm = new FormGroup({
     type: new FormControl<SearchType>('ROUND_TRIP'),
 
-    routeFrom: new FormControl<IAirport | null>(null),
-    routeTo: new FormControl<IAirport | null>(null),
+    routeFrom: new FormControl<IAirport | null>(null, [Validators.required]),
+    routeTo: new FormControl<IAirport | null>(null, [Validators.required]),
 
     startDate: new FormControl<Date | null>(null, [Validators.required]),
     endDate: new FormControl<Date | null>(null, [Validators.required]),
@@ -71,6 +71,9 @@ export class FlightSearchFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.searchForm.controls.endDate.setValidators([Validators.required])
+    this.searchForm.controls.endDate.updateValueAndValidity()
+
     this.store.dispatch(searchAirports())
 
     this.store
@@ -102,6 +105,8 @@ export class FlightSearchFormComponent implements OnInit {
   }
 
   compareWithRoute(o1: IAirport, o2: IAirport) {
+    if (!o1 || !o2) return false
+
     return o1.key === o2.key
   }
 
@@ -122,6 +127,8 @@ export class FlightSearchFormComponent implements OnInit {
   }
 
   onSearch() {
+    this.searchForm.markAllAsTouched()
+
     if (!this.searchForm.valid) return
 
     const {

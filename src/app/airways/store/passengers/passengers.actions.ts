@@ -25,3 +25,7 @@ export const changeContacts = createAction(
   '[Airway Passenger] changeContacts',
   props<{ email: string; phone: string; countryCode: string }>()
 )
+
+export const clearPassengers = createAction(
+  '[Airway Passenger] clearPassengers'
+)

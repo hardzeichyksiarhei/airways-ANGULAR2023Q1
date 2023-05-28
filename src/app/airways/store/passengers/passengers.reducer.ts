@@ -4,6 +4,7 @@ import {
   changeContacts,
   changeContactsValid,
   changePassengersListValid,
+  clearPassengers,
   createPassengersList,
 } from './passengers.actions'
 
@@ -29,7 +30,7 @@ export interface PassengersState {
   contactsValid: boolean
 }
 
-const initialState: PassengersState = {
+const initialState = (): PassengersState => ({
   passengersList: [],
   passengersListValid: false,
   contacts: {
@@ -38,10 +39,10 @@ const initialState: PassengersState = {
     phone: '',
   },
   contactsValid: false,
-}
+})
 
 export const passengersReducer = createReducer(
-  initialState,
+  initialState(),
   on(createPassengersList, (state, action) => ({
     ...state,
     passengersList: action.list as unknown as PassengerCard[],
@@ -71,5 +72,6 @@ export const passengersReducer = createReducer(
         email: action.email,
       },
     }
-  })
+  }),
+  on(clearPassengers, () => initialState())
 )

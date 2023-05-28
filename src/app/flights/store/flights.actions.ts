@@ -41,3 +41,5 @@ export const toggleFromSlotSelected = createAction(
 export const toggleToSlotSelected = createAction(
   '[Airway Flights] Toggle To Slot Selected'
 )
+
+export const clearFlights = createAction('[Airway Flights] Clear Flights')

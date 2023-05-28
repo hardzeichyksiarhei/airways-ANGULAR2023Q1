@@ -59,12 +59,14 @@
               name="startDate"
               formControlName="startDate"
               placeholder="Start date"
+              required
             />
             <input
               matEndDate
               name="endDate"
               formControlName="endDate"
               placeholder="End date"
+              required
             />
           </mat-date-range-input>
           <mat-datepicker-toggle
@@ -117,6 +119,7 @@
             <app-change-passengers-count-item
               passengerType="adults"
               passengerCount="{{ adults }}"
+              passengerMinCount="1"
               (changePassengersCount)="onChangePassengers($event)"
             />
 

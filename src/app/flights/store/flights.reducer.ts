@@ -10,6 +10,7 @@ import {
   changeToSlots,
   searchFlights,
   searchFlightsSuccess,
+  clearFlights,
 } from './flights.actions'
 import { IFlight } from './flights.model'
 
@@ -83,7 +84,7 @@ export const getSlots = (
   return [...beforeSlots.reverse(), currentSlot, ...afterSlots]
 }
 
-const initialState: FlightsState = {
+const initialState = (): FlightsState => ({
   flights: [],
   loading: false,
 
@@ -95,10 +96,10 @@ const initialState: FlightsState = {
 
   fromSlotSelected: false,
   toSlotSelected: false,
-}
+})
 
 export const flightsReducer = createReducer(
-  initialState,
+  initialState(),
   on(searchFlights, (state): FlightsState => ({ ...state, loading: true })),
   on(searchFlightsSuccess, (state, action): FlightsState => {
     const [rowFromFlight, rowToFlight] = action.flights
@@ -167,5 +168,6 @@ export const flightsReducer = createReducer(
       ...state,
       toSlotSelected: !state.toSlotSelected,
     })
-  )
+  ),
+  on(clearFlights, () => initialState())
 )
