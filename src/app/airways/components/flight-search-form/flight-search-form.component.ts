@@ -71,9 +71,6 @@ export class FlightSearchFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.searchForm.controls.endDate.setValidators([Validators.required])
-    this.searchForm.controls.endDate.updateValueAndValidity()
-
     this.store.dispatch(searchAirports())
 
     this.store
@@ -112,11 +109,12 @@ export class FlightSearchFormComponent implements OnInit {
 
   onChangeType(value: SearchType) {
     if (value === 'ROUND_TRIP') {
-      this.searchForm.controls.endDate.setValidators([Validators.required])
-      this.searchForm.controls.endDate.updateValueAndValidity()
+      this.searchForm.addControl(
+        'endDate',
+        new FormControl<Date | null>(null, [Validators.required])
+      )
     } else if (value === 'ONE_WAY') {
-      this.searchForm.controls.endDate.removeValidators([Validators.required])
-      this.searchForm.controls.endDate.updateValueAndValidity()
+      this.searchForm.removeControl('endDate' as never)
     }
   }
 
