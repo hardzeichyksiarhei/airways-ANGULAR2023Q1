@@ -52,9 +52,7 @@ export class HeaderComponent implements OnInit {
         { key: 'summary', editable: false, saved: false },
       ]
       this.store.dispatch(updateSteps({ steps }))
-    }
-
-    if (url.indexOf('/booking') !== -1) {
+    } else if (url.indexOf('/booking') !== -1) {
       this.showStepper = true
 
       const steps = [
@@ -63,15 +61,22 @@ export class HeaderComponent implements OnInit {
         { key: 'summary', editable: false, saved: false },
       ]
       this.store.dispatch(updateSteps({ steps }))
-    }
-
-    if (url.indexOf('/summary') !== -1) {
+    } else if (url.indexOf('/summary') !== -1) {
       this.showStepper = true
 
       const steps = [
         { key: 'selection', editable: false, saved: true },
         { key: 'booking', editable: false, saved: true },
         { key: 'summary', editable: true, saved: false },
+      ]
+      this.store.dispatch(updateSteps({ steps }))
+    } else {
+      this.showStepper = false
+
+      const steps = [
+        { key: 'selection', editable: false, saved: false },
+        { key: 'booking', editable: false, saved: false },
+        { key: 'summary', editable: false, saved: false },
       ]
       this.store.dispatch(updateSteps({ steps }))
     }
