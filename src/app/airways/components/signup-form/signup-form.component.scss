@@ -1,0 +1,84 @@
+.signup-container {
+  margin-top: 36px;
+  min-height: 450px;
+
+  .buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .google-button,
+    .facebook-button {
+      height: 56px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-family: Roboto, sans-serif;
+      line-height: 20px;
+      border: 1px solid #cecece;
+      border-radius: 4px;
+    }
+  }
+
+  .alternative-text-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 36px 0 24px;
+    position: relative;
+    font-size: 12px;
+    line-height: 16px;
+    color: black;
+
+    .text {
+      width: 180px;
+      margin: 0 5px;
+      text-align: center;
+    }
+
+    .line,
+    .line {
+      flex-grow: 1;
+      height: 1px;
+      background-color: #e1e5eb;
+    }
+  }
+
+  .signup-form-container {
+    .signup-form {
+      min-width: 150px;
+      max-width: 500px;
+      width: 100%;
+
+      .email-input,
+      .password-input,
+      .citizenship-select,
+      .firstname-input,
+      .lastname-input,
+      .birthdate-input {
+        //.phone-input {
+        width: 100%;
+      }
+
+      .codeAndPhone {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .privacy-checkbox,
+      .sex-group {
+        margin-bottom: 20px;
+      }
+
+      .login-button-container {
+        .login-button {
+          width: 100%;
+          height: 44px;
+        }
+      }
+    }
+  }
+}

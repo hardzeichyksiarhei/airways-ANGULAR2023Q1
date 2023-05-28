@@ -1,0 +1,11 @@
+<mat-form-field appearance="outline">
+  <mat-label>Date</mat-label>
+  <mat-select
+    [value]="date$ | async"
+    (selectionChange)="onChangeDate($event.value)"
+  >
+    <mat-option *ngFor="let date of dates$ | async" [value]="date">
+      {{ date }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

@@ -1,0 +1,87 @@
+.app-header {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 88px;
+  background: rgba(116, 118, 122, 0.2);
+
+  &__container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: max-content auto repeat(4, max-content);
+    gap: 20px;
+    align-items: center;
+  }
+
+  &.fill {
+    background-color: #fff;
+  }
+}
+
+.app-logo {
+  display: block;
+
+  img {
+    display: block;
+  }
+}
+
+.app-header-stepper {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &-item {
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    color: #74767a;
+
+    .mark {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 20px;
+      height: 20px;
+      background-color: #74767a;
+      border-radius: 100px;
+      font-weight: 400;
+      font-size: 12px;
+      color: #fff;
+      margin-right: 5px;
+      margin-top: -2px;
+    }
+
+    &.editable,
+    &.saved {
+      .mark {
+        background: #0090bd;
+
+        img {
+          display: block;
+          width: 10px;
+          height: 10px;
+        }
+      }
+    }
+
+    .devider {
+      flex-grow: 1;
+      height: 1px;
+      background-color: #74767a;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+  }
+}

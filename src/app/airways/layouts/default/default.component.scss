@@ -1,0 +1,18 @@
+.default-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  width: 100%;
+  margin: 0 auto;
+}
+
+.footer-spacer {
+  height: 60px;
+}

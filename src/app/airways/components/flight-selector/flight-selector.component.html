@@ -1,0 +1,115 @@
+<div class="app-flight-selector">
+  <h2 *ngIf="currentSlot" class="app-flight-selector-title">
+    <img *ngIf="direction === 'FROM'" src="../../../../assets/from-air.png" />
+    <img *ngIf="direction === 'TO'" src="../../../../assets/to-air.png" />
+    <span>
+      {{ currentSlot.flight?.form?.city }}
+      to
+      {{ currentSlot.flight?.to?.city }}
+    </span>
+  </h2>
+
+  <ngx-slick-carousel
+    *ngIf="!selected"
+    class="app-flight-selector-carousel"
+    [config]="{
+      slidesToShow: 5,
+      initialSlide: 3,
+      arrows: true,
+      infinite: false
+    }"
+  >
+    <div
+      ngxSlickItem
+      *ngFor="let slot of slots"
+      class="app-flight-selector-carousel__item-container"
+      [class]="{
+        active: slot.formatDate === currentSlot?.formatDate,
+        disabled: slot.disabled,
+      }"
+      (click)="handleClickSlot(slot)"
+    >
+      <div
+        class="app-flight-selector-carousel__item"
+        [style]="getCurrentSlotStyles(slot)"
+      >
+        <span class="formatDate">{{ slot.formatDate }}</span>
+        <span class="dayOfWeek">{{ slot.dayOfWeek }}</span>
+        <span *ngIf="!slot.disabled" class="price">
+          {{ slot?.flight?.price | currencyFormat }}
+        </span>
+      </div>
+    </div>
+  </ngx-slick-carousel>
+
+  <div class="app-flight-selector-info">
+    <div class="app-flight-selector-route">
+      <div class="app-flight-selector-takeoff-time">
+        <span class="app-flight-selector-takeoff-time__date">
+          {{ currentSlot?.flight?.takeoffDate | date : "EEE, d MMM y" }}
+        </span>
+        <span class="app-flight-selector-takeoff-time__time">
+          <span>{{ currentSlot?.flight?.takeoffDate | date : "h:mm" }}</span>
+          <small>UTC +0</small>
+        </span>
+        <span class="app-flight-selector-takeoff-time__country">
+          {{ currentSlot?.flight?.form?.city }}
+        </span>
+      </div>
+      <div class="app-flight-selector-duration">
+        <span class="app-flight-selector-duration-time">
+          {{ currentSlot?.flight?.timeMins }} min
+        </span>
+        <span class="app-flight-selector-duration-direct">Direct</span>
+      </div>
+      <div class="app-flight-selector-landing-time">
+        <span class="app-flight-selector-landing-time__date">
+          {{ currentSlot?.flight?.landingDate | date : "EEE, d MMM y" }}
+        </span>
+        <span class="app-flight-selector-landing-time__time">
+          <span>{{ currentSlot?.flight?.landingDate | date : "h:mm" }}</span>
+          <small>UTC +0</small>
+        </span>
+        <span class="app-flight-selector-landing-time__country">
+          {{ currentSlot?.flight?.to?.city }}
+        </span>
+      </div>
+    </div>
+
+    <div class="app-flight-selector-number">
+      <span class="app-flight-selector-number__label">Flight no.</span>
+      <span class="app-flight-selector-number__value">
+        {{ currentSlot?.flight?.flightNumber }}
+      </span>
+    </div>
+
+    <div class="app-flight-selector-available">
+      <div
+        class="app-flight-selector-available__seats"
+        [style]="getSeatsStyles()"
+      >
+        {{ currentSlot?.flight?.seats?.avaible }} seats
+        <br />
+        available
+      </div>
+      <b class="app-flight-selector-available__price-label">Price</b>
+      <span class="app-flight-selector-available__price">
+        {{ currentSlot?.flight?.price | currencyFormat }}
+      </span>
+    </div>
+
+    <div class="app-flight-selector-select">
+      <button
+        *ngIf="!selected"
+        mat-raised-button
+        color="primary"
+        (click)="handleClickSelect()"
+      >
+        Select
+      </button>
+      <button *ngIf="selected" mat-raised-button (click)="handleClickSelect()">
+        Edit
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<mat-card class="summary-card">
+  <mat-card-header class="summary-card__header">
+    <div *ngIf="currentSlot">
+      <span class="summary-card__number">
+        {{ currentSlot.flight?.flightNumber }}
+      </span>
+      <span class="summary-card__route">
+        {{ currentSlot.flight?.form?.city }} —
+        {{ currentSlot.flight?.to?.city }}
+      </span>
+    </div>
+    <div>
+      <span class="summary-card__date">{{ dateFormat }}</span>
+      <span class="summary-card__time">{{ timeFormat }}</span>
+    </div>
+  </mat-card-header>
+  <mat-card-content class="summary-card__content">
+    <div
+      *ngFor="let passenger of passengers; let i = index"
+      class="passenger-item"
+    >
+      <span class="passenger-item__name">
+        {{ passenger.firstName }} {{ passenger.lastName }}
+      </span>
+      <div class="passenger-item__meta">
+        <span>1 checked bag (total 23 kg) included</span>
+        <span>1 cabin bag + 1 personal item (max. 8kg) included</span>
+        <span *ngIf="passenger.passengerType !== 'Infant'">
+          Seat {{ i + 1 }}E
+        </span>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

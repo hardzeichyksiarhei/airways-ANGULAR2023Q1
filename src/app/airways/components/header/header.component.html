@@ -1,0 +1,59 @@
+<div class="app-header" [class]="getHeaderClasses()">
+  <div class="app-header__container container">
+    <a class="app-logo" [routerLink]="['/']">
+      <img src="/assets/logo.png" alt="Logo" />
+    </a>
+
+    <ul *ngIf="showStepper" class="app-header-stepper">
+      <li
+        *ngFor="let step of steps$ | async; let i = index"
+        [class]="{
+          'app-header-stepper-item': true,
+          editable: step.editable,
+          saved: step.saved
+        }"
+      >
+        <div class="mark">
+          <span *ngIf="!step.editable && !step.saved">{{ i + 1 }}</span>
+          <img *ngIf="step.editable" src="../../../../assets/pencil.png" />
+          <img *ngIf="step.saved" src="../../../../assets/check.png" />
+        </div>
+        {{ step.title }}
+        <span
+          *ngIf="((steps$ | async) || []).length - 1 !== i"
+          class="devider"
+        ></span>
+      </li>
+    </ul>
+    <div *ngIf="!showStepper"></div>
+
+    <app-date-format-selector />
+
+    <app-currency-selector />
+
+    <button
+      *ngIf="(isAuth$ | async) === null"
+      mat-flat-button
+      extended
+      color="primary"
+      (click)="openDialog('300ms', '150ms')"
+    >
+      <mat-icon>person</mat-icon>
+      Sign In
+    </button>
+    <button
+      *ngIf="isAuth$ | async"
+      mat-flat-button
+      extended
+      color="primary"
+      (click)="onLogout()"
+    >
+      <mat-icon>person</mat-icon>
+      Logout
+    </button>
+
+    <button mat-fab color="accent" disabled>
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+  </div>
+</div>

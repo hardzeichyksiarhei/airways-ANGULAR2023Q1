@@ -1,0 +1,39 @@
+<div class="summary-page">
+  <app-flight-edit-search-form />
+
+  <div class="summary-page__container container">
+    <h1 class="summary-page__title">Summary</h1>
+
+    <div class="summary-page__body">
+      <app-summary-card
+        [currentSlot]="fromCurrentSlot$ | async"
+        [passengers]="(passengers$ | async)!"
+      />
+
+      <app-summary-card
+        *ngIf="toCurrentSlot$ | async"
+        [currentSlot]="toCurrentSlot$ | async"
+        [passengers]="(passengers$ | async)!"
+      />
+
+      <div></div>
+
+      <app-summary-price-card
+        [prices]="(fromCurrentSlot$ | async)?.flight?.price"
+        [adults]="adults$ | async"
+        [childs]="childs$ | async"
+        [infants]="infants$ | async"
+      />
+    </div>
+
+    <div class="summary-page__footer">
+      <button mat-button (click)="onClickBack()">Back</button>
+      <button mat-raised-button (click)="onClickAddToCart()">
+        Add to order cart
+      </button>
+      <button mat-raised-button color="primary" (click)="onClickBuyNow()">
+        Buy now
+      </button>
+    </div>
+  </div>
+</div>

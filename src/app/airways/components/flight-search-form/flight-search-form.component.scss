@@ -1,0 +1,39 @@
+:host {
+  max-width: 580px;
+  width: 100%;
+
+  ::ng-deep {
+    .mdc-text-field--disabled .mdc-floating-label {
+      color: rgba(0, 0, 0, 0.6);
+    }
+
+    .mdc-form-field-appearance-outline .mdc-form-field-outline {
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
+}
+
+.flight-search-form {
+  &__type {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    gap: 30px;
+    margin-bottom: 1.25em;
+  }
+
+  &__route {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__meta {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

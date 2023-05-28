@@ -1,0 +1,47 @@
+<div class="flight-selection-page">
+  <app-flight-edit-search-form />
+
+  <div class="flight-selection-page__container container">
+    <div class="flight-selection-page__body">
+      <app-flight-selector
+        direction="FROM"
+        [selected]="(fromSlotSelected$ | async)!"
+        [currentSlot]="fromCurrentSlot$ | async"
+        [slots]="(fromSlots$ | async)!"
+        (clickSlot)="handleClickFromSlot($event)"
+        (clickSelectSlot)="handleClickSelectFromSlot()"
+      />
+
+      <mat-divider
+        *ngIf="toCurrentSlot$ | async"
+        style="margin: 30px 0"
+      ></mat-divider>
+
+      <app-flight-selector
+        *ngIf="toCurrentSlot$ | async"
+        direction="TO"
+        [selected]="(toSlotSelected$ | async)!"
+        [currentSlot]="toCurrentSlot$ | async"
+        [slots]="(toSlots$ | async)!"
+        (clickSlot)="handleClickToSlot($event)"
+        (clickSelectSlot)="handleClickSelectToSlot()"
+      />
+    </div>
+
+    <div class="flight-selection-page__footer">
+      <button mat-button (click)="onClickBack()">Back</button>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="
+          !(fromSlotSelected$ | async)! ||
+          ((searchType$ | async) === 'ROUND_TRIP' &&
+            !(toSlotSelected$ | async)!)
+        "
+        (click)="clickToContinue()"
+      >
+        Continue
+      </button>
+    </div>
+  </div>
+</div>

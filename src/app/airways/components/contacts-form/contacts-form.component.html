@@ -1,0 +1,83 @@
+<div class="contacts-info">
+  <div class="contacts-info__card card">
+    <div class="contacts-info-form-container">
+      <form
+        class="contacts-info-form-container__form"
+        [formGroup]="contactsForm"
+        (change)="onContactsFormChange()"
+      >
+        <mat-form-field class="countryCode" appearance="outline">
+          <mat-label>Country code</mat-label>
+          <input
+            type="text"
+            [autocomplete]="false"
+            matInput
+            placeholder="+375"
+            [formControl]="contactsForm.controls.countryCode"
+            [errorStateMatcher]="matcher"
+          />
+          <mat-error
+            *ngIf="contactsForm.controls.countryCode.hasError('pattern')"
+          >
+            Country code example
+            <strong>+375</strong>
+          </mat-error>
+          <mat-error
+            *ngIf="contactsForm.controls.countryCode.hasError('required')"
+          >
+            Country code is
+            <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="phone" appearance="outline">
+          <mat-label>Mobile phone number</mat-label>
+          <input
+            type="text"
+            matInput
+            [autocomplete]="false"
+            placeholder="123456789"
+            [formControl]="contactsForm.controls.phone"
+            [errorStateMatcher]="matcher"
+          />
+          <mat-error *ngIf="contactsForm.controls.phone.hasError('required')">
+            Phone is
+            <strong>required</strong>
+          </mat-error>
+          <mat-error
+            *ngIf="
+              contactsForm.controls.phone.hasError('pattern') &&
+              !contactsForm.controls.phone.hasError('required')
+            "
+          >
+            Invalid phone number
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="email" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input
+            type="email"
+            matInput
+            [autocomplete]="false"
+            placeholder="e.g. example@gmail.com"
+            [formControl]="contactsForm.controls.email"
+            [errorStateMatcher]="matcher"
+          />
+          <mat-error
+            *ngIf="
+              contactsForm.controls.email.hasError('email') &&
+              !contactsForm.controls.email.hasError('required')
+            "
+          >
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="contactsForm.controls.email.hasError('required')">
+            Email is
+            <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+:host {
+  position: sticky;
+  z-index: 1000;
+  top: 88px;
+}
+
+:host .mat-mdc-form-field {
+  margin-bottom: -1.25em;
+}
+
+.app-flight-edit-search-form {
+  height: 68px;
+  background: #fafafa;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+
+  &__container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__edit-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+
+    position: relative;
+    top: 10px;
+    background: #fff;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+  }
+}
+
+.app-flight-route {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+
+  &__from,
+  &__to {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: #000;
+  }
+
+  &__icon {
+    margin: 0 15px;
+
+    img {
+      display: block;
+    }
+  }
+}
+
+.app-flight-meta {
+  display: flex;
+  align-items: center;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.1px;
+  color: #74767a;
+
+  &__divider {
+    display: block;
+    margin: 0 5px;
+  }
+}
+
+.app-flight-action {
+  margin-left: 30px;
+
+  button {
+    margin-right: 10px;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+}

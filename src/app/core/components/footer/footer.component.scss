@@ -1,0 +1,36 @@
+.app-footer {
+  height: 90px;
+  border-top: 1px solid #d0d9df;
+
+  &__container {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__payments {
+    display: flex;
+    align-items: center;
+
+    p {
+      margin: 0;
+      margin-right: 30px;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+
+      display: grid;
+      grid-template-columns: repeat(4, auto);
+      gap: 15px;
+      align-items: center;
+
+      img {
+        display: block;
+      }
+    }
+  }
+}

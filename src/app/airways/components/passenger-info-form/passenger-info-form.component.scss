@@ -1,0 +1,32 @@
+.passenger-info {
+  .access {
+    display: flex;
+    align-items: center;
+    img {
+      margin: 0 11px 7px 0;
+    }
+  }
+
+  &__form {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+
+    & > * {
+      flex-grow: 1;
+      max-width: 25%;
+    }
+
+    .gender {
+      flex-grow: 1;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      //border-color: #494949;
+      & > * {
+        //flex-grow: 1;
+        width: 50%;
+      }
+    }
+  }
+}

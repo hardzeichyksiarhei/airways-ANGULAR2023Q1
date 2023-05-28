@@ -53,10 +53,11 @@
     },
     {
       "files": [
-        "src/**/*.spec.ts", "src/**/*.d.ts"
+        "src/**/*.spec.ts",
+        "src/**/*.d.ts"
       ],
       "parserOptions": {
-        "project": "./src/tsconfig.spec.json"
+        "project": "./tsconfig.spec.json"
       },
       "extends": [
         "plugin:jasmine/recommended"
@@ -64,8 +65,18 @@
       "plugins": [
         "jasmine"
       ],
-      "env": { "jasmine": true },
+      "env": {
+        "jasmine": true
+      },
       "rules": {}
+    },
+    {
+      "files": [
+        "*.ts"
+      ],
+      "extends": [
+        "plugin:@ngrx/recommended"
+      ]
     }
   ]
 }

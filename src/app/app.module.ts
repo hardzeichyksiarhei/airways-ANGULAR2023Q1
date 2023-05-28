@@ -1,20 +1,37 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core'
+import { BrowserModule } from '@angular/platform-browser'
+import { StoreModule } from '@ngrx/store'
+import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { EffectsModule } from '@ngrx/effects'
+import { HttpClientModule } from '@angular/common/http'
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module'
+import { AppComponent } from './app.component'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+
+import { CoreModule } from './core/core.module'
+import { AirwaysModule } from './airways/airways.module'
+import { FlightsModule } from './flights/flights.module'
+
+import { environment } from '../environments'
+import { AuthService } from './airways/store/auth/auth.service'
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    CoreModule,
+    AirwaysModule,
+    FlightsModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot(),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+
+  providers: [AuthService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
