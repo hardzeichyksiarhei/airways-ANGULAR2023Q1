@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
-import { Observable } from 'rxjs'
+import { Observable, take } from 'rxjs'
 import { Store } from '@ngrx/store'
 
 import { searchAirports } from '../../store/airports/airports.actions'
@@ -14,6 +14,7 @@ import { changeSearch } from '../../store/search/search.actions'
 import { IAirport } from '../../store/airports/airports.model'
 import { ActivatedRoute, Router } from '@angular/router'
 import { selectDate } from '../../store/settings/settings.selectors'
+import { selectSearch } from '../../store/search/search.selectors'
 
 @Component({
   selector: 'app-flight-search-form',
@@ -72,6 +73,23 @@ export class FlightSearchFormComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(searchAirports())
 
+    this.store
+      .select(selectSearch)
+      .pipe(take(1))
+      .subscribe((search) => {
+        console.log(search)
+        this.searchForm.patchValue({
+          type: search.type,
+          routeFrom: search.route.from,
+          routeTo: search.route.to,
+          startDate: search.dates.start,
+          endDate: search.dates.end,
+          adults: search.passengers.adults,
+          child: search.passengers.child,
+          infant: search.passengers.infant,
+        })
+      })
+
     this.store.select(selectDate).subscribe(() => {
       this.searchForm.setControl(
         'startDate',
@@ -82,6 +100,10 @@ export class FlightSearchFormComponent implements OnInit {
         new FormControl(this.searchForm.controls.endDate.value)
       )
     })
+  }
+
+  compareWithRoute(o1: IAirport, o2: IAirport) {
+    return o1.key === o2.key
   }
 
   onChangeType(value: SearchType) {
@@ -133,13 +155,16 @@ export class FlightSearchFormComponent implements OnInit {
 
     this.store.dispatch(changeSearch({ search }))
 
-    this.router.navigate(['selection'], {
-      queryParams: {
-        fromKey: routeFrom.value?.key,
-        toKey: routeTo.value?.key,
-        forwardDate: startDate.value?.toISOString(),
-        backDate: endDate.value?.toISOString(),
-      },
-    })
+    const queryParams = {
+      fromKey: routeFrom.value?.key,
+      toKey: routeTo.value?.key,
+      forwardDate: startDate.value?.toISOString(),
+    } as Record<string, string | undefined>
+
+    if (type.value === 'ROUND_TRIP') {
+      queryParams['backDate'] = endDate.value?.toISOString()
+    }
+
+    this.router.navigate(['selection'], { queryParams })
   }
 }

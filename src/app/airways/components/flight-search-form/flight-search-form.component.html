@@ -15,7 +15,11 @@
       <div class="flight-search-form__route">
         <mat-form-field appearance="outline">
           <mat-label>From</mat-label>
-          <mat-select name="routeFrom" formControlName="routeFrom">
+          <mat-select
+            name="routeFrom"
+            formControlName="routeFrom"
+            [compareWith]="compareWithRoute"
+          >
             <mat-option
               *ngFor="let airport of airports$ | async"
               [value]="airport"
@@ -29,13 +33,18 @@
 
         <mat-form-field appearance="outline">
           <mat-label>To</mat-label>
-          <mat-select name="routeTo" formControlName="routeTo">
+          <mat-select
+            name="routeTo"
+            formControlName="routeTo"
+            [compareWith]="compareWithRoute"
+          >
             <mat-option
               *ngFor="let airport of airports$ | async"
               [value]="airport"
             >
-              {{ airport.city }} ({{ airport.key }}) – {{ airport.name }},
-              {{ airport.city }}
+              <b>{{ airport.city }} ({{ airport.key }})</b>
+              <br />
+              <small>{{ airport.name }}, {{ airport.city }}</small>
             </mat-option>
           </mat-select>
         </mat-form-field>

@@ -4,6 +4,11 @@ import { AirwayState } from '../types'
 
 export const selectSearchFeature = createFeatureSelector<AirwayState>('airway')
 
+export const selectSearch = createSelector(
+  selectSearchFeature,
+  (state) => state.search
+)
+
 export const selectSearchType = createSelector(
   selectSearchFeature,
   (state) => state.search.type
