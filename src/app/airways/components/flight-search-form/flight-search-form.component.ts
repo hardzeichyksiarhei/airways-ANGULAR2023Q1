@@ -77,7 +77,6 @@ export class FlightSearchFormComponent implements OnInit {
       .select(selectSearch)
       .pipe(take(1))
       .subscribe((search) => {
-        console.log(search)
         this.searchForm.patchValue({
           type: search.type,
           routeFrom: search.route.from,

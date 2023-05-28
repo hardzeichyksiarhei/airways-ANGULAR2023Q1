@@ -67,7 +67,6 @@ export class SignupFormComponent {
   matcher = new MyErrorStateMatcher()
 
   onSubmit() {
-    console.log(this.signUpForm.value)
     const data = this.signUpForm.value as SignUpDto
     this.store.dispatch(trySignup(data))
   }

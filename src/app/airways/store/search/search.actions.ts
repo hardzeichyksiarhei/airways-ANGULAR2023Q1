@@ -41,3 +41,5 @@ export const changeSearch = createAction(
   '[Airway Search] Change Search',
   props<{ search: Partial<SearchState> }>()
 )
+
+export const clearSearch = createAction('[Airway Search] Clear Search')
