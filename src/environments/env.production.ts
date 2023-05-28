@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiURL: 'http://localhost:5000',
+  apiURL: 'https://airways-backend-angular2023q1.herokuapp.com',
 }
