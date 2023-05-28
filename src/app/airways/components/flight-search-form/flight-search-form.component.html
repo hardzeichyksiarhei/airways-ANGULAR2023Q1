@@ -44,7 +44,7 @@
       <div class="flight-search-form__meta">
         <mat-form-field *ngIf="type === 'ROUND_TRIP'" appearance="outline">
           <mat-label>Dates</mat-label>
-          <mat-date-range-input [rangePicker]="picker" [min]="minDate">
+          <mat-date-range-input [rangePicker]="picker" [min]="minDate" required>
             <input
               matStartDate
               name="startDate"
@@ -87,6 +87,7 @@
             placeholder="Start date"
             [matDatepicker]="picker"
             [min]="minDate"
+            required
           />
           <mat-datepicker-toggle
             matIconSuffix

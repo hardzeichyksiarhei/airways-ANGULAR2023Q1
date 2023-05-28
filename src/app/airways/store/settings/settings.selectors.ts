@@ -24,3 +24,13 @@ export const selectDates = createSelector(
   selectSettingsFeature,
   (state) => state.settings.dates
 )
+
+export const selectStep = createSelector(
+  selectSettingsFeature,
+  (state) => state.settings.step
+)
+
+export const selectSteps = createSelector(
+  selectSettingsFeature,
+  (state) => state.settings.steps
+)

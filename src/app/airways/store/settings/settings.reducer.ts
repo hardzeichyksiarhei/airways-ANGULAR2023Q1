@@ -1,5 +1,17 @@
 import { createReducer, on } from '@ngrx/store'
-import { changeCurrency, changeDate } from './settings.actions'
+import {
+  changeCurrency,
+  changeDate,
+  changeStep,
+  updateSteps,
+} from './settings.actions'
+
+export interface IStep {
+  key: string
+  title: string
+  editable: boolean
+  saved: boolean
+}
 
 export interface SettingsState {
   date: string
@@ -7,6 +19,9 @@ export interface SettingsState {
 
   currency: string
   currencies: string[]
+
+  step: IStep | null
+  steps: IStep[]
 }
 
 const initialState: SettingsState = {
@@ -15,6 +30,28 @@ const initialState: SettingsState = {
 
   currency: 'EUR',
   currencies: ['EUR', 'USD'],
+
+  step: null,
+  steps: [
+    {
+      key: 'selection',
+      title: 'Flights',
+      editable: false,
+      saved: false,
+    },
+    {
+      key: 'booking',
+      title: 'Passengers',
+      editable: false,
+      saved: false,
+    },
+    {
+      key: 'summary',
+      title: 'Review & Payment',
+      editable: false,
+      saved: false,
+    },
+  ],
 }
 
 export const settingsReducer = createReducer(
@@ -32,5 +69,23 @@ export const settingsReducer = createReducer(
       ...state,
       date: action.date,
     })
-  )
+  ),
+  on(
+    changeStep,
+    (state, action): SettingsState => ({
+      ...state,
+      step: action.step,
+    })
+  ),
+  on(updateSteps, (state, action): SettingsState => {
+    const steps = state.steps.map((step) => {
+      const slotFinded = action.steps.find(({ key }) => key === step.key)
+
+      if (!slotFinded) return step
+
+      return { ...step, ...slotFinded }
+    })
+
+    return { ...state, steps }
+  })
 )
