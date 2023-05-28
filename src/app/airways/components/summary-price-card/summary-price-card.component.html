@@ -1,30 +1,56 @@
 <mat-card class="summary-price-card">
   <mat-card-content class="summary-price-card__content">
-    <div *ngIf="adults && adults.length">
-      <ul>
-        <li>
-          <span>{{ adults.length }} x Adult Fare</span>
-          <span>{{ currency }} {{ adultTotalPrice.toFixed(2) }}</span>
-        </li>
-        <li>
-          <span>Fare</span>
-          <span>{{ currency }} {{ adultFarePrice.toFixed(2) }}</span>
-        </li>
-        <li>
-          <span>Tax & Service Charge</span>
-          <span>{{ currency }} {{ adultTaxPrice.toFixed(2) }}</span>
-        </li>
-      </ul>
-    </div>
+    <ul class="summary-price-list" *ngIf="adults && adults.length">
+      <li class="summary-price-item summary-price-item--title">
+        <span>{{ adults.length }} x Adult Fare</span>
+        <span>{{ currency }} {{ adultTotalPrice.toFixed(2) }}</span>
+      </li>
+      <li class="summary-price-item">
+        <span>Fare</span>
+        <span>{{ currency }} {{ adultFarePrice.toFixed(2) }}</span>
+      </li>
+      <li class="summary-price-item">
+        <span>Tax & Service Charge</span>
+        <span>{{ currency }} {{ adultTaxPrice.toFixed(2) }}</span>
+      </li>
+    </ul>
 
-    <div *ngIf="childs && childs.length">
-      <span>{{ childs.length }} x Child Fare</span>
-    </div>
+    <ul *ngIf="childs && childs.length" class="summary-price-list">
+      <li class="summary-price-item summary-price-item--title">
+        <span>{{ childs.length }} x Child Fare</span>
+        <span>{{ currency }} {{ childTotalPrice.toFixed(2) }}</span>
+      </li>
+      <li class="summary-price-item">
+        <span>Fare</span>
+        <span>{{ currency }} {{ childFarePrice.toFixed(2) }}</span>
+      </li>
+      <li class="summary-price-item">
+        <span>Tax & Service Charge</span>
+        <span>{{ currency }} {{ childTaxPrice.toFixed(2) }}</span>
+      </li>
+    </ul>
 
-    <div *ngIf="infants && infants.length">
-      <span>{{ infants.length }} x Infant Fare</span>
-    </div>
+    <ul *ngIf="infants && infants.length" class="summary-price-list">
+      <li class="summary-price-item summary-price-item--title">
+        <span>{{ infants.length }} x Infant Fare</span>
+        <span>{{ currency }} {{ infantTotalPrice.toFixed(2) }}</span>
+      </li>
+      <li class="summary-price-item">
+        <span>Fare</span>
+        <span>{{ currency }} {{ infantFarePrice.toFixed(2) }}</span>
+      </li>
+      <li class="summary-price-item">
+        <span>Tax & Service Charge</span>
+        <span>{{ currency }} {{ infantTaxPrice.toFixed(2) }}</span>
+      </li>
+    </ul>
   </mat-card-content>
 
-  <mat-card-footer class="summary-price-card__footer"></mat-card-footer>
+  <mat-card-footer class="summary-price-card__footer">
+    <span>Total:</span>
+    <span>
+      {{ currency }}
+      {{ (adultTotalPrice + childTotalPrice + infantTotalPrice).toFixed(2) }}
+    </span>
+  </mat-card-footer>
 </mat-card>

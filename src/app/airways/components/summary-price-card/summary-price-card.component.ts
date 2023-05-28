@@ -47,4 +47,36 @@ export class SummaryPriceCardComponent implements OnInit {
       (this.adults || []).length * (this.adultFarePrice + this.adultTaxPrice)
     )
   }
+
+  get childFarePrice() {
+    if (!this.prices) return 0
+
+    return (this.prices[this.currencyKey] || 0) * 0.9
+  }
+
+  get childTaxPrice() {
+    return this.childFarePrice * 0.3
+  }
+
+  get childTotalPrice() {
+    return (
+      (this.childs || []).length * (this.childFarePrice + this.childTaxPrice)
+    )
+  }
+
+  get infantFarePrice() {
+    if (!this.prices) return 0
+
+    return (this.prices[this.currencyKey] || 0) * 0.6
+  }
+
+  get infantTaxPrice() {
+    return this.infantFarePrice * 0.3
+  }
+
+  get infantTotalPrice() {
+    return (
+      (this.childs || []).length * (this.infantFarePrice + this.infantTaxPrice)
+    )
+  }
 }

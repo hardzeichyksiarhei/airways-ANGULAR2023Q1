@@ -16,6 +16,8 @@
         [passengers]="(passengers$ | async)!"
       />
 
+      <div></div>
+
       <app-summary-price-card
         [prices]="(fromCurrentSlot$ | async)?.flight?.price"
         [adults]="adults$ | async"
