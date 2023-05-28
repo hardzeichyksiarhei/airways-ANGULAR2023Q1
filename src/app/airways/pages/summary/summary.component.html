@@ -26,6 +26,14 @@
       />
     </div>
 
-    <div class="summary-page__footer"></div>
+    <div class="summary-page__footer">
+      <button mat-button>Back</button>
+      <button mat-raised-button (click)="onClickAddToCart()">
+        Add to order cart
+      </button>
+      <button mat-raised-button color="primary" (click)="onClickBuyNow()">
+        Buy now
+      </button>
+    </div>
   </div>
 </div>
