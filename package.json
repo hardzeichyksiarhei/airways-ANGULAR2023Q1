@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "lint:fix": "prettier --write src && ng lint --fix",
-    "heroku-postbuild": "ng build --aot -prod"
+    "heroku-postbuild": "ng build"
   },
   "engines": {
     "node": "16.16.0",
