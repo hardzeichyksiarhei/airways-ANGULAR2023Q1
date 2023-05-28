@@ -83,6 +83,10 @@ export class FlightSelectionComponent implements OnInit {
     this.store.dispatch(toggleToSlotSelected())
   }
 
+  onClickBack() {
+    this.router.navigate(['/'], {})
+  }
+
   clickToContinue() {
     this.router.navigate(['booking'], {})
   }

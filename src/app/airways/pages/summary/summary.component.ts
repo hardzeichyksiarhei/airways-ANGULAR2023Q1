@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
 import { MatDialog } from '@angular/material/dialog'
@@ -16,14 +16,19 @@ import {
 } from '../../store/passengers/passengers.selectors'
 import { PassengerCard } from '../../store/passengers/passengers.reducer'
 import { BuyConfirmDialogComponent } from '../../components/buy-confirm-dialog/buy-confirm-dialog.component'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-summary',
   templateUrl: './summary.component.html',
   styleUrls: ['./summary.component.scss'],
 })
-export class SummaryComponent {
-  constructor(private store: Store, public dialog: MatDialog) {}
+export class SummaryComponent implements OnInit {
+  constructor(
+    private store: Store,
+    public dialog: MatDialog,
+    private router: Router
+  ) {}
 
   fromCurrentSlot$: Observable<ISlot | null> = this.store.select(
     selectFromCurrentSlot
@@ -40,6 +45,16 @@ export class SummaryComponent {
   childs$: Observable<PassengerCard[]> = this.store.select(selectChildList)
 
   infants$: Observable<PassengerCard[]> = this.store.select(selectInfantList)
+
+  ngOnInit(): void {
+    this.passengers$.subscribe((passengers) => {
+      if (passengers.length === 0) this.router.navigateByUrl('/')
+    })
+  }
+
+  onClickBack() {
+    this.router.navigateByUrl('/booking')
+  }
 
   onClickAddToCart() {}
 
